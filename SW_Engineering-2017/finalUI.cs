@@ -87,6 +87,7 @@ namespace SW_Engineering_2017
         {
             if (!findPatientPanel.Visible)
             {
+                findPatientPanel.Location = new Point(15, 15);
                 findPatientPanel.Visible = true;
                 mainMenuPanel.Visible = false;
             }
@@ -96,6 +97,7 @@ namespace SW_Engineering_2017
         {
             if (!testResultSearchPanel.Visible)
             {
+                testResultSearchPanel.Location = new Point(15, 15);
                 testResultSearchPanel.Visible = true;
                 mainMenuPanel.Visible = false;
             }
@@ -105,6 +107,7 @@ namespace SW_Engineering_2017
         {
             if (!staffScheduleSearchPanel.Visible)
             {
+                staffScheduleSearchPanel.Location = new Point(15, 15);
                 staffScheduleSearchPanel.Visible = true;
                 mainMenuPanel.Visible = false;
             }
@@ -169,6 +172,7 @@ namespace SW_Engineering_2017
         {
             if (!mainMenuPanel.Visible)
             {
+                
                 findPatientPanel.Visible = false;
                 mainMenuPanel.Visible = true;
             }
@@ -178,6 +182,7 @@ namespace SW_Engineering_2017
         {
             if (!editPatientPanel.Visible)
             {
+                editPatientPanel.Location = new Point(15, 15);
                 editPatientPanel.Visible = true;
                 findPatientPanel.Visible = false;
             }
@@ -205,6 +210,7 @@ namespace SW_Engineering_2017
         {
             if (!newAppointmentPanel.Visible)
             {
+                newAppointmentPanel.Location = new Point(15, 15);
                 newAppointmentPanel.Visible = true;
                 findPatientPanel.Visible = false;
             }
@@ -223,6 +229,7 @@ namespace SW_Engineering_2017
         {
             if (!prescriptionPanel.Visible)
             {
+                prescriptionPanel.Location = new Point(15, 15);
                 prescriptionPanel.Visible = true;
                 findPatientPanel.Visible = false;
             }
