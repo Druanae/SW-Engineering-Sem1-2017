@@ -8,6 +8,10 @@ namespace SW_Engineering_2017
 {
     class Constants
     {
-        public static string selectAll = "SELECT * FROM Staff";
+        public static string selectAllStaff = "SELECT * FROM Staff";
+        public static string selectAllPatients = "SELECT * FROM Patients";
+
+        
+       
     }
 }

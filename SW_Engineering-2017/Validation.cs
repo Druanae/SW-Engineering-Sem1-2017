@@ -8,126 +8,129 @@ namespace SW_Engineering_2017
 {
     class Validation
     {
-        
-        public string ValidateFirstname(string firstname)
+        public string validateFirstname(string firstname)
         {
-            string errorMessage;
-
+            string errormessage;
+            //check if firstname is blank
             if (firstname == "")
             {
-                errorMessage = "firstname required \r\n";
-                
-            }else
+                //error message set
+                errormessage = "Requires Firstname\r\n";
+            }
+            else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
+            //return errorMessage
+            return errormessage;
         }
 
-        public string ValidateSurname(string surname)
+        public string validateSurname(string surname)
         {
-            string errorMessage;
+            string errormessage;
 
+            //checks if Surname is blank
             if (surname == "")
             {
-                errorMessage = "surname required \r\n";
-
+                //error message set
+                errormessage = "Requires Surname\r\n";
             }
             else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
+            //return errorMessage
+            return errormessage;
         }
 
-        public string ValidateDOB(DateTime dob)
+        public string validateAddressLine(string addressLine)
         {
-            string errorMessage;
-            if (dob < Constants.maxDOB) {
-                errorMessage = "Date of birth is out of range \r\n";
+            string errormessage;
+
+            //checks if addressline is blank
+            if (addressLine == "")
+            {
+                //error message set
+                errormessage = "Requires AddressLine\r\n";
             }
             else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
+            //return errorMessage
+            return errormessage;
         }
 
-        public string ValidateAddress(string address)
+        public string validateTownCity(string townCity)
         {
-            string errorMessage;
+            string errormessage;
 
-            if (address == "")
-            {
-                errorMessage = "address line required \r\n";
-
-            }
-            else
-            {
-                errorMessage = "";
-            }
-
-            return errorMessage;
-        }
-
-        public string ValidateTownCity(string townCity)
-        {
-            string errorMessage;
-
+            //checks if townCity is blank
             if (townCity == "")
             {
-                errorMessage = "town/City required \r\n";
-
+                //error message set
+                errormessage = "Requires Town/City\r\n";
             }
             else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
+            //return errorMessage
+            return errormessage;
         }
-        public string ValidateCounty(string County)
+
+        public string validateCounty(string county)
         {
-            string errorMessage;
+            string errormessage;
 
-            if (County == "")
+            //checks if county is blank
+            if (county == "")
             {
-                errorMessage = "County required \r\n";
-
+                //error message set
+                errormessage = "Requires County\r\n";
             }
             else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
+            //return errorMessage
+            return errormessage;
         }
 
-        public string ValidatePostcode(string postcode)
+        public string validatePostcode(string postcode)
         {
-            string errorMessage;
+            string errormessage;
 
+            //checks if postcode is blank
             if (postcode == "")
             {
-                errorMessage = "Postcode required \r\n";
-
-            }else if ((postcode.Length < 6) || (postcode.Length > 7))
+                //error message set
+                errormessage = "Requires Postcode\r\n";
+            }
+            //checks that postcode is the correct length
+            else if ((postcode.Length <6) || (postcode.Length > 7))
             {
-                errorMessage = "Invaild Postcode \r\n";
-
+                //error message set
+                errormessage = "Invalided Postcode\r\n";
             }
             else
             {
-                errorMessage = "";
+                //valid input 
+                errormessage = "";
             }
 
-            return errorMessage;
-        }   
-
-           
-          
+            //return errorMessage
+            return errormessage;
+        }
     }
 }

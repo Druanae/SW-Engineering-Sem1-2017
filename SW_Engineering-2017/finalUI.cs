@@ -20,37 +20,30 @@ namespace SW_Engineering_2017
             testResultSearchPanel.Visible = false;
             staffScheduleSearchPanel.Visible = false;
             changeStaffSchedulePanel.Visible = false;
-            newPatientPanel.Visible = false;
+            newPatientPanel.Visible = false;   
             findPatientPanel.Visible = false;
             editPatientPanel.Visible = false;
             newAppointmentPanel.Visible = false;
         }
-        //creates instance of Connection and DataSet
-        Connection databaseCon;
-        DataSet dataSet;
-
 
         private void finalUI_Load(object sender, EventArgs e)
         {
-            //set the connection string
-            string connectionString = Properties.Settings.Default.Connection;
+            dob_NP_PCK.MaxDate= DateTime.Today;
+            dob_NP_PCK.Value = DateTime.Today;
 
-            //sends connection string to the database 
-            databaseCon = new Connection(connectionString);
-
+            Connection.getDBConnectionInstance().openConnection();
+            /*
             //opens the database connection
-            databaseCon.openConnection();
+            
 
             //set data set 
-            dataSet = databaseCon.GetDataSet(Constants.selectAll);
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
 
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
 
-            //calls fillInField
-            fillInFields(table, 1);
-
-
+            DGV.DataSource = table;
+            */
         }
 
         private void fillInFields(DataTable table, int index)
@@ -62,7 +55,59 @@ namespace SW_Engineering_2017
         private void finalUI_FormClosed(object sender, FormClosedEventArgs e)
         {
             //close database connection 
-            databaseCon.closeConnection();
+            Connection.getDBConnectionInstance().closeConnection();
+        }
+
+
+        private void confirm_NP_BTN_Click(object sender, EventArgs e)
+        {
+
+            Validation val = new Validation();
+
+            String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity= townCity_NP_TB.Text, county= county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage="";
+            DateTime dob = dob_EP_PCK.Value;
+
+            //Validates User inputs and stores results in errorMessage
+            errorMessage += val.validateFirstname(firstname);
+            errorMessage += val.validateSurname(surname);
+            errorMessage += val.validateAddressLine(addressLine);
+            errorMessage += val.validateTownCity(townCity);
+            errorMessage += val.validateCounty(county);
+            errorMessage += val.validatePostcode(postcode);
+
+            //check if there are no error
+            if (errorMessage == "")
+            {
+                //Adds patient to the database
+                Connection.getDBConnectionInstance().addPatient(firstname, surname, dob, addressLine, townCity, county, postcode);
+
+                //set data set 
+                DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
+
+                // creates instace and set table 
+                DataTable table = dataSet.Tables[0];
+
+                //selects row just added
+                DataRow dataRow = table.Rows[table.Rows.Count-1];
+
+                //clears Text boxs and Datetime
+                firstName_NP_TB.Text = "";
+                surname_NP_TB.Text = "";
+                address_NP_TB.Text = "";
+                dob_NP_PCK.Value = DateTime.Today;
+                townCity_NP_TB.Text = "";
+                county_NP_TB.Text = "";
+                postcode_NP_TB.Text = "";
+
+                //displays to user that the Patient has been added and their ID
+                error_NP_L.Text= firstname + " " +surname + " was added to the system.\r\nTheir ID is:" + dataRow.ItemArray.GetValue(0).ToString(); ;
+
+            }
+            else
+            {
+                //display input errors to user
+                error_NP_L.Text = errorMessage;
+            }
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -234,5 +279,6 @@ namespace SW_Engineering_2017
                 findPatientPanel.Visible = false;
             }
         }
+
     }
 }

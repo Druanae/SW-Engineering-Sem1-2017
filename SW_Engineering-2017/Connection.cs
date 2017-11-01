@@ -13,24 +13,25 @@ namespace SW_Engineering_2017
         //private string for the connection
         private static string connectionString;
 
-        private static Connection _instance;
-
         //object that is used to store the connection to the database
         private SqlConnection connectionToDatabase;
 
         //used to open and change tables in the database
         private SqlDataAdapter dataAdapter;
 
+        private static Connection _instance;
+       
 
+        //methods
         public static Connection getDBConnectionInstance()
         {
             connectionString = Properties.Settings.Default.Connection;
-
             if (_instance == null)
                 _instance = new Connection();
 
             return _instance;
         }
+
 
         public void openConnection()
         {
@@ -47,7 +48,6 @@ namespace SW_Engineering_2017
             connectionToDatabase.Close();
         }
 
-
         public DataSet GetDataSet(string sqlStatement)
         {
             DataSet dataSet;
@@ -62,34 +62,32 @@ namespace SW_Engineering_2017
             return dataSet;
         }
 
-
-        public void AddPatient( String firstname, String surname, DateTime dob, String address, String townCity, String county, String postcode)
+        public void addPatient(string firstname, string surname, DateTime dob, string addressLine, string townCity, string county, string postcode)
         {
-            
+            //creates SQL command
             SqlCommand command = new SqlCommand();
             command.CommandType = CommandType.Text;
-
-            
-            command.CommandText = "INSERT INTO Patients (Firstname, Surname, DOB, AddressLine, TownCity, County, Postcode) VALUES (@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
+            //sets the command text
+            command.CommandText = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
+            //adds the values into the database
             command.Parameters.Add(new SqlParameter("Firstname", firstname));
             command.Parameters.Add(new SqlParameter("Surname", surname));
-            command.Parameters.Add(new SqlParameter("DOB", dob ));
-            command.Parameters.Add(new SqlParameter("AddressLine", address));
+            command.Parameters.Add(new SqlParameter("DOB", dob));
+            command.Parameters.Add(new SqlParameter("AddressLine", addressLine));
             command.Parameters.Add(new SqlParameter("TownCity", townCity));
             command.Parameters.Add(new SqlParameter("County", county));
             command.Parameters.Add(new SqlParameter("Postcode", postcode));
 
+            //opens connection
             openConnection();
-
+            //sets the connection
             command.Connection = connectionToDatabase;
-
-            int noRows = command.ExecuteNonQuery();
-
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
             closeConnection();
-
-            Console.WriteLine("n-" + noRows);
-
         }
+
     }
 
 }
