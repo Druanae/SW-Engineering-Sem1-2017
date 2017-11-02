@@ -24,6 +24,7 @@ namespace SW_Engineering_2017
             findPatientPanel.Visible = false;
             editPatientPanel.Visible = false;
             newAppointmentPanel.Visible = false;
+            loginErrorlbl.Visible = false;
         }
 
         private void finalUI_Load(object sender, EventArgs e)
@@ -32,19 +33,22 @@ namespace SW_Engineering_2017
             dob_NP_PCK.Value = DateTime.Today;
 
             Connection.getDBConnectionInstance().openConnection();
-            /*
+            
             //opens the database connection
             
 
             //set data set 
-            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
 
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
 
-            DGV.DataSource = table;
-            */
+            DVG.DataSource = table;
+            //DataRow dataRow = table.Rows[table.Rows.Count - 1];
+            //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
+
         }
+        
 
         private void fillInFields(DataTable table, int index)
         {
@@ -110,12 +114,68 @@ namespace SW_Engineering_2017
             }
         }
 
+        private void loginerrorlabel()
+        {
+            loginErrorlbl.Visible = true;
+            loginErrorlbl.Text = "Please fill in username and password";
+        }
+      
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (!mainMenuPanel.Visible)
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
+
+            // creates instace and set table 
+            DataTable table = dataSet.Tables[0];
+
+            //selects row just added
+            DataRow dataRow = table.Rows[table.Rows.Count - 1];
+
+            int dataRowlogin = table.Rows.Count - 1;
+
+            string loginID = userName_L_tb.Text;
+            string loginPassword = password_L_tb.Text;
+
+            if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
-                mainMenuPanel.Visible = true;
-                loginPanel.Visible = false;
+                loginerrorlabel(); //Error message for having nothing in either text box.
+
+            }
+            else
+            {
+                for (int i = 0; i < dataRowlogin; i++) // For loop for the amount of staff logins 
+                {
+                    dataRow = table.Rows[i]; 
+
+                    if( loginID == dataRow.ItemArray.GetValue(0).ToString() ) //Get loginID to match against password
+                    {
+                        if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
+                        {
+                            testlbl.Visible = true;
+                            testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
+                            
+
+                            if (!mainMenuPanel.Visible) // if correct username and password go to menu page
+                            {
+                                loginErrorlbl.Visible = false;
+                                mainMenuPanel.Visible = true;
+                                loginPanel.Visible = false;
+                                password_L_tb.Text = "";
+                                userName_L_tb.Text = "";
+                                break;
+                            }
+                        }
+                        else
+                            loginErrorlbl.Visible = true;
+                            loginErrorlbl.Text = "Incorrect P ";
+                    }
+                    else
+                    {
+                        loginErrorlbl.Visible=true; // return error if text isnt correct
+                        loginErrorlbl.Text = "Please fill in matching";
+                    }
+                }
+                                
             }
         }
 
