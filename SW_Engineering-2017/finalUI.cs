@@ -143,7 +143,7 @@ namespace SW_Engineering_2017
             }
             else
             {
-                for (int i = 0; i < dataRowlogin; i++) // For loop for the amount of staff logins 
+                for (int i = 0; i <= dataRowlogin; i++) // For loop for the amount of staff logins 
                 {
                     dataRow = table.Rows[i]; 
 
