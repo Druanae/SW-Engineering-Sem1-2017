@@ -224,7 +224,6 @@
             this.newAppointmentPanel = new System.Windows.Forms.Panel();
             this.DVG = new System.Windows.Forms.DataGridView();
             this.loginErrorlbl = new System.Windows.Forms.Label();
-            this.testlbl = new System.Windows.Forms.Label();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -320,7 +319,6 @@
             // 
             // Loginbx
             // 
-            this.Loginbx.Controls.Add(this.testlbl);
             this.Loginbx.Controls.Add(this.loginErrorlbl);
             this.Loginbx.Controls.Add(this.loginBtn);
             this.Loginbx.Controls.Add(this.login_L_lbl);
@@ -2204,15 +2202,6 @@
             this.loginErrorlbl.TabIndex = 6;
             this.loginErrorlbl.Text = "No error";
             // 
-            // testlbl
-            // 
-            this.testlbl.AutoSize = true;
-            this.testlbl.Location = new System.Drawing.Point(333, 228);
-            this.testlbl.Name = "testlbl";
-            this.testlbl.Size = new System.Drawing.Size(46, 13);
-            this.testlbl.TabIndex = 7;
-            this.testlbl.Text = "textlabel";
-            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2467,6 +2456,5 @@
         private System.Windows.Forms.Button btnPresMenu;
         private System.Windows.Forms.DataGridView DVG;
         private System.Windows.Forms.Label loginErrorlbl;
-        private System.Windows.Forms.Label testlbl;
     }
 }

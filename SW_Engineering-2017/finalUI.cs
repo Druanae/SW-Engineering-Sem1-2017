@@ -151,9 +151,9 @@ namespace SW_Engineering_2017
                     {
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
-                            testlbl.Visible = true;
-                            testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
                             
+
+
 
                             if (!mainMenuPanel.Visible) // if correct username and password go to menu page
                             {
@@ -167,7 +167,7 @@ namespace SW_Engineering_2017
                         }
                         else
                             loginErrorlbl.Visible = true;
-                            loginErrorlbl.Text = "Incorrect P ";
+                        loginErrorlbl.Text = "Incorrect Username or Password";
                     }
                     else
                     {
