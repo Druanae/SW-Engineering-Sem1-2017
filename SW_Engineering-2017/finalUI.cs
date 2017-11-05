@@ -20,38 +20,35 @@ namespace SW_Engineering_2017
             testResultSearchPanel.Visible = false;
             staffScheduleSearchPanel.Visible = false;
             changeStaffSchedulePanel.Visible = false;
-            newPatientPanel.Visible = false;
+            newPatientPanel.Visible = false;   
             findPatientPanel.Visible = false;
             editPatientPanel.Visible = false;
             newAppointmentPanel.Visible = false;
+            loginErrorlbl.Visible = false;
         }
-        //creates instance of Connection and DataSet
-        Connection databaseCon;
-        DataSet dataSet;
-
 
         private void finalUI_Load(object sender, EventArgs e)
         {
-            //set the connection string
-            string connectionString = Properties.Settings.Default.Connection;
+            dob_NP_PCK.MaxDate= DateTime.Today;
+            dob_NP_PCK.Value = DateTime.Today;
 
-            //sends connection string to the database 
-            databaseCon = new Connection(connectionString);
-
+            Connection.getDBConnectionInstance().openConnection();
+            
             //opens the database connection
-            databaseCon.openConnection();
+            
 
             //set data set 
-            dataSet = databaseCon.GetDataSet(Constants.selectAll);
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
 
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
 
-            //calls fillInField
-            fillInFields(table, 1);
-
+            DVG.DataSource = table;
+            //DataRow dataRow = table.Rows[table.Rows.Count - 1];
+            //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
 
         }
+        
 
         private void fillInFields(DataTable table, int index)
         {
@@ -62,15 +59,123 @@ namespace SW_Engineering_2017
         private void finalUI_FormClosed(object sender, FormClosedEventArgs e)
         {
             //close database connection 
-            databaseCon.closeConnection();
+            Connection.getDBConnectionInstance().closeConnection();
         }
+
+
+        private void confirm_NP_BTN_Click(object sender, EventArgs e)
+        {
+
+            Validation val = new Validation();
+
+            String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity= townCity_NP_TB.Text, county= county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage="";
+            DateTime dob = dob_EP_PCK.Value;
+
+            //Validates User inputs and stores results in errorMessage
+            errorMessage += val.validateFirstname(firstname);
+            errorMessage += val.validateSurname(surname);
+            errorMessage += val.validateAddressLine(addressLine);
+            errorMessage += val.validateTownCity(townCity);
+            errorMessage += val.validateCounty(county);
+            errorMessage += val.validatePostcode(postcode);
+            errorMessage += val.validatePatientID(patientID);
+            //check if there are no error
+            if (errorMessage == "")
+            {
+                //Adds patient to the database
+                Connection.getDBConnectionInstance().addPatient(firstname, surname, dob, addressLine, townCity, county, postcode, patientID);
+
+                //set data set 
+                DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
+
+                // creates instace and set table 
+                DataTable table = dataSet.Tables[0];
+
+                //selects row just added
+                DataRow dataRow = table.Rows[table.Rows.Count-1];
+
+                //clears Text boxs and Datetime
+                firstName_NP_TB.Text = "";
+                surname_NP_TB.Text = "";
+                address_NP_TB.Text = "";
+                dob_NP_PCK.Value = DateTime.Today;
+                townCity_NP_TB.Text = "";
+                county_NP_TB.Text = "";
+                postcode_NP_TB.Text = "";
+
+                //displays to user that the Patient has been added and their ID
+                error_NP_L.Text= firstname + " " +surname + " was added to the system.\r\nTheir ID is:" + dataRow.ItemArray.GetValue(0).ToString(); ;
+
+            }
+            else
+            {
+                //display input errors to user
+                error_NP_L.Text = errorMessage;
+            }
+        }
+
+        private void loginerrorlabel()
+        {
+            loginErrorlbl.Visible = true;
+            loginErrorlbl.Text = "Please fill in username and password";
+        }
+      
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (!mainMenuPanel.Visible)
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
+
+            // creates instace and set table 
+            DataTable table = dataSet.Tables[0];
+
+            //selects row just added
+            DataRow dataRow = table.Rows[table.Rows.Count - 1];
+
+            int dataRowlogin = table.Rows.Count - 1;
+
+            string loginID = userName_L_tb.Text;
+            string loginPassword = password_L_tb.Text;
+
+            if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
-                mainMenuPanel.Visible = true;
-                loginPanel.Visible = false;
+                loginerrorlabel(); //Error message for having nothing in either text box.
+
+            }
+            else
+            {
+                for (int i = 0; i <= dataRowlogin; i++) // For loop for the amount of staff logins 
+                {
+                    dataRow = table.Rows[i]; 
+
+                    if( loginID == dataRow.ItemArray.GetValue(0).ToString() ) //Get loginID to match against password
+                    {
+                        if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
+                        {
+                            
+
+
+
+                            if (!mainMenuPanel.Visible) // if correct username and password go to menu page
+                            {
+                                loginErrorlbl.Visible = false;
+                                mainMenuPanel.Visible = true;
+                                loginPanel.Visible = false;
+                                password_L_tb.Text = "";
+                                userName_L_tb.Text = "";
+                                break;
+                            }
+                        }
+                        else
+                            loginErrorlbl.Visible = true;
+                        loginErrorlbl.Text = "Incorrect Username or Password";
+                    }
+                    else
+                    {
+                        loginErrorlbl.Visible=true; // return error if text isnt correct
+                        loginErrorlbl.Text = "Please fill in matching";
+                    }
+                }
+                                
             }
         }
 
@@ -234,5 +339,79 @@ namespace SW_Engineering_2017
                 findPatientPanel.Visible = false;
             }
         }
-    }
-}
+
+        private void TestResutsSearch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void findPatientPanel_Paint(object sender, PaintEventArgs e)
+        {
+           
+        }
+
+        private void patientID_FP_TB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void appointment_FP_LB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Loginbx_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void prescriptionPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void menuGroup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainMenuPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void DVG_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void find_FP_BT_Click(object sender, EventArgs e)
+        {
+            Validation val = new Validation();
+            string patinetID, firstname = firstName_FP_TB.Text, surname, addressLine, errormessage;
+
+            errormessage = val.validateFirstname(firstname);
+
+            Validation val2 = new Validation();
+            string patinetID, firstname = patie_FP_TB.Text, surname, addressLine, errormessage;
+
+            errormessage = val.validateFirstname(patinetID);
+
+
+
+
+
+
+
+
+        }
+
+        private void patientID_FP_LBL_Click(object sender, EventArgs e)
+        {
+
+        }
