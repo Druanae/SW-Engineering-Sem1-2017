@@ -43,7 +43,7 @@ namespace SW_Engineering_2017
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
 
-            DVG.DataSource = table;
+            //DVG.DataSource = table;
             //DataRow dataRow = table.Rows[table.Rows.Count - 1];
             //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
 
@@ -172,7 +172,7 @@ namespace SW_Engineering_2017
                     else
                     {
                         loginErrorlbl.Visible=true; // return error if text isnt correct
-                        loginErrorlbl.Text = "Please fill in matching";
+                        loginErrorlbl.Text = "Incorrect Username or Password";
                     }
                 }
                                 
