@@ -34,16 +34,13 @@ namespace SW_Engineering_2017
 
             Connection.getDBConnectionInstance().openConnection();
             
-            //opens the database connection
-            
-
             //set data set 
-            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
+            DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
 
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
 
-            DVG.DataSource = table;
+            DGV.DataSource = table;
             //DataRow dataRow = table.Rows[table.Rows.Count - 1];
             //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
 
@@ -129,7 +126,7 @@ namespace SW_Engineering_2017
             DataTable table = dataSet.Tables[0];
 
             //selects row just added
-            DataRow dataRow = table.Rows[table.Rows.Count - 1];
+            DataRow dataRow = table.Rows[table.Rows.Count-1];
 
             int dataRowlogin = table.Rows.Count - 1;
 
@@ -143,18 +140,16 @@ namespace SW_Engineering_2017
             }
             else
             {
-                for (int i = 0; i < dataRowlogin; i++) // For loop for the amount of staff logins 
+                for (int i = 0; i <= dataRowlogin; i++) // For loop for the amount of staff logins 
                 {
-                    dataRow = table.Rows[i]; 
-
+                    dataRow = table.Rows[i];
+                    tester.Text = dataRow.ToString() + "\r\n";
                     if( loginID == dataRow.ItemArray.GetValue(0).ToString() ) //Get loginID to match against password
                     {
+                        tester.Text += " Input:" + loginID + " Username" + dataRow.ItemArray.GetValue(0).ToString() + "\r\n";
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
-                            testlbl.Visible = true;
-                            testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
-                            
-
+                            tester.Text += " Input:" + loginPassword + " Password" + dataRow.ItemArray.GetValue(1).ToString() + "\r\n";
                             if (!mainMenuPanel.Visible) // if correct username and password go to menu page
                             {
                                 loginErrorlbl.Visible = false;
@@ -166,8 +161,10 @@ namespace SW_Engineering_2017
                             }
                         }
                         else
+                        {
                             loginErrorlbl.Visible = true;
-                            loginErrorlbl.Text = "Incorrect P ";
+                            loginErrorlbl.Text = "Incorrect Pasword ";
+                        }
                     }
                     else
                     {
