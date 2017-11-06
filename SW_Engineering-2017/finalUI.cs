@@ -63,7 +63,7 @@ namespace SW_Engineering_2017
             Connection.getDBConnectionInstance().closeConnection();
         }
 
- /****************************** Login Section *****************************************************/     
+ /************************ Login Section ********************************************************/     
         private void loginBtn_Click(object sender, EventArgs e)
         {
             DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
@@ -132,6 +132,7 @@ namespace SW_Engineering_2017
             loginErrorlbl.Visible = true;
             loginErrorlbl.Text = "Please fill in username and password";
         }
+
 /************************* Add Patient Section *************************************************/
         private void confirm_NP_BTN_Click(object sender, EventArgs e)
         {
@@ -183,6 +184,9 @@ namespace SW_Engineering_2017
                 error_NP_L.Text = errorMessage;
             }
         }
+        /************************* Button Configurations ************************************************/
+
+        #region Button Click Configuration region
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             if (!loginPanel.Visible)
@@ -211,7 +215,7 @@ namespace SW_Engineering_2017
                 mainMenuPanel.Visible = false;
             }
         }
-
+       
         private void scheduleBtn_Click(object sender, EventArgs e)
         {
             if (!staffScheduleSearchPanel.Visible)
@@ -240,7 +244,7 @@ namespace SW_Engineering_2017
                 mainMenuPanel.Visible = true;
             }
         }
-
+        
         private void btnPresCancel_Click(object sender, EventArgs e)
         {
             if (!findPatientPanel.Visible)
@@ -362,5 +366,7 @@ namespace SW_Engineering_2017
                 mainMenuPanel.Visible = true;
             }
         }
+        #endregion
+
     }
 }
