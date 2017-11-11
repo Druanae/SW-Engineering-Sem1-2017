@@ -147,20 +147,18 @@
             this.presSurnameLbl = new System.Windows.Forms.Label();
             this.prsSurnameEntry = new System.Windows.Forms.TextBox();
             this.btnApply = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.Staff_CB_NA = new System.Windows.Forms.ComboBox();
+            this.staff_LBL_NA = new System.Windows.Forms.Label();
+            this.staffType_CB_NA = new System.Windows.Forms.ComboBox();
+            this.errorMessage_LB_NA = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.appointmentDate_PCK_NA = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.extendPrescriptions_FP_B = new System.Windows.Forms.Button();
             this.newPrescriptions_FP_B = new System.Windows.Forms.Button();
             this.Cancel_FP_B = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.appointmentDate_LB_NA = new System.Windows.Forms.Label();
+            this.staffType_LBL_AP = new System.Windows.Forms.Label();
             this.firstName_EP_TB = new System.Windows.Forms.TextBox();
             this.firstName_EP_L = new System.Windows.Forms.Label();
             this.changeAppointment_FP_B = new System.Windows.Forms.Button();
@@ -224,6 +222,9 @@
             this.firstName_FP_TB = new System.Windows.Forms.TextBox();
             this.firstName_FP_LBL = new System.Windows.Forms.Label();
             this.newAppointmentPanel = new System.Windows.Forms.Panel();
+            this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
+            this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
+            this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -244,6 +245,7 @@
             this.newPatientPanel.SuspendLayout();
             this.findPatientPanel.SuspendLayout();
             this.newAppointmentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuPanel
@@ -328,7 +330,7 @@
             // loginPanel
             // 
             this.loginPanel.Controls.Add(this.Loginbx);
-            this.loginPanel.Location = new System.Drawing.Point(16, 15);
+            this.loginPanel.Location = new System.Drawing.Point(33, 29);
             this.loginPanel.Margin = new System.Windows.Forms.Padding(4);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(700, 345);
@@ -343,7 +345,7 @@
             this.Loginbx.Controls.Add(this.userName_L_lbl);
             this.Loginbx.Controls.Add(this.userName_L_tb);
             this.Loginbx.Controls.Add(this.password_L_lbl);
-            this.Loginbx.Location = new System.Drawing.Point(48, 15);
+            this.Loginbx.Location = new System.Drawing.Point(29, 21);
             this.Loginbx.Margin = new System.Windows.Forms.Padding(4);
             this.Loginbx.Name = "Loginbx";
             this.Loginbx.Padding = new System.Windows.Forms.Padding(4);
@@ -473,7 +475,7 @@
             this.MenuBNTCSS.TabIndex = 54;
             this.MenuBNTCSS.Text = "Menu";
             this.MenuBNTCSS.UseVisualStyleBackColor = true;
-            this.MenuBNTCSS.Click += new System.EventHandler(this.MenuBNTCSS_Click);
+            this.MenuBNTCSS.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // CancelBntChnStf
             // 
@@ -614,7 +616,6 @@
             // StaffScheduleSearch
             // 
             this.StaffScheduleSearch.AllowDrop = true;
-            this.StaffScheduleSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.StaffScheduleSearch.Controls.Add(this.DateToSSS);
             this.StaffScheduleSearch.Controls.Add(this.dateTimetTo);
             this.StaffScheduleSearch.Controls.Add(this.StaffScheduleSearchLable);
@@ -679,7 +680,7 @@
             this.MenuBNTSSS.TabIndex = 39;
             this.MenuBNTSSS.Text = "Menu";
             this.MenuBNTSSS.UseVisualStyleBackColor = true;
-            this.MenuBNTSSS.Click += new System.EventHandler(this.MenuBNTSSS_Click);
+            this.MenuBNTSSS.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // label13
             // 
@@ -885,7 +886,7 @@
             this.MenuTestBNTRS.TabIndex = 41;
             this.MenuTestBNTRS.Text = "Menu";
             this.MenuTestBNTRS.UseVisualStyleBackColor = true;
-            this.MenuTestBNTRS.Click += new System.EventHandler(this.MenuTestBNTRS_Click);
+            this.MenuTestBNTRS.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // StaffTRS
             // 
@@ -1276,7 +1277,7 @@
             this.btnPresCancel.TabIndex = 2;
             this.btnPresCancel.Text = "Cancel";
             this.btnPresCancel.UseVisualStyleBackColor = true;
-            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
+            this.btnPresCancel.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // prsDOBPicker
             // 
@@ -1448,7 +1449,7 @@
             this.btnPresMenu.TabIndex = 4;
             this.btnPresMenu.Text = "Main Menu";
             this.btnPresMenu.UseVisualStyleBackColor = true;
-            this.btnPresMenu.Click += new System.EventHandler(this.btnPresMenu_Click);
+            this.btnPresMenu.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // prsPatientGrp
             // 
@@ -1517,62 +1518,50 @@
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // Staff_CB_NA
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(124, 128);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(161, 24);
-            this.comboBox2.TabIndex = 50;
+            this.Staff_CB_NA.FormattingEnabled = true;
+            this.Staff_CB_NA.Location = new System.Drawing.Point(138, 82);
+            this.Staff_CB_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Staff_CB_NA.Name = "Staff_CB_NA";
+            this.Staff_CB_NA.Size = new System.Drawing.Size(161, 24);
+            this.Staff_CB_NA.TabIndex = 50;
+            this.Staff_CB_NA.SelectedIndexChanged += new System.EventHandler(this.Staff_CB_NA_SelectedIndexChanged);
             // 
-            // label2
+            // staff_LBL_NA
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 17);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Member of Staff";
+            this.staff_LBL_NA.AutoSize = true;
+            this.staff_LBL_NA.Location = new System.Drawing.Point(24, 85);
+            this.staff_LBL_NA.Name = "staff_LBL_NA";
+            this.staff_LBL_NA.Size = new System.Drawing.Size(108, 17);
+            this.staff_LBL_NA.TabIndex = 49;
+            this.staff_LBL_NA.Text = "Member of Staff";
             // 
-            // comboBox1
+            // staffType_CB_NA
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(124, 98);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 24);
-            this.comboBox1.TabIndex = 48;
+            this.staffType_CB_NA.FormattingEnabled = true;
+            this.staffType_CB_NA.Items.AddRange(new object[] {
+            "GP",
+            "Nurse"});
+            this.staffType_CB_NA.Location = new System.Drawing.Point(138, 50);
+            this.staffType_CB_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.staffType_CB_NA.Name = "staffType_CB_NA";
+            this.staffType_CB_NA.Size = new System.Drawing.Size(161, 24);
+            this.staffType_CB_NA.TabIndex = 48;
+            this.staffType_CB_NA.SelectedIndexChanged += new System.EventHandler(this.staffType_CB_NA_SelectedIndexChanged);
             // 
-            // textBox1
+            // errorMessage_LB_NA
             // 
-            this.textBox1.Location = new System.Drawing.Point(124, 65);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 22);
-            this.textBox1.TabIndex = 20;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 17);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Patient ID";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 201);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 17);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Error Label";
+            this.errorMessage_LB_NA.AutoSize = true;
+            this.errorMessage_LB_NA.Location = new System.Drawing.Point(20, 242);
+            this.errorMessage_LB_NA.Name = "errorMessage_LB_NA";
+            this.errorMessage_LB_NA.Size = new System.Drawing.Size(79, 17);
+            this.errorMessage_LB_NA.TabIndex = 18;
+            this.errorMessage_LB_NA.Text = "Error Label";
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(3, 228);
+            this.button15.Location = new System.Drawing.Point(14, 269);
             this.button15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(117, 30);
@@ -1581,15 +1570,19 @@
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
-            // dateTimePicker1
+            // appointmentDate_PCK_NA
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(124, 162);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2017, 10, 17, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(163, 22);
-            this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.Value = new System.DateTime(2017, 10, 17, 0, 0, 0, 0);
+            this.appointmentDate_PCK_NA.CustomFormat = "";
+            this.appointmentDate_PCK_NA.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.appointmentDate_PCK_NA.Location = new System.Drawing.Point(138, 110);
+            this.appointmentDate_PCK_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.appointmentDate_PCK_NA.MaxDate = new System.DateTime(2017, 12, 9, 0, 0, 0, 0);
+            this.appointmentDate_PCK_NA.MinDate = new System.DateTime(2017, 11, 9, 0, 0, 0, 0);
+            this.appointmentDate_PCK_NA.Name = "appointmentDate_PCK_NA";
+            this.appointmentDate_PCK_NA.Size = new System.Drawing.Size(163, 22);
+            this.appointmentDate_PCK_NA.TabIndex = 3;
+            this.appointmentDate_PCK_NA.Value = new System.DateTime(2017, 12, 2, 0, 0, 0, 0);
+            this.appointmentDate_PCK_NA.ValueChanged += new System.EventHandler(this.appointmentDate_PCK_NA_ValueChanged);
             // 
             // label6
             // 
@@ -1632,23 +1625,23 @@
             this.Cancel_FP_B.Text = "Cancel ";
             this.Cancel_FP_B.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // appointmentDate_LB_NA
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(31, 167);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 17);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Appointment";
+            this.appointmentDate_LB_NA.AutoSize = true;
+            this.appointmentDate_LB_NA.Location = new System.Drawing.Point(11, 117);
+            this.appointmentDate_LB_NA.Name = "appointmentDate_LB_NA";
+            this.appointmentDate_LB_NA.Size = new System.Drawing.Size(121, 17);
+            this.appointmentDate_LB_NA.TabIndex = 4;
+            this.appointmentDate_LB_NA.Text = "Appointment Date";
             // 
-            // label21
+            // staffType_LBL_AP
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(45, 101);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(73, 17);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "Staff Type";
+            this.staffType_LBL_AP.AutoSize = true;
+            this.staffType_LBL_AP.Location = new System.Drawing.Point(59, 53);
+            this.staffType_LBL_AP.Name = "staffType_LBL_AP";
+            this.staffType_LBL_AP.Size = new System.Drawing.Size(73, 17);
+            this.staffType_LBL_AP.TabIndex = 0;
+            this.staffType_LBL_AP.Text = "Staff Type";
             // 
             // firstName_EP_TB
             // 
@@ -1749,7 +1742,7 @@
             this.cancel_EP_B.TabIndex = 9;
             this.cancel_EP_B.Text = "Cancel";
             this.cancel_EP_B.UseVisualStyleBackColor = true;
-            this.cancel_EP_B.Click += new System.EventHandler(this.cancel_EP_B_Click);
+            this.cancel_EP_B.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // townCity_EP_TB
             // 
@@ -1955,7 +1948,7 @@
             this.mainMenu_FP_BT.TabIndex = 9;
             this.mainMenu_FP_BT.Text = "Main Menu";
             this.mainMenu_FP_BT.UseVisualStyleBackColor = true;
-            this.mainMenu_FP_BT.Click += new System.EventHandler(this.mainMenu_FP_BT_Click);
+            this.mainMenu_FP_BT.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // address_FP_TB
             // 
@@ -2064,7 +2057,7 @@
             this.cancel_NP_BTN.TabIndex = 9;
             this.cancel_NP_BTN.Text = "Cancel";
             this.cancel_NP_BTN.UseVisualStyleBackColor = true;
-            this.cancel_NP_BTN.Click += new System.EventHandler(this.cancel_NP_BTN_Click);
+            this.cancel_NP_BTN.Click += new System.EventHandler(this.mainMenuShow);
             // 
             // townCity_NP_TB
             // 
@@ -2183,7 +2176,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(171, 228);
+            this.button6.Location = new System.Drawing.Point(182, 269);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(117, 30);
@@ -2218,7 +2211,7 @@
             this.findPatientPanel.Controls.Add(this.surname_FP_LBL);
             this.findPatientPanel.Controls.Add(this.firstName_FP_TB);
             this.findPatientPanel.Controls.Add(this.firstName_FP_LBL);
-            this.findPatientPanel.Location = new System.Drawing.Point(2124, 15);
+            this.findPatientPanel.Location = new System.Drawing.Point(1658, 4);
             this.findPatientPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.findPatientPanel.Name = "findPatientPanel";
             this.findPatientPanel.Size = new System.Drawing.Size(619, 386);
@@ -2279,39 +2272,72 @@
             // 
             // newAppointmentPanel
             // 
+            this.newAppointmentPanel.Controls.Add(this.AppointmentTimes_CB_NA);
+            this.newAppointmentPanel.Controls.Add(this.Staff_DGV_NA);
+            this.newAppointmentPanel.Controls.Add(this.appointmentTime_LB_NA);
             this.newAppointmentPanel.Controls.Add(this.button6);
-            this.newAppointmentPanel.Controls.Add(this.comboBox2);
-            this.newAppointmentPanel.Controls.Add(this.label2);
-            this.newAppointmentPanel.Controls.Add(this.comboBox1);
-            this.newAppointmentPanel.Controls.Add(this.textBox1);
-            this.newAppointmentPanel.Controls.Add(this.label3);
-            this.newAppointmentPanel.Controls.Add(this.label5);
+            this.newAppointmentPanel.Controls.Add(this.Staff_CB_NA);
+            this.newAppointmentPanel.Controls.Add(this.staff_LBL_NA);
+            this.newAppointmentPanel.Controls.Add(this.staffType_CB_NA);
+            this.newAppointmentPanel.Controls.Add(this.errorMessage_LB_NA);
             this.newAppointmentPanel.Controls.Add(this.button15);
-            this.newAppointmentPanel.Controls.Add(this.dateTimePicker1);
+            this.newAppointmentPanel.Controls.Add(this.appointmentDate_PCK_NA);
             this.newAppointmentPanel.Controls.Add(this.label6);
-            this.newAppointmentPanel.Controls.Add(this.label8);
-            this.newAppointmentPanel.Controls.Add(this.label21);
-            this.newAppointmentPanel.Location = new System.Drawing.Point(2124, 409);
+            this.newAppointmentPanel.Controls.Add(this.appointmentDate_LB_NA);
+            this.newAppointmentPanel.Controls.Add(this.staffType_LBL_AP);
+            this.newAppointmentPanel.Location = new System.Drawing.Point(673, 4);
             this.newAppointmentPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.newAppointmentPanel.Name = "newAppointmentPanel";
-            this.newAppointmentPanel.Size = new System.Drawing.Size(308, 271);
+            this.newAppointmentPanel.Size = new System.Drawing.Size(785, 354);
             this.newAppointmentPanel.TabIndex = 52;
+            // 
+            // AppointmentTimes_CB_NA
+            // 
+            this.AppointmentTimes_CB_NA.FormattingEnabled = true;
+            this.AppointmentTimes_CB_NA.Items.AddRange(new object[] {
+            "GP",
+            "Nurse"});
+            this.AppointmentTimes_CB_NA.Location = new System.Drawing.Point(138, 189);
+            this.AppointmentTimes_CB_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AppointmentTimes_CB_NA.Name = "AppointmentTimes_CB_NA";
+            this.AppointmentTimes_CB_NA.Size = new System.Drawing.Size(161, 24);
+            this.AppointmentTimes_CB_NA.TabIndex = 55;
+            // 
+            // Staff_DGV_NA
+            // 
+            this.Staff_DGV_NA.AllowUserToAddRows = false;
+            this.Staff_DGV_NA.AllowUserToDeleteRows = false;
+            this.Staff_DGV_NA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Staff_DGV_NA.Location = new System.Drawing.Point(318, 14);
+            this.Staff_DGV_NA.Name = "Staff_DGV_NA";
+            this.Staff_DGV_NA.RowTemplate.Height = 24;
+            this.Staff_DGV_NA.Size = new System.Drawing.Size(451, 318);
+            this.Staff_DGV_NA.TabIndex = 54;
+            // 
+            // appointmentTime_LB_NA
+            // 
+            this.appointmentTime_LB_NA.AutoSize = true;
+            this.appointmentTime_LB_NA.Location = new System.Drawing.Point(11, 194);
+            this.appointmentTime_LB_NA.Name = "appointmentTime_LB_NA";
+            this.appointmentTime_LB_NA.Size = new System.Drawing.Size(122, 17);
+            this.appointmentTime_LB_NA.TabIndex = 52;
+            this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1906, 1037);
-            this.Controls.Add(this.mainMenuPanel);
+            this.ClientSize = new System.Drawing.Size(1906, 816);
+            this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.newPatientPanel);
             this.Controls.Add(this.findPatientPanel);
-            this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
             this.Controls.Add(this.loginPanel);
+            this.Controls.Add(this.mainMenuPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "finalUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalUI_FormClosed);
@@ -2349,6 +2375,7 @@
             this.findPatientPanel.PerformLayout();
             this.newAppointmentPanel.ResumeLayout(false);
             this.newAppointmentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2471,20 +2498,18 @@
         private System.Windows.Forms.Label presSurnameLbl;
         private System.Windows.Forms.TextBox prsSurnameEntry;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox Staff_CB_NA;
+        private System.Windows.Forms.Label staff_LBL_NA;
+        private System.Windows.Forms.ComboBox staffType_CB_NA;
+        private System.Windows.Forms.Label errorMessage_LB_NA;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker appointmentDate_PCK_NA;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button extendPrescriptions_FP_B;
         private System.Windows.Forms.Button newPrescriptions_FP_B;
         private System.Windows.Forms.Button Cancel_FP_B;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label appointmentDate_LB_NA;
+        private System.Windows.Forms.Label staffType_LBL_AP;
         private System.Windows.Forms.TextBox firstName_EP_TB;
         private System.Windows.Forms.Label firstName_EP_L;
         private System.Windows.Forms.Button changeAppointment_FP_B;
@@ -2551,5 +2576,8 @@
         private System.Windows.Forms.Button btnPresMenu;
         private System.Windows.Forms.Label loginErrorlbl;
         private System.Windows.Forms.Button addPatientBTN;
+        private System.Windows.Forms.Label appointmentTime_LB_NA;
+        private System.Windows.Forms.DataGridView Staff_DGV_NA;
+        private System.Windows.Forms.ComboBox AppointmentTimes_CB_NA;
     }
 }

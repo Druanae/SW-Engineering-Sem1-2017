@@ -66,9 +66,10 @@ namespace SW_Engineering_2017
         {
             //creates SQL command
             SqlCommand command = new SqlCommand();
+            //sets command type to text
             command.CommandType = CommandType.Text;
-            //sets the command text
-            command.CommandText = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.insertNewPatient;
             //adds the values into the database
             command.Parameters.Add(new SqlParameter("Firstname", firstname));
             command.Parameters.Add(new SqlParameter("Surname", surname));
@@ -87,7 +88,67 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+        public DataSet staffView(string StaffID)
+        {
 
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = "SELECT Date,Time From Appointments WHERE Staff_ID = @StaffID";
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            
+            //close connection 
+            
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+
+        }
+        public DataSet staffDateView(string StaffID,string date)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = "SELECT Time From Appointments WHERE Staff_ID = @StaffID AND Date = @Date";
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+            command.Parameters.Add(new SqlParameter("Date", date));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
     }
 
 }
