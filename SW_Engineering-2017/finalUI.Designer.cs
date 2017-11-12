@@ -46,6 +46,37 @@
             this.userName_L_lbl = new System.Windows.Forms.Label();
             this.userName_L_tb = new System.Windows.Forms.TextBox();
             this.password_L_lbl = new System.Windows.Forms.Label();
+            this.findPatientPanel = new System.Windows.Forms.Panel();
+            this.patientIDPanel = new System.Windows.Forms.Panel();
+            this.patientID_FP_LBL = new System.Windows.Forms.Label();
+            this.patientID_FP_TB = new System.Windows.Forms.TextBox();
+            this.addressPanel = new System.Windows.Forms.Panel();
+            this.address_FP_LBL = new System.Windows.Forms.Label();
+            this.address_FP_TB = new System.Windows.Forms.TextBox();
+            this.DOBPanel = new System.Windows.Forms.Panel();
+            this.dob_FP_LBL = new System.Windows.Forms.Label();
+            this.dob_FP_TB = new System.Windows.Forms.DateTimePicker();
+            this.findPatientCB = new System.Windows.Forms.ComboBox();
+            this.NamePanel = new System.Windows.Forms.Panel();
+            this.firstName_FP_TB = new System.Windows.Forms.TextBox();
+            this.firstName_FP_LBL = new System.Windows.Forms.Label();
+            this.surname_FP_LBL = new System.Windows.Forms.Label();
+            this.surname_FP_TB = new System.Windows.Forms.TextBox();
+            this.extendPrescriptions_FP_B = new System.Windows.Forms.Button();
+            this.newPrescriptions_FP_B = new System.Windows.Forms.Button();
+            this.Cancel_FP_B = new System.Windows.Forms.Button();
+            this.changeAppointment_FP_B = new System.Windows.Forms.Button();
+            this.newAppointment_FP_B = new System.Windows.Forms.Button();
+            this.prescriptions_FP_L = new System.Windows.Forms.Label();
+            this.appointment_PF_L = new System.Windows.Forms.Label();
+            this.prescriptionsFP_LB = new System.Windows.Forms.ListBox();
+            this.appointment_FP_LB = new System.Windows.Forms.ListBox();
+            this.edit_FP_B = new System.Windows.Forms.Button();
+            this.or_L = new System.Windows.Forms.Label();
+            this.error_FP_LBL = new System.Windows.Forms.Label();
+            this.find_FP_BT = new System.Windows.Forms.Button();
+            this.mainMenu_FP_BT = new System.Windows.Forms.Button();
+            this.findPatient_L = new System.Windows.Forms.Label();
             this.ChangeStaffSchedualtx = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimetTo2 = new System.Windows.Forms.DateTimePicker();
@@ -158,14 +189,10 @@
             this.button15 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.extendPrescriptions_FP_B = new System.Windows.Forms.Button();
-            this.newPrescriptions_FP_B = new System.Windows.Forms.Button();
-            this.Cancel_FP_B = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.firstName_EP_TB = new System.Windows.Forms.TextBox();
             this.firstName_EP_L = new System.Windows.Forms.Label();
-            this.changeAppointment_FP_B = new System.Windows.Forms.Button();
             this.county_EP_L = new System.Windows.Forms.Label();
             this.editPatientPanel = new System.Windows.Forms.Panel();
             this.county_EP_TB = new System.Windows.Forms.TextBox();
@@ -183,21 +210,6 @@
             this.dob_EP_L = new System.Windows.Forms.Label();
             this.surname_EP_TB = new System.Windows.Forms.TextBox();
             this.surname_EP_L = new System.Windows.Forms.Label();
-            this.newAppointment_FP_B = new System.Windows.Forms.Button();
-            this.prescriptions_FP_L = new System.Windows.Forms.Label();
-            this.appointment_PF_L = new System.Windows.Forms.Label();
-            this.prescriptionsFP_LB = new System.Windows.Forms.ListBox();
-            this.appointment_FP_LB = new System.Windows.Forms.ListBox();
-            this.edit_FP_B = new System.Windows.Forms.Button();
-            this.or_L = new System.Windows.Forms.Label();
-            this.patientID_FP_TB = new System.Windows.Forms.TextBox();
-            this.error_FP_LBL = new System.Windows.Forms.Label();
-            this.find_FP_BT = new System.Windows.Forms.Button();
-            this.mainMenu_FP_BT = new System.Windows.Forms.Button();
-            this.address_FP_TB = new System.Windows.Forms.TextBox();
-            this.address_FP_LBL = new System.Windows.Forms.Label();
-            this.patientID_FP_LBL = new System.Windows.Forms.Label();
-            this.dob_FP_TB = new System.Windows.Forms.DateTimePicker();
             this.newPatientPanel = new System.Windows.Forms.Panel();
             this.county_NP_TB = new System.Windows.Forms.TextBox();
             this.county_NP_L = new System.Windows.Forms.Label();
@@ -218,24 +230,17 @@
             this.firstName_NP_TB = new System.Windows.Forms.TextBox();
             this.firstName_NP_LBL = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.findPatientPanel = new System.Windows.Forms.Panel();
-            this.patientIDPanel = new System.Windows.Forms.Panel();
-            this.addressPanel = new System.Windows.Forms.Panel();
-            this.DOBPanel = new System.Windows.Forms.Panel();
-            this.dob_FP_LBL = new System.Windows.Forms.Label();
-            this.findPatientCB = new System.Windows.Forms.ComboBox();
-            this.NamePanel = new System.Windows.Forms.Panel();
-            this.firstName_FP_TB = new System.Windows.Forms.TextBox();
-            this.firstName_FP_LBL = new System.Windows.Forms.Label();
-            this.surname_FP_LBL = new System.Windows.Forms.Label();
-            this.surname_FP_TB = new System.Windows.Forms.TextBox();
-            this.findPatient_L = new System.Windows.Forms.Label();
             this.newAppointmentPanel = new System.Windows.Forms.Panel();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.loginPanel.SuspendLayout();
             this.Loginbx.SuspendLayout();
+            this.findPatientPanel.SuspendLayout();
+            this.patientIDPanel.SuspendLayout();
+            this.addressPanel.SuspendLayout();
+            this.DOBPanel.SuspendLayout();
+            this.NamePanel.SuspendLayout();
             this.ChangeStaffSchedualtx.SuspendLayout();
             this.staffScheduleSearchPanel.SuspendLayout();
             this.StaffScheduleSearch.SuspendLayout();
@@ -250,18 +255,13 @@
             this.prsPatientGrp.SuspendLayout();
             this.editPatientPanel.SuspendLayout();
             this.newPatientPanel.SuspendLayout();
-            this.findPatientPanel.SuspendLayout();
-            this.patientIDPanel.SuspendLayout();
-            this.addressPanel.SuspendLayout();
-            this.DOBPanel.SuspendLayout();
-            this.NamePanel.SuspendLayout();
             this.newAppointmentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuPanel
             // 
             this.mainMenuPanel.Controls.Add(this.menuGroup);
-            this.mainMenuPanel.Location = new System.Drawing.Point(921, 3);
+            this.mainMenuPanel.Location = new System.Drawing.Point(54, 443);
             this.mainMenuPanel.Name = "mainMenuPanel";
             this.mainMenuPanel.Size = new System.Drawing.Size(447, 289);
             this.mainMenuPanel.TabIndex = 10;
@@ -331,9 +331,9 @@
             // loginPanel
             // 
             this.loginPanel.Controls.Add(this.Loginbx);
-            this.loginPanel.Location = new System.Drawing.Point(12, 12);
+            this.loginPanel.Location = new System.Drawing.Point(12, 6);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(525, 280);
+            this.loginPanel.Size = new System.Drawing.Size(489, 273);
             this.loginPanel.TabIndex = 9;
             // 
             // Loginbx
@@ -342,15 +342,14 @@
             this.Loginbx.Controls.Add(this.testlbl);
             this.Loginbx.Controls.Add(this.loginErrorlbl);
             this.Loginbx.Controls.Add(this.loginBtn);
-            this.Loginbx.Controls.Add(this.findPatientPanel);
             this.Loginbx.Controls.Add(this.login_L_lbl);
             this.Loginbx.Controls.Add(this.password_L_tb);
             this.Loginbx.Controls.Add(this.userName_L_lbl);
             this.Loginbx.Controls.Add(this.userName_L_tb);
             this.Loginbx.Controls.Add(this.password_L_lbl);
-            this.Loginbx.Location = new System.Drawing.Point(36, 12);
+            this.Loginbx.Location = new System.Drawing.Point(18, 12);
             this.Loginbx.Name = "Loginbx";
-            this.Loginbx.Size = new System.Drawing.Size(475, 249);
+            this.Loginbx.Size = new System.Drawing.Size(462, 248);
             this.Loginbx.TabIndex = 5;
             this.Loginbx.TabStop = false;
             this.Loginbx.Text = "Login Box";
@@ -434,6 +433,334 @@
             this.password_L_lbl.Size = new System.Drawing.Size(53, 13);
             this.password_L_lbl.TabIndex = 2;
             this.password_L_lbl.Text = "Password";
+            // 
+            // findPatientPanel
+            // 
+            this.findPatientPanel.Controls.Add(this.patientIDPanel);
+            this.findPatientPanel.Controls.Add(this.addressPanel);
+            this.findPatientPanel.Controls.Add(this.DOBPanel);
+            this.findPatientPanel.Controls.Add(this.findPatientCB);
+            this.findPatientPanel.Controls.Add(this.NamePanel);
+            this.findPatientPanel.Controls.Add(this.DGV);
+            this.findPatientPanel.Controls.Add(this.extendPrescriptions_FP_B);
+            this.findPatientPanel.Controls.Add(this.newPrescriptions_FP_B);
+            this.findPatientPanel.Controls.Add(this.Cancel_FP_B);
+            this.findPatientPanel.Controls.Add(this.changeAppointment_FP_B);
+            this.findPatientPanel.Controls.Add(this.newAppointment_FP_B);
+            this.findPatientPanel.Controls.Add(this.prescriptions_FP_L);
+            this.findPatientPanel.Controls.Add(this.appointment_PF_L);
+            this.findPatientPanel.Controls.Add(this.prescriptionsFP_LB);
+            this.findPatientPanel.Controls.Add(this.appointment_FP_LB);
+            this.findPatientPanel.Controls.Add(this.edit_FP_B);
+            this.findPatientPanel.Controls.Add(this.or_L);
+            this.findPatientPanel.Controls.Add(this.error_FP_LBL);
+            this.findPatientPanel.Controls.Add(this.find_FP_BT);
+            this.findPatientPanel.Controls.Add(this.mainMenu_FP_BT);
+            this.findPatientPanel.Controls.Add(this.findPatient_L);
+            this.findPatientPanel.Location = new System.Drawing.Point(11, 275);
+            this.findPatientPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.findPatientPanel.Name = "findPatientPanel";
+            this.findPatientPanel.Size = new System.Drawing.Size(857, 395);
+            this.findPatientPanel.TabIndex = 51;
+            // 
+            // patientIDPanel
+            // 
+            this.patientIDPanel.Controls.Add(this.patientID_FP_LBL);
+            this.patientIDPanel.Controls.Add(this.patientID_FP_TB);
+            this.patientIDPanel.Location = new System.Drawing.Point(10, 93);
+            this.patientIDPanel.Name = "patientIDPanel";
+            this.patientIDPanel.Size = new System.Drawing.Size(191, 35);
+            this.patientIDPanel.TabIndex = 58;
+            // 
+            // patientID_FP_LBL
+            // 
+            this.patientID_FP_LBL.AutoSize = true;
+            this.patientID_FP_LBL.Location = new System.Drawing.Point(2, 6);
+            this.patientID_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.patientID_FP_LBL.Name = "patientID_FP_LBL";
+            this.patientID_FP_LBL.Size = new System.Drawing.Size(54, 13);
+            this.patientID_FP_LBL.TabIndex = 19;
+            this.patientID_FP_LBL.Text = "Patient ID";
+            // 
+            // patientID_FP_TB
+            // 
+            this.patientID_FP_TB.Location = new System.Drawing.Point(62, 2);
+            this.patientID_FP_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.patientID_FP_TB.Name = "patientID_FP_TB";
+            this.patientID_FP_TB.Size = new System.Drawing.Size(123, 20);
+            this.patientID_FP_TB.TabIndex = 20;
+            // 
+            // addressPanel
+            // 
+            this.addressPanel.Controls.Add(this.address_FP_LBL);
+            this.addressPanel.Controls.Add(this.address_FP_TB);
+            this.addressPanel.Location = new System.Drawing.Point(11, 133);
+            this.addressPanel.Name = "addressPanel";
+            this.addressPanel.Size = new System.Drawing.Size(190, 33);
+            this.addressPanel.TabIndex = 57;
+            // 
+            // address_FP_LBL
+            // 
+            this.address_FP_LBL.AutoSize = true;
+            this.address_FP_LBL.Location = new System.Drawing.Point(2, 7);
+            this.address_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.address_FP_LBL.Name = "address_FP_LBL";
+            this.address_FP_LBL.Size = new System.Drawing.Size(45, 13);
+            this.address_FP_LBL.TabIndex = 9;
+            this.address_FP_LBL.Text = "Address";
+            // 
+            // address_FP_TB
+            // 
+            this.address_FP_TB.Location = new System.Drawing.Point(62, 7);
+            this.address_FP_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.address_FP_TB.Name = "address_FP_TB";
+            this.address_FP_TB.Size = new System.Drawing.Size(123, 20);
+            this.address_FP_TB.TabIndex = 4;
+            // 
+            // DOBPanel
+            // 
+            this.DOBPanel.Controls.Add(this.dob_FP_LBL);
+            this.DOBPanel.Controls.Add(this.dob_FP_TB);
+            this.DOBPanel.Location = new System.Drawing.Point(11, 231);
+            this.DOBPanel.Name = "DOBPanel";
+            this.DOBPanel.Size = new System.Drawing.Size(169, 28);
+            this.DOBPanel.TabIndex = 56;
+            // 
+            // dob_FP_LBL
+            // 
+            this.dob_FP_LBL.AutoSize = true;
+            this.dob_FP_LBL.Location = new System.Drawing.Point(2, 6);
+            this.dob_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.dob_FP_LBL.Name = "dob_FP_LBL";
+            this.dob_FP_LBL.Size = new System.Drawing.Size(30, 13);
+            this.dob_FP_LBL.TabIndex = 4;
+            this.dob_FP_LBL.Text = "DOB";
+            // 
+            // dob_FP_TB
+            // 
+            this.dob_FP_TB.Location = new System.Drawing.Point(36, 2);
+            this.dob_FP_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.dob_FP_TB.MaxDate = new System.DateTime(2017, 10, 17, 15, 6, 31, 0);
+            this.dob_FP_TB.Name = "dob_FP_TB";
+            this.dob_FP_TB.Size = new System.Drawing.Size(123, 20);
+            this.dob_FP_TB.TabIndex = 3;
+            this.dob_FP_TB.Value = new System.DateTime(2017, 10, 17, 0, 0, 0, 0);
+            // 
+            // findPatientCB
+            // 
+            this.findPatientCB.FormattingEnabled = true;
+            this.findPatientCB.Items.AddRange(new object[] {
+            "Patient ID ",
+            "DOB",
+            "Address"});
+            this.findPatientCB.Location = new System.Drawing.Point(19, 60);
+            this.findPatientCB.Name = "findPatientCB";
+            this.findPatientCB.Size = new System.Drawing.Size(123, 21);
+            this.findPatientCB.TabIndex = 55;
+            this.findPatientCB.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // NamePanel
+            // 
+            this.NamePanel.Controls.Add(this.firstName_FP_TB);
+            this.NamePanel.Controls.Add(this.firstName_FP_LBL);
+            this.NamePanel.Controls.Add(this.surname_FP_LBL);
+            this.NamePanel.Controls.Add(this.surname_FP_TB);
+            this.NamePanel.Location = new System.Drawing.Point(11, 172);
+            this.NamePanel.Name = "NamePanel";
+            this.NamePanel.Size = new System.Drawing.Size(195, 53);
+            this.NamePanel.TabIndex = 54;
+            // 
+            // firstName_FP_TB
+            // 
+            this.firstName_FP_TB.Location = new System.Drawing.Point(65, 2);
+            this.firstName_FP_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.firstName_FP_TB.Name = "firstName_FP_TB";
+            this.firstName_FP_TB.Size = new System.Drawing.Size(123, 20);
+            this.firstName_FP_TB.TabIndex = 1;
+            // 
+            // firstName_FP_LBL
+            // 
+            this.firstName_FP_LBL.AutoSize = true;
+            this.firstName_FP_LBL.Location = new System.Drawing.Point(5, 2);
+            this.firstName_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.firstName_FP_LBL.Name = "firstName_FP_LBL";
+            this.firstName_FP_LBL.Size = new System.Drawing.Size(57, 13);
+            this.firstName_FP_LBL.TabIndex = 0;
+            this.firstName_FP_LBL.Text = "First Name";
+            // 
+            // surname_FP_LBL
+            // 
+            this.surname_FP_LBL.AutoSize = true;
+            this.surname_FP_LBL.Location = new System.Drawing.Point(5, 25);
+            this.surname_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.surname_FP_LBL.Name = "surname_FP_LBL";
+            this.surname_FP_LBL.Size = new System.Drawing.Size(49, 13);
+            this.surname_FP_LBL.TabIndex = 2;
+            this.surname_FP_LBL.Text = "Surname";
+            // 
+            // surname_FP_TB
+            // 
+            this.surname_FP_TB.Location = new System.Drawing.Point(65, 25);
+            this.surname_FP_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.surname_FP_TB.Name = "surname_FP_TB";
+            this.surname_FP_TB.Size = new System.Drawing.Size(123, 20);
+            this.surname_FP_TB.TabIndex = 2;
+            // 
+            // extendPrescriptions_FP_B
+            // 
+            this.extendPrescriptions_FP_B.Location = new System.Drawing.Point(699, 287);
+            this.extendPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.extendPrescriptions_FP_B.Name = "extendPrescriptions_FP_B";
+            this.extendPrescriptions_FP_B.Size = new System.Drawing.Size(56, 19);
+            this.extendPrescriptions_FP_B.TabIndex = 47;
+            this.extendPrescriptions_FP_B.Text = "Extend";
+            this.extendPrescriptions_FP_B.UseVisualStyleBackColor = true;
+            // 
+            // newPrescriptions_FP_B
+            // 
+            this.newPrescriptions_FP_B.Location = new System.Drawing.Point(628, 287);
+            this.newPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.newPrescriptions_FP_B.Name = "newPrescriptions_FP_B";
+            this.newPrescriptions_FP_B.Size = new System.Drawing.Size(56, 19);
+            this.newPrescriptions_FP_B.TabIndex = 46;
+            this.newPrescriptions_FP_B.Text = "New ";
+            this.newPrescriptions_FP_B.UseVisualStyleBackColor = true;
+            this.newPrescriptions_FP_B.Click += new System.EventHandler(this.newPrescriptions_FP_B_Click);
+            // 
+            // Cancel_FP_B
+            // 
+            this.Cancel_FP_B.Location = new System.Drawing.Point(770, 142);
+            this.Cancel_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.Cancel_FP_B.Name = "Cancel_FP_B";
+            this.Cancel_FP_B.Size = new System.Drawing.Size(56, 19);
+            this.Cancel_FP_B.TabIndex = 45;
+            this.Cancel_FP_B.Text = "Cancel ";
+            this.Cancel_FP_B.UseVisualStyleBackColor = true;
+            // 
+            // changeAppointment_FP_B
+            // 
+            this.changeAppointment_FP_B.Location = new System.Drawing.Point(699, 142);
+            this.changeAppointment_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.changeAppointment_FP_B.Name = "changeAppointment_FP_B";
+            this.changeAppointment_FP_B.Size = new System.Drawing.Size(56, 19);
+            this.changeAppointment_FP_B.TabIndex = 44;
+            this.changeAppointment_FP_B.Text = "Change";
+            this.changeAppointment_FP_B.UseVisualStyleBackColor = true;
+            // 
+            // newAppointment_FP_B
+            // 
+            this.newAppointment_FP_B.Location = new System.Drawing.Point(628, 142);
+            this.newAppointment_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.newAppointment_FP_B.Name = "newAppointment_FP_B";
+            this.newAppointment_FP_B.Size = new System.Drawing.Size(56, 19);
+            this.newAppointment_FP_B.TabIndex = 43;
+            this.newAppointment_FP_B.Text = "New ";
+            this.newAppointment_FP_B.UseVisualStyleBackColor = true;
+            this.newAppointment_FP_B.Click += new System.EventHandler(this.newAppointment_FP_B_Click);
+            // 
+            // prescriptions_FP_L
+            // 
+            this.prescriptions_FP_L.AutoSize = true;
+            this.prescriptions_FP_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prescriptions_FP_L.Location = new System.Drawing.Point(624, 174);
+            this.prescriptions_FP_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.prescriptions_FP_L.Name = "prescriptions_FP_L";
+            this.prescriptions_FP_L.Size = new System.Drawing.Size(118, 24);
+            this.prescriptions_FP_L.TabIndex = 42;
+            this.prescriptions_FP_L.Text = "Prescriptions";
+            // 
+            // appointment_PF_L
+            // 
+            this.appointment_PF_L.AutoSize = true;
+            this.appointment_PF_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appointment_PF_L.Location = new System.Drawing.Point(624, 25);
+            this.appointment_PF_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.appointment_PF_L.Name = "appointment_PF_L";
+            this.appointment_PF_L.Size = new System.Drawing.Size(117, 24);
+            this.appointment_PF_L.TabIndex = 41;
+            this.appointment_PF_L.Text = "Appointment";
+            // 
+            // prescriptionsFP_LB
+            // 
+            this.prescriptionsFP_LB.FormattingEnabled = true;
+            this.prescriptionsFP_LB.Location = new System.Drawing.Point(628, 201);
+            this.prescriptionsFP_LB.Margin = new System.Windows.Forms.Padding(2);
+            this.prescriptionsFP_LB.Name = "prescriptionsFP_LB";
+            this.prescriptionsFP_LB.Size = new System.Drawing.Size(221, 82);
+            this.prescriptionsFP_LB.TabIndex = 40;
+            // 
+            // appointment_FP_LB
+            // 
+            this.appointment_FP_LB.FormattingEnabled = true;
+            this.appointment_FP_LB.Location = new System.Drawing.Point(628, 51);
+            this.appointment_FP_LB.Margin = new System.Windows.Forms.Padding(2);
+            this.appointment_FP_LB.Name = "appointment_FP_LB";
+            this.appointment_FP_LB.Size = new System.Drawing.Size(221, 82);
+            this.appointment_FP_LB.TabIndex = 24;
+            // 
+            // edit_FP_B
+            // 
+            this.edit_FP_B.Location = new System.Drawing.Point(775, 23);
+            this.edit_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.edit_FP_B.Name = "edit_FP_B";
+            this.edit_FP_B.Size = new System.Drawing.Size(71, 24);
+            this.edit_FP_B.TabIndex = 23;
+            this.edit_FP_B.Text = "Edit Patient ";
+            this.edit_FP_B.UseVisualStyleBackColor = true;
+            this.edit_FP_B.Click += new System.EventHandler(this.edit_FP_B_Click);
+            // 
+            // or_L
+            // 
+            this.or_L.AutoSize = true;
+            this.or_L.Location = new System.Drawing.Point(175, 9);
+            this.or_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.or_L.Name = "or_L";
+            this.or_L.Size = new System.Drawing.Size(16, 13);
+            this.or_L.TabIndex = 21;
+            this.or_L.Text = "or";
+            // 
+            // error_FP_LBL
+            // 
+            this.error_FP_LBL.AutoSize = true;
+            this.error_FP_LBL.Location = new System.Drawing.Point(392, 314);
+            this.error_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.error_FP_LBL.Name = "error_FP_LBL";
+            this.error_FP_LBL.Size = new System.Drawing.Size(58, 13);
+            this.error_FP_LBL.TabIndex = 18;
+            this.error_FP_LBL.Text = "Error Label";
+            // 
+            // find_FP_BT
+            // 
+            this.find_FP_BT.Location = new System.Drawing.Point(10, 279);
+            this.find_FP_BT.Margin = new System.Windows.Forms.Padding(2);
+            this.find_FP_BT.Name = "find_FP_BT";
+            this.find_FP_BT.Size = new System.Drawing.Size(56, 19);
+            this.find_FP_BT.TabIndex = 8;
+            this.find_FP_BT.Text = "Find";
+            this.find_FP_BT.UseVisualStyleBackColor = true;
+            this.find_FP_BT.Click += new System.EventHandler(this.find_FP_BT_Click);
+            // 
+            // mainMenu_FP_BT
+            // 
+            this.mainMenu_FP_BT.Location = new System.Drawing.Point(389, 367);
+            this.mainMenu_FP_BT.Margin = new System.Windows.Forms.Padding(2);
+            this.mainMenu_FP_BT.Name = "mainMenu_FP_BT";
+            this.mainMenu_FP_BT.Size = new System.Drawing.Size(88, 24);
+            this.mainMenu_FP_BT.TabIndex = 9;
+            this.mainMenu_FP_BT.Text = "Main Menu";
+            this.mainMenu_FP_BT.UseVisualStyleBackColor = true;
+            this.mainMenu_FP_BT.Click += new System.EventHandler(this.mainMenu_FP_BT_Click);
+            // 
+            // findPatient_L
+            // 
+            this.findPatient_L.AutoSize = true;
+            this.findPatient_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findPatient_L.Location = new System.Drawing.Point(22, 11);
+            this.findPatient_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.findPatient_L.Name = "findPatient_L";
+            this.findPatient_L.Size = new System.Drawing.Size(109, 24);
+            this.findPatient_L.TabIndex = 6;
+            this.findPatient_L.Text = "Find Patient";
             // 
             // ChangeStaffSchedualtx
             // 
@@ -603,7 +930,7 @@
             // staffScheduleSearchPanel
             // 
             this.staffScheduleSearchPanel.Controls.Add(this.StaffScheduleSearch);
-            this.staffScheduleSearchPanel.Location = new System.Drawing.Point(837, 517);
+            this.staffScheduleSearchPanel.Location = new System.Drawing.Point(1646, 3);
             this.staffScheduleSearchPanel.Name = "staffScheduleSearchPanel";
             this.staffScheduleSearchPanel.Size = new System.Drawing.Size(263, 313);
             this.staffScheduleSearchPanel.TabIndex = 42;
@@ -813,7 +1140,7 @@
             // changeStaffSchedulePanel
             // 
             this.changeStaffSchedulePanel.Controls.Add(this.ChangeStaffSchedualtx);
-            this.changeStaffSchedulePanel.Location = new System.Drawing.Point(987, 313);
+            this.changeStaffSchedulePanel.Location = new System.Drawing.Point(507, -2);
             this.changeStaffSchedulePanel.Name = "changeStaffSchedulePanel";
             this.changeStaffSchedulePanel.Size = new System.Drawing.Size(312, 281);
             this.changeStaffSchedulePanel.TabIndex = 41;
@@ -821,7 +1148,7 @@
             // testResultSearchPanel
             // 
             this.testResultSearchPanel.Controls.Add(this.TestResutsSearch);
-            this.testResultSearchPanel.Location = new System.Drawing.Point(266, 406);
+            this.testResultSearchPanel.Location = new System.Drawing.Point(1353, 571);
             this.testResultSearchPanel.Name = "testResultSearchPanel";
             this.testResultSearchPanel.Size = new System.Drawing.Size(568, 425);
             this.testResultSearchPanel.TabIndex = 43;
@@ -843,7 +1170,7 @@
             this.TestResutsSearch.Controls.Add(this.StaffNameLable);
             this.TestResutsSearch.Controls.Add(this.PatientTR);
             this.TestResutsSearch.Controls.Add(this.StaffNameTRS);
-            this.TestResutsSearch.Location = new System.Drawing.Point(0, 2);
+            this.TestResutsSearch.Location = new System.Drawing.Point(11, 1);
             this.TestResutsSearch.Name = "TestResutsSearch";
             this.TestResutsSearch.Size = new System.Drawing.Size(565, 419);
             this.TestResutsSearch.TabIndex = 35;
@@ -1348,7 +1675,7 @@
             this.prescriptionPanel.Controls.Add(this.btnPresCancel);
             this.prescriptionPanel.Controls.Add(this.btnApply);
             this.prescriptionPanel.Controls.Add(this.prsPrescriptionGrp);
-            this.prescriptionPanel.Location = new System.Drawing.Point(910, 6);
+            this.prescriptionPanel.Location = new System.Drawing.Point(974, 6);
             this.prescriptionPanel.Name = "prescriptionPanel";
             this.prescriptionPanel.Size = new System.Drawing.Size(645, 295);
             this.prescriptionPanel.TabIndex = 44;
@@ -1458,7 +1785,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 20);
             this.textBox1.TabIndex = 20;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -1512,37 +1838,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "New Appointment";
             // 
-            // extendPrescriptions_FP_B
-            // 
-            this.extendPrescriptions_FP_B.Location = new System.Drawing.Point(699, 287);
-            this.extendPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.extendPrescriptions_FP_B.Name = "extendPrescriptions_FP_B";
-            this.extendPrescriptions_FP_B.Size = new System.Drawing.Size(56, 19);
-            this.extendPrescriptions_FP_B.TabIndex = 47;
-            this.extendPrescriptions_FP_B.Text = "Extend";
-            this.extendPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            // 
-            // newPrescriptions_FP_B
-            // 
-            this.newPrescriptions_FP_B.Location = new System.Drawing.Point(628, 287);
-            this.newPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.newPrescriptions_FP_B.Name = "newPrescriptions_FP_B";
-            this.newPrescriptions_FP_B.Size = new System.Drawing.Size(56, 19);
-            this.newPrescriptions_FP_B.TabIndex = 46;
-            this.newPrescriptions_FP_B.Text = "New ";
-            this.newPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            this.newPrescriptions_FP_B.Click += new System.EventHandler(this.newPrescriptions_FP_B_Click);
-            // 
-            // Cancel_FP_B
-            // 
-            this.Cancel_FP_B.Location = new System.Drawing.Point(770, 142);
-            this.Cancel_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.Cancel_FP_B.Name = "Cancel_FP_B";
-            this.Cancel_FP_B.Size = new System.Drawing.Size(56, 19);
-            this.Cancel_FP_B.TabIndex = 45;
-            this.Cancel_FP_B.Text = "Cancel ";
-            this.Cancel_FP_B.UseVisualStyleBackColor = true;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -1581,16 +1876,6 @@
             this.firstName_EP_L.TabIndex = 0;
             this.firstName_EP_L.Text = "First Name";
             // 
-            // changeAppointment_FP_B
-            // 
-            this.changeAppointment_FP_B.Location = new System.Drawing.Point(699, 142);
-            this.changeAppointment_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.changeAppointment_FP_B.Name = "changeAppointment_FP_B";
-            this.changeAppointment_FP_B.Size = new System.Drawing.Size(56, 19);
-            this.changeAppointment_FP_B.TabIndex = 44;
-            this.changeAppointment_FP_B.Text = "Change";
-            this.changeAppointment_FP_B.UseVisualStyleBackColor = true;
-            // 
             // county_EP_L
             // 
             this.county_EP_L.AutoSize = true;
@@ -1621,7 +1906,7 @@
             this.editPatientPanel.Controls.Add(this.surname_EP_L);
             this.editPatientPanel.Controls.Add(this.firstName_EP_TB);
             this.editPatientPanel.Controls.Add(this.firstName_EP_L);
-            this.editPatientPanel.Location = new System.Drawing.Point(1318, 306);
+            this.editPatientPanel.Location = new System.Drawing.Point(905, 304);
             this.editPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.editPatientPanel.Name = "editPatientPanel";
             this.editPatientPanel.Size = new System.Drawing.Size(237, 279);
@@ -1770,159 +2055,6 @@
             this.surname_EP_L.TabIndex = 2;
             this.surname_EP_L.Text = "Surname";
             // 
-            // newAppointment_FP_B
-            // 
-            this.newAppointment_FP_B.Location = new System.Drawing.Point(628, 142);
-            this.newAppointment_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.newAppointment_FP_B.Name = "newAppointment_FP_B";
-            this.newAppointment_FP_B.Size = new System.Drawing.Size(56, 19);
-            this.newAppointment_FP_B.TabIndex = 43;
-            this.newAppointment_FP_B.Text = "New ";
-            this.newAppointment_FP_B.UseVisualStyleBackColor = true;
-            this.newAppointment_FP_B.Click += new System.EventHandler(this.newAppointment_FP_B_Click);
-            // 
-            // prescriptions_FP_L
-            // 
-            this.prescriptions_FP_L.AutoSize = true;
-            this.prescriptions_FP_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prescriptions_FP_L.Location = new System.Drawing.Point(624, 174);
-            this.prescriptions_FP_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.prescriptions_FP_L.Name = "prescriptions_FP_L";
-            this.prescriptions_FP_L.Size = new System.Drawing.Size(118, 24);
-            this.prescriptions_FP_L.TabIndex = 42;
-            this.prescriptions_FP_L.Text = "Prescriptions";
-            // 
-            // appointment_PF_L
-            // 
-            this.appointment_PF_L.AutoSize = true;
-            this.appointment_PF_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appointment_PF_L.Location = new System.Drawing.Point(624, 25);
-            this.appointment_PF_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.appointment_PF_L.Name = "appointment_PF_L";
-            this.appointment_PF_L.Size = new System.Drawing.Size(117, 24);
-            this.appointment_PF_L.TabIndex = 41;
-            this.appointment_PF_L.Text = "Appointment";
-            // 
-            // prescriptionsFP_LB
-            // 
-            this.prescriptionsFP_LB.FormattingEnabled = true;
-            this.prescriptionsFP_LB.Location = new System.Drawing.Point(628, 201);
-            this.prescriptionsFP_LB.Margin = new System.Windows.Forms.Padding(2);
-            this.prescriptionsFP_LB.Name = "prescriptionsFP_LB";
-            this.prescriptionsFP_LB.Size = new System.Drawing.Size(221, 82);
-            this.prescriptionsFP_LB.TabIndex = 40;
-            // 
-            // appointment_FP_LB
-            // 
-            this.appointment_FP_LB.FormattingEnabled = true;
-            this.appointment_FP_LB.Location = new System.Drawing.Point(628, 51);
-            this.appointment_FP_LB.Margin = new System.Windows.Forms.Padding(2);
-            this.appointment_FP_LB.Name = "appointment_FP_LB";
-            this.appointment_FP_LB.Size = new System.Drawing.Size(221, 82);
-            this.appointment_FP_LB.TabIndex = 24;
-            // 
-            // edit_FP_B
-            // 
-            this.edit_FP_B.Location = new System.Drawing.Point(775, 23);
-            this.edit_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.edit_FP_B.Name = "edit_FP_B";
-            this.edit_FP_B.Size = new System.Drawing.Size(71, 24);
-            this.edit_FP_B.TabIndex = 23;
-            this.edit_FP_B.Text = "Edit Patient ";
-            this.edit_FP_B.UseVisualStyleBackColor = true;
-            this.edit_FP_B.Click += new System.EventHandler(this.edit_FP_B_Click);
-            // 
-            // or_L
-            // 
-            this.or_L.AutoSize = true;
-            this.or_L.Location = new System.Drawing.Point(175, 9);
-            this.or_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.or_L.Name = "or_L";
-            this.or_L.Size = new System.Drawing.Size(16, 13);
-            this.or_L.TabIndex = 21;
-            this.or_L.Text = "or";
-            this.or_L.Click += new System.EventHandler(this.or_L_Click);
-            // 
-            // patientID_FP_TB
-            // 
-            this.patientID_FP_TB.Location = new System.Drawing.Point(62, 2);
-            this.patientID_FP_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.patientID_FP_TB.Name = "patientID_FP_TB";
-            this.patientID_FP_TB.Size = new System.Drawing.Size(123, 20);
-            this.patientID_FP_TB.TabIndex = 20;
-            this.patientID_FP_TB.TextChanged += new System.EventHandler(this.patientID_FP_TB_TextChanged);
-            // 
-            // error_FP_LBL
-            // 
-            this.error_FP_LBL.AutoSize = true;
-            this.error_FP_LBL.Location = new System.Drawing.Point(392, 314);
-            this.error_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.error_FP_LBL.Name = "error_FP_LBL";
-            this.error_FP_LBL.Size = new System.Drawing.Size(58, 13);
-            this.error_FP_LBL.TabIndex = 18;
-            this.error_FP_LBL.Text = "Error Label";
-            // 
-            // find_FP_BT
-            // 
-            this.find_FP_BT.Location = new System.Drawing.Point(10, 279);
-            this.find_FP_BT.Margin = new System.Windows.Forms.Padding(2);
-            this.find_FP_BT.Name = "find_FP_BT";
-            this.find_FP_BT.Size = new System.Drawing.Size(56, 19);
-            this.find_FP_BT.TabIndex = 8;
-            this.find_FP_BT.Text = "Find";
-            this.find_FP_BT.UseVisualStyleBackColor = true;
-            this.find_FP_BT.Click += new System.EventHandler(this.find_FP_BT_Click);
-            // 
-            // mainMenu_FP_BT
-            // 
-            this.mainMenu_FP_BT.Location = new System.Drawing.Point(389, 367);
-            this.mainMenu_FP_BT.Margin = new System.Windows.Forms.Padding(2);
-            this.mainMenu_FP_BT.Name = "mainMenu_FP_BT";
-            this.mainMenu_FP_BT.Size = new System.Drawing.Size(88, 24);
-            this.mainMenu_FP_BT.TabIndex = 9;
-            this.mainMenu_FP_BT.Text = "Main Menu";
-            this.mainMenu_FP_BT.UseVisualStyleBackColor = true;
-            this.mainMenu_FP_BT.Click += new System.EventHandler(this.mainMenu_FP_BT_Click);
-            // 
-            // address_FP_TB
-            // 
-            this.address_FP_TB.Location = new System.Drawing.Point(62, 7);
-            this.address_FP_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.address_FP_TB.Name = "address_FP_TB";
-            this.address_FP_TB.Size = new System.Drawing.Size(123, 20);
-            this.address_FP_TB.TabIndex = 4;
-            // 
-            // address_FP_LBL
-            // 
-            this.address_FP_LBL.AutoSize = true;
-            this.address_FP_LBL.Location = new System.Drawing.Point(2, 7);
-            this.address_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.address_FP_LBL.Name = "address_FP_LBL";
-            this.address_FP_LBL.Size = new System.Drawing.Size(45, 13);
-            this.address_FP_LBL.TabIndex = 9;
-            this.address_FP_LBL.Text = "Address";
-            // 
-            // patientID_FP_LBL
-            // 
-            this.patientID_FP_LBL.AutoSize = true;
-            this.patientID_FP_LBL.Location = new System.Drawing.Point(2, 6);
-            this.patientID_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.patientID_FP_LBL.Name = "patientID_FP_LBL";
-            this.patientID_FP_LBL.Size = new System.Drawing.Size(54, 13);
-            this.patientID_FP_LBL.TabIndex = 19;
-            this.patientID_FP_LBL.Text = "Patient ID";
-            this.patientID_FP_LBL.Click += new System.EventHandler(this.patientID_FP_LBL_Click);
-            // 
-            // dob_FP_TB
-            // 
-            this.dob_FP_TB.Location = new System.Drawing.Point(36, 2);
-            this.dob_FP_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.dob_FP_TB.MaxDate = new System.DateTime(2017, 10, 17, 15, 6, 31, 0);
-            this.dob_FP_TB.Name = "dob_FP_TB";
-            this.dob_FP_TB.Size = new System.Drawing.Size(123, 20);
-            this.dob_FP_TB.TabIndex = 3;
-            this.dob_FP_TB.Value = new System.DateTime(2017, 10, 17, 0, 0, 0, 0);
-            // 
             // newPatientPanel
             // 
             this.newPatientPanel.Controls.Add(this.county_NP_TB);
@@ -1943,7 +2075,7 @@
             this.newPatientPanel.Controls.Add(this.surname_NP_LBL);
             this.newPatientPanel.Controls.Add(this.firstName_NP_TB);
             this.newPatientPanel.Controls.Add(this.firstName_NP_LBL);
-            this.newPatientPanel.Location = new System.Drawing.Point(1105, 599);
+            this.newPatientPanel.Location = new System.Drawing.Point(1146, 305);
             this.newPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.newPatientPanel.Name = "newPatientPanel";
             this.newPatientPanel.Size = new System.Drawing.Size(432, 236);
@@ -2128,145 +2260,6 @@
             this.button6.TabIndex = 51;
             this.button6.Text = "Confirm";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // findPatientPanel
-            // 
-            this.findPatientPanel.Controls.Add(this.patientIDPanel);
-            this.findPatientPanel.Controls.Add(this.addressPanel);
-            this.findPatientPanel.Controls.Add(this.DOBPanel);
-            this.findPatientPanel.Controls.Add(this.findPatientCB);
-            this.findPatientPanel.Controls.Add(this.NamePanel);
-            this.findPatientPanel.Controls.Add(this.DGV);
-            this.findPatientPanel.Controls.Add(this.extendPrescriptions_FP_B);
-            this.findPatientPanel.Controls.Add(this.newPrescriptions_FP_B);
-            this.findPatientPanel.Controls.Add(this.Cancel_FP_B);
-            this.findPatientPanel.Controls.Add(this.changeAppointment_FP_B);
-            this.findPatientPanel.Controls.Add(this.newAppointment_FP_B);
-            this.findPatientPanel.Controls.Add(this.prescriptions_FP_L);
-            this.findPatientPanel.Controls.Add(this.appointment_PF_L);
-            this.findPatientPanel.Controls.Add(this.prescriptionsFP_LB);
-            this.findPatientPanel.Controls.Add(this.appointment_FP_LB);
-            this.findPatientPanel.Controls.Add(this.edit_FP_B);
-            this.findPatientPanel.Controls.Add(this.or_L);
-            this.findPatientPanel.Controls.Add(this.error_FP_LBL);
-            this.findPatientPanel.Controls.Add(this.find_FP_BT);
-            this.findPatientPanel.Controls.Add(this.mainMenu_FP_BT);
-            this.findPatientPanel.Controls.Add(this.findPatient_L);
-            this.findPatientPanel.Location = new System.Drawing.Point(47, 250);
-            this.findPatientPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.findPatientPanel.Name = "findPatientPanel";
-            this.findPatientPanel.Size = new System.Drawing.Size(857, 395);
-            this.findPatientPanel.TabIndex = 51;
-            this.findPatientPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.findPatientPanel_Paint);
-            // 
-            // patientIDPanel
-            // 
-            this.patientIDPanel.Controls.Add(this.patientID_FP_LBL);
-            this.patientIDPanel.Controls.Add(this.patientID_FP_TB);
-            this.patientIDPanel.Location = new System.Drawing.Point(10, 93);
-            this.patientIDPanel.Name = "patientIDPanel";
-            this.patientIDPanel.Size = new System.Drawing.Size(191, 35);
-            this.patientIDPanel.TabIndex = 58;
-            // 
-            // addressPanel
-            // 
-            this.addressPanel.Controls.Add(this.address_FP_LBL);
-            this.addressPanel.Controls.Add(this.address_FP_TB);
-            this.addressPanel.Location = new System.Drawing.Point(11, 133);
-            this.addressPanel.Name = "addressPanel";
-            this.addressPanel.Size = new System.Drawing.Size(190, 33);
-            this.addressPanel.TabIndex = 57;
-            // 
-            // DOBPanel
-            // 
-            this.DOBPanel.Controls.Add(this.dob_FP_LBL);
-            this.DOBPanel.Controls.Add(this.dob_FP_TB);
-            this.DOBPanel.Location = new System.Drawing.Point(11, 231);
-            this.DOBPanel.Name = "DOBPanel";
-            this.DOBPanel.Size = new System.Drawing.Size(169, 28);
-            this.DOBPanel.TabIndex = 56;
-            // 
-            // dob_FP_LBL
-            // 
-            this.dob_FP_LBL.AutoSize = true;
-            this.dob_FP_LBL.Location = new System.Drawing.Point(2, 6);
-            this.dob_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.dob_FP_LBL.Name = "dob_FP_LBL";
-            this.dob_FP_LBL.Size = new System.Drawing.Size(30, 13);
-            this.dob_FP_LBL.TabIndex = 4;
-            this.dob_FP_LBL.Text = "DOB";
-            // 
-            // findPatientCB
-            // 
-            this.findPatientCB.FormattingEnabled = true;
-            this.findPatientCB.Items.AddRange(new object[] {
-            "First Name And Surname",
-            "DOB",
-            "Address"});
-            this.findPatientCB.Location = new System.Drawing.Point(19, 60);
-            this.findPatientCB.Name = "findPatientCB";
-            this.findPatientCB.Size = new System.Drawing.Size(123, 21);
-            this.findPatientCB.TabIndex = 55;
-            this.findPatientCB.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-            // 
-            // NamePanel
-            // 
-            this.NamePanel.Controls.Add(this.firstName_FP_TB);
-            this.NamePanel.Controls.Add(this.firstName_FP_LBL);
-            this.NamePanel.Controls.Add(this.surname_FP_LBL);
-            this.NamePanel.Controls.Add(this.surname_FP_TB);
-            this.NamePanel.Location = new System.Drawing.Point(11, 172);
-            this.NamePanel.Name = "NamePanel";
-            this.NamePanel.Size = new System.Drawing.Size(195, 53);
-            this.NamePanel.TabIndex = 54;
-            // 
-            // firstName_FP_TB
-            // 
-            this.firstName_FP_TB.Location = new System.Drawing.Point(65, 2);
-            this.firstName_FP_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.firstName_FP_TB.Name = "firstName_FP_TB";
-            this.firstName_FP_TB.Size = new System.Drawing.Size(123, 20);
-            this.firstName_FP_TB.TabIndex = 1;
-            // 
-            // firstName_FP_LBL
-            // 
-            this.firstName_FP_LBL.AutoSize = true;
-            this.firstName_FP_LBL.Location = new System.Drawing.Point(5, 2);
-            this.firstName_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.firstName_FP_LBL.Name = "firstName_FP_LBL";
-            this.firstName_FP_LBL.Size = new System.Drawing.Size(57, 13);
-            this.firstName_FP_LBL.TabIndex = 0;
-            this.firstName_FP_LBL.Text = "First Name";
-            // 
-            // surname_FP_LBL
-            // 
-            this.surname_FP_LBL.AutoSize = true;
-            this.surname_FP_LBL.Location = new System.Drawing.Point(5, 25);
-            this.surname_FP_LBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.surname_FP_LBL.Name = "surname_FP_LBL";
-            this.surname_FP_LBL.Size = new System.Drawing.Size(49, 13);
-            this.surname_FP_LBL.TabIndex = 2;
-            this.surname_FP_LBL.Text = "Surname";
-            // 
-            // surname_FP_TB
-            // 
-            this.surname_FP_TB.Location = new System.Drawing.Point(65, 25);
-            this.surname_FP_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.surname_FP_TB.Name = "surname_FP_TB";
-            this.surname_FP_TB.Size = new System.Drawing.Size(123, 20);
-            this.surname_FP_TB.TabIndex = 2;
-            // 
-            // findPatient_L
-            // 
-            this.findPatient_L.AutoSize = true;
-            this.findPatient_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findPatient_L.Location = new System.Drawing.Point(22, 11);
-            this.findPatient_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.findPatient_L.Name = "findPatient_L";
-            this.findPatient_L.Size = new System.Drawing.Size(109, 24);
-            this.findPatient_L.TabIndex = 6;
-            this.findPatient_L.Text = "Find Patient";
             // 
             // newAppointmentPanel
             // 
@@ -2287,21 +2280,21 @@
             this.newAppointmentPanel.Name = "newAppointmentPanel";
             this.newAppointmentPanel.Size = new System.Drawing.Size(231, 220);
             this.newAppointmentPanel.TabIndex = 52;
-            this.newAppointmentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.newAppointmentPanel_Paint);
             // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1908, 843);
+            this.ClientSize = new System.Drawing.Size(1908, 1045);
+            this.Controls.Add(this.changeStaffSchedulePanel);
+            this.Controls.Add(this.findPatientPanel);
+            this.Controls.Add(this.testResultSearchPanel);
             this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.newPatientPanel);
             this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.staffScheduleSearchPanel);
-            this.Controls.Add(this.changeStaffSchedulePanel);
-            this.Controls.Add(this.testResultSearchPanel);
             this.Controls.Add(this.loginPanel);
             this.Name = "finalUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalUI_FormClosed);
@@ -2312,6 +2305,16 @@
             this.loginPanel.ResumeLayout(false);
             this.Loginbx.ResumeLayout(false);
             this.Loginbx.PerformLayout();
+            this.findPatientPanel.ResumeLayout(false);
+            this.findPatientPanel.PerformLayout();
+            this.patientIDPanel.ResumeLayout(false);
+            this.patientIDPanel.PerformLayout();
+            this.addressPanel.ResumeLayout(false);
+            this.addressPanel.PerformLayout();
+            this.DOBPanel.ResumeLayout(false);
+            this.DOBPanel.PerformLayout();
+            this.NamePanel.ResumeLayout(false);
+            this.NamePanel.PerformLayout();
             this.ChangeStaffSchedualtx.ResumeLayout(false);
             this.ChangeStaffSchedualtx.PerformLayout();
             this.staffScheduleSearchPanel.ResumeLayout(false);
@@ -2336,16 +2339,6 @@
             this.editPatientPanel.PerformLayout();
             this.newPatientPanel.ResumeLayout(false);
             this.newPatientPanel.PerformLayout();
-            this.findPatientPanel.ResumeLayout(false);
-            this.findPatientPanel.PerformLayout();
-            this.patientIDPanel.ResumeLayout(false);
-            this.patientIDPanel.PerformLayout();
-            this.addressPanel.ResumeLayout(false);
-            this.addressPanel.PerformLayout();
-            this.DOBPanel.ResumeLayout(false);
-            this.DOBPanel.PerformLayout();
-            this.NamePanel.ResumeLayout(false);
-            this.NamePanel.PerformLayout();
             this.newAppointmentPanel.ResumeLayout(false);
             this.newAppointmentPanel.PerformLayout();
             this.ResumeLayout(false);

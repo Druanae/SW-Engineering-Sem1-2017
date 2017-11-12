@@ -20,7 +20,7 @@ namespace SW_Engineering_2017
             testResultSearchPanel.Visible = false;
             staffScheduleSearchPanel.Visible = false;
             changeStaffSchedulePanel.Visible = false;
-            newPatientPanel.Visible = false;   
+            newPatientPanel.Visible = false;
             findPatientPanel.Visible = false;
             editPatientPanel.Visible = false;
             newAppointmentPanel.Visible = false;
@@ -29,11 +29,11 @@ namespace SW_Engineering_2017
 
         private void finalUI_Load(object sender, EventArgs e)
         {
-            dob_NP_PCK.MaxDate= DateTime.Today;
+            dob_NP_PCK.MaxDate = DateTime.Today;
             dob_NP_PCK.Value = DateTime.Today;
 
             Connection.getDBConnectionInstance().openConnection();
-            
+
             //set data set 
             DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
 
@@ -45,7 +45,7 @@ namespace SW_Engineering_2017
             //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
 
         }
-        
+
 
         private void fillInFields(DataTable table, int index)
         {
@@ -59,13 +59,13 @@ namespace SW_Engineering_2017
             Connection.getDBConnectionInstance().closeConnection();
         }
 
-      
+
         private void confirm_NP_BTN_Click(object sender, EventArgs e)
         {
 
             Validation val = new Validation();
 
-            String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity= townCity_NP_TB.Text, county= county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage="";
+            String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity = townCity_NP_TB.Text, county = county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage = "";
             DateTime dob = dob_EP_PCK.Value;
 
             //Validates User inputs and stores results in errorMessage
@@ -89,7 +89,7 @@ namespace SW_Engineering_2017
                 DataTable table = dataSet.Tables[0];
 
                 //selects row just added
-                DataRow dataRow = table.Rows[table.Rows.Count-1];
+                DataRow dataRow = table.Rows[table.Rows.Count - 1];
 
                 //clears Text boxs and Datetime
                 firstName_NP_TB.Text = "";
@@ -101,7 +101,7 @@ namespace SW_Engineering_2017
                 postcode_NP_TB.Text = "";
 
                 //displays to user that the Patient has been added and their ID
-                error_NP_L.Text= firstname + " " +surname + " was added to the system.\r\nTheir ID is:" + dataRow.ItemArray.GetValue(0).ToString(); ;
+                error_NP_L.Text = firstname + " " + surname + " was added to the system.\r\nTheir ID is:" + dataRow.ItemArray.GetValue(0).ToString(); ;
 
             }
             else
@@ -126,7 +126,7 @@ namespace SW_Engineering_2017
             DataTable table = dataSet.Tables[0];
 
             //selects row just added
-            DataRow dataRow = table.Rows[table.Rows.Count-1];
+            DataRow dataRow = table.Rows[table.Rows.Count - 1];
 
             int dataRowlogin = table.Rows.Count - 1;
 
@@ -144,7 +144,7 @@ namespace SW_Engineering_2017
                 {
                     dataRow = table.Rows[i];
                     tester.Text = dataRow.ToString() + "\r\n";
-                    if( loginID == dataRow.ItemArray.GetValue(0).ToString() ) //Get loginID to match against password
+                    if (loginID == dataRow.ItemArray.GetValue(0).ToString()) //Get loginID to match against password
                     {
                         tester.Text += " Input:" + loginID + " Username" + dataRow.ItemArray.GetValue(0).ToString() + "\r\n";
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
@@ -168,11 +168,11 @@ namespace SW_Engineering_2017
                     }
                     else
                     {
-                        loginErrorlbl.Visible=true; // return error if text isnt correct
+                        loginErrorlbl.Visible = true; // return error if text isnt correct
                         loginErrorlbl.Text = "Please fill in matching";
                     }
                 }
-                                
+
             }
         }
 
@@ -274,7 +274,7 @@ namespace SW_Engineering_2017
         {
             if (!mainMenuPanel.Visible)
             {
-                
+
                 findPatientPanel.Visible = false;
                 mainMenuPanel.Visible = true;
             }
@@ -340,137 +340,101 @@ namespace SW_Engineering_2017
         private void find_FP_BT_Click(object sender, EventArgs e)
         {
             Validation val = new Validation();
-            string PatientID, firstname = firstName_FP_TB.Text, surname = surname_FP_TB.Text, AdressLine = address_FP_TB.Text;
+            string PatientID = patientID_FP_TB.Text, firstname = firstName_FP_TB.Text, surname = surname_FP_TB.Text, AdressLine = address_FP_TB.Text, errormessage = "";
+            int PatientId;
+            DateTime dob = dob_FP_TB.Value; 
+            DataTable table; DataSet dataSet;
 
-            /*
             errormessage += val.validateFirstname(firstname);
             errormessage += val.validateSurname(surname);
             errormessage += val.validateAddressLine(AdressLine);
-
-
-
-
-
-            if (errormessage = "Enter Correct Information")
+            if ((findPatientCB.SelectedIndex == 0) && (PatientID != ""))
             {
 
+
+                if (Int32.TryParse(PatientID, out PatientId))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectPatientByID(PatientID);
+                    table = dataSet.Tables[0];
+
+                    DGV.DataSource = table;
+                }
+               
+                /*  ((PatientID ) && (Firstname) %% (surname)  && (AdressLine)  )
+
+
+                  if (errormessage = "Enter Correct Information")
+                  {
+
+
+                  }
+                  */
+
+            }
+            if  ((findPatientCB.SelectedIndex == 1) && (firstname  != "") && (surname != "") && (dob != null))
+            {
+                string dateOfbirthInp =  dob.Year.ToString() + "-" + dob.Month.ToString() + "-" + dob.Day.ToString();
+                dataSet = Connection.getDBConnectionInstance().selectPatientByDOB(firstname,surname, dateOfbirthInp);
+                table = dataSet.Tables[0];
+
+                DGV.DataSource = table;
+            }
+
+            if ((findPatientCB.SelectedIndex == 2) && (firstname != "") && (surname != "") && (AdressLine != ""))
+            {
+                
+                dataSet = Connection.getDBConnectionInstance().selectPatientByAddress(firstname, surname, AdressLine);
+                table = dataSet.Tables[0];
+
+                DGV.DataSource = table;
 
             }
 
 
-            else
 
+
+
+
+        }
+
+            private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
             {
-                error_FP_LBL.Text = errormessage;
-                error_FP_LBL.Text = "";
-
-            } */
 
 
-
-
-
-
-
-            if (findPatientCB.SelectedIndex == 0)
+                if (findPatientCB.SelectedIndex == 0)
                 {
                     patientIDPanel.Visible = true;
-                    NamePanel.Visible = true;
+                    NamePanel.Visible = false;
                     DOBPanel.Visible = false;
                     addressPanel.Visible = false;
                 }
 
-            else if (findPatientCB.SelectedIndex == 1)
+                else if (findPatientCB.SelectedIndex == 1)
                 {
 
 
-                    patientIDPanel.Visible = true;
-                    NamePanel.Visible = false;
+                    patientIDPanel.Visible = false;
+                    NamePanel.Visible = true;
                     DOBPanel.Visible = true;
                     addressPanel.Visible = false;
 
                 }
                 else if (findPatientCB.SelectedIndex == 2)
-            {
-
-
-                    patientIDPanel.Visible = true;
-                    NamePanel.Visible = false;
-                    DOBPanel.Visible = false;
-                    addressPanel.Visible = true;
-
-
-
-                }
-
-            else if (findPatientCB.SelectedIndex == 3)
-                {
-
-
-                    patientIDPanel.Visible = true;
-                    NamePanel.Visible = false;
-                    DOBPanel.Visible = false;
-                    addressPanel.Visible = true;
-
-
-
-                }
-
-            else if (findPatientCB.SelectedIndex == 4)
                 {
 
 
                     patientIDPanel.Visible = false;
-                    NamePanel.Visible = false;
+                    NamePanel.Visible = true;
                     DOBPanel.Visible = false;
                     addressPanel.Visible = true;
 
 
 
                 }
-
-
-
             }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
-
-        private void or_L_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void patientID_FP_TB_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void patientID_FP_LBL_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void newAppointmentPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void findPatientPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+    
     }
-}
+
