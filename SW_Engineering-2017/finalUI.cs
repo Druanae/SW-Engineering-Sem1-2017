@@ -12,11 +12,16 @@ namespace SW_Engineering_2017
 {
     public partial class finalUI : Form
     {
+        /****************************************** Private Strings************************************/
+        #region Private Strings
         private string privatePatientID;
+#endregion
         public finalUI()
         {
             InitializeComponent();
             Positioning();
+        /******************************************** Hide Panels code *****************************************/
+            #region Hide Panels Code
             mainMenuPanel.Visible = false;
             prescriptionPanel.Visible = false;
             testResultSearchPanel.Visible = false;
@@ -27,10 +32,12 @@ namespace SW_Engineering_2017
             editPatientPanel.Visible = false;
             newAppointmentPanel.Visible = false;
             loginErrorlbl.Visible = false;
+            #endregion 
         }
-
         private void finalUI_Load(object sender, EventArgs e)
         {
+            /************************************ Date related Code*******************************************/
+            #region Date Related Code
             //set the values appointments
             DateTime twoWeeks = DateTime.Today;
             twoWeeks = twoWeeks.AddDays(14);
@@ -39,28 +46,18 @@ namespace SW_Engineering_2017
             appointmentDate_PCK_NA.Value = DateTime.Today;
             appointmentDate_PCK_NA.MinDate = DateTime.Today;
             appointmentDate_PCK_NA.MaxDate = twoWeeks;
+            #endregion
 
-
-
+            /***************************** Database Connection Code ***************************************/
+            #region Database Connection Code
             //opens the database connection
             Connection.getDBConnectionInstance().openConnection();
-
             //set data set 
             DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
-
             // creates instace and set table 
             DataTable table = dataSet.Tables[0];
-
             //DVG.DataSource = table;
-            //DataRow dataRow = table.Rows[table.Rows.Count - 1];
-            //testlbl.Text = dataRow.ItemArray.GetValue(1).ToString();
-
-        }
-
-        private void fillInFields(DataTable table, int index)
-        {
-            /*fills out the UI for information form the table*/
-            //dataRow.ItemArray.GetValue(0).ToString();
+            #endregion
         }
 
         private void finalUI_FormClosed(object sender, FormClosedEventArgs e)
@@ -70,6 +67,8 @@ namespace SW_Engineering_2017
         }
 
         /****************************** Login Section *****************************************************/
+        #region Login Button Code
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
             DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
@@ -134,7 +133,9 @@ namespace SW_Engineering_2017
             loginErrorlbl.Visible = true;
             loginErrorlbl.Text = "Please fill in username and password";
         }
+        #endregion
         /************************* Add Patient Section *************************************************/
+        #region Add Patient Code
         private void confirm_NP_BTN_Click(object sender, EventArgs e)
         {
 
@@ -186,8 +187,9 @@ namespace SW_Engineering_2017
             }
         }
 
-
-        //*********************** Main Menu Method **************************//
+        #endregion
+        /*********************** Main Menu Method *************************************************/
+        #region Main Menu Panel Visibility Code
         private void mainMenuShow(object sender, EventArgs e)
         {
             mainMenuPanel.Visible = true;
@@ -202,7 +204,9 @@ namespace SW_Engineering_2017
             loginPanel.Visible = false;
             loginErrorlbl.Visible = false;
         }
-        /***************************** positions the panels *******************************/
+        #endregion
+        /***************************** positions the panels ***************************************/
+        #region Panel Positoning Code
         private void Positioning()
         {
             mainMenuPanel.Location = new Point(0, 0);
@@ -217,7 +221,135 @@ namespace SW_Engineering_2017
             loginPanel.Location = new Point(0, 0);
             newPatientPanel.Location = new Point(0, 0);
         }
+        #endregion
 
+        /********************************* Appointments ******************************************/
+        #region Appointments Code
+        private void staffType_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //variables
+            Staff_CB_NA.Text = "";
+            DataTable table;
+            DataSet dataSet;
+            DataRow dataRow;
+            int numRows;
+
+            //checks if GP was selected
+            if (staffType_CB_NA.SelectedIndex == 0)
+            {
+                //set data set to all the GP
+                dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllGPAppointment);
+            }
+            else
+            {
+                //set data set to all Nurse
+                dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllNurseAppointment);
+
+            }
+            //sets the table equal to the data set
+            table = dataSet.Tables[0];
+            //stores the number of rows
+            numRows = table.Rows.Count - 1;
+            //clear Staff selection combobox
+            Staff_CB_NA.Items.Clear();
+
+            //loops throw all the staff in the table and 
+            for (int i = 0; i <= numRows; i++)
+            {
+                //selects data staff ID in the table
+                dataRow = table.Rows[i];
+
+                //adds their ID to the combobox
+                Staff_CB_NA.Items.Add(dataRow.ItemArray.GetValue(0).ToString());
+            }
+            //outputs data into data grid view
+            Staff_DGV_NA.DataSource = table;
+
+        }
+
+        private void Staff_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //check if data and staff have both been selected 
+            if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
+            {
+                //call method 
+                checkingAppointment();
+            }
+        }
+
+
+        private void appointmentDate_PCK_NA_ValueChanged(object sender, EventArgs e)
+        {
+            //check if data and staff have both been selected 
+            if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
+            {
+                //call method
+                checkingAppointment();
+            }
+        }
+        private void checkingAppointment()
+        {
+            //sets variables and clear appointment drop down
+            AppointmentTimes_CB_NA.Items.Clear();
+
+            //database variables
+            DataTable table;
+            DataSet dataSet;
+            DataRow dataRow;
+
+            //bools
+            bool addTime = true;
+            //int
+            int numRows;
+            //strings
+            string date = appointmentDate_PCK_NA.Value.Year.ToString() + "-" + appointmentDate_PCK_NA.Value.Month.ToString() + "-" + appointmentDate_PCK_NA.Value.Day.ToString();
+
+            //gets data from database about staff time table on a date
+            dataSet = Connection.getDBConnectionInstance().staffDateView(Staff_CB_NA.Text, date);
+
+            //stores data collected in table
+            table = dataSet.Tables[0];
+            Staff_DGV_NA.DataSource = table;
+            //sets the number of rows
+            numRows = table.Rows.Count - 1;
+
+            //sets opening time 
+            TimeSpan appointment = Constants.openTime;
+
+            //loops through until all appointment have been checked
+            while (appointment != Constants.CloseTime)
+            {
+                addTime = true;
+                //loops through each value in the database
+                for (int i = 0; i <= numRows; i++)
+                {
+                    //set dataRow 
+                    dataRow = table.Rows[i];
+                    //check if there is an appointment already at that time
+                    if (dataRow.ItemArray.GetValue(0).ToString() == appointment.ToString())
+                    {
+                        //set to add time to false as time is already take and break out of the for loop 
+                        addTime = false;
+                        break;
+                    }
+                }
+
+                //if there isnt an appointment at that time it gets add to the dropdown list
+                if (addTime == true)
+                {
+                    AppointmentTimes_CB_NA.Items.Add(appointment);
+                }
+
+                //add 15 minutes to time slot every time(appointment length)
+                appointment += Constants.appointmentLength;
+
+            }
+
+        }
+        #endregion
+
+        /*************************** Button Click Methods*************************************/
+        #region Button Click Methods
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             if (!loginPanel.Visible)
@@ -277,10 +409,11 @@ namespace SW_Engineering_2017
 
         private void edit_FP_B_Click(object sender, EventArgs e)
         {
-            string temp_DOB;
+            string temp_DOB, userID;
 
-            string userID = Convert.ToString(patients_DGV_FP.CurrentCell.Value);
-            error_FP_LBL.Text = Convert.ToString(patients_DGV_FP.CurrentCell.Value);
+            int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
+            userID = selectedRow.Cells[0].Value.ToString();
 
             DataTable table;
             DataSet dataSet;
@@ -292,7 +425,7 @@ namespace SW_Engineering_2017
 
             temp_DOB = dataRow.ItemArray.GetValue(3).ToString();
 
-            //error_EP_L.Text = temp_DOB;
+            
             privatePatientID = userID;
             firstName_EP_TB.Text = dataRow.ItemArray.GetValue(1).ToString();
             surname_EP_TB.Text = dataRow.ItemArray.GetValue(2).ToString();
@@ -346,12 +479,6 @@ namespace SW_Engineering_2017
                     //display input errors to user
                     error_EP_L.Text = errorMessage;
                 }
-                /*if (!findPatientPanel.Visible)
-                {
-                    findPatientPanel.Visible = true;
-                    editPatientPanel.Visible = false;
-                }
-                */
            
         }
 
@@ -391,127 +518,7 @@ namespace SW_Engineering_2017
             }
         }
 
-        private void staffType_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //variables
-            Staff_CB_NA.Text = "";
-            DataTable table;
-            DataSet dataSet;
-            DataRow dataRow;
-            int numRows;
-
-            //checks if GP was selected
-            if (staffType_CB_NA.SelectedIndex == 0)
-            {
-                //set data set to all the GP
-                dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllGPAppointment);
-            }
-            else
-            {
-                //set data set to all Nurse
-                dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllNurseAppointment);
-
-            }
-            //sets the table equal to the data set
-            table = dataSet.Tables[0];
-            //stores the number of rows
-            numRows = table.Rows.Count - 1;
-            //clear Staff selection combobox
-            Staff_CB_NA.Items.Clear();
-
-            //loops throw all the staff in the table and 
-            for (int i = 0; i <= numRows; i++)
-            {
-                //selects data staff ID in the table
-                dataRow = table.Rows[i];
-
-                //adds their ID to the combobox
-                Staff_CB_NA.Items.Add(dataRow.ItemArray.GetValue(0).ToString());
-            }
-            //outputs data into data grid view
-            Staff_DGV_NA.DataSource = table;
-
-        }
-
-        private void Staff_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //check if data and staff have both been selected 
-            if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
-            {
-                //call method 
-                checkingAppointment();
-            }
-        }
-
-
-        private void appointmentDate_PCK_NA_ValueChanged(object sender, EventArgs e)
-        {
-            //check if data and staff have both been selected 
-            if ((appointmentDate_PCK_NA.Text!="") && (Staff_CB_NA.Text != ""))
-            {
-                //call method
-                checkingAppointment();
-            }
-        }
-        private void checkingAppointment()
-        {
-            //sets variables and clear appointment drop down
-            AppointmentTimes_CB_NA.Items.Clear();
-
-            //database variables
-            DataTable table;
-            DataSet dataSet;
-            DataRow dataRow;
-            
-            //bools
-            bool addTime = true;
-            //int
-            int numRows;
-            //strings
-            string date = appointmentDate_PCK_NA.Value.Year.ToString() + "-" + appointmentDate_PCK_NA.Value.Month.ToString() + "-" + appointmentDate_PCK_NA.Value.Day.ToString();
-
-            //gets data from database about staff time table on a date
-            dataSet = Connection.getDBConnectionInstance().staffDateView(Staff_CB_NA.Text, date);
-
-            //stores data collected in table
-            table = dataSet.Tables[0];
-            Staff_DGV_NA.DataSource = table;
-            //sets the number of rows
-            numRows = table.Rows.Count - 1;
-
-            //sets opening time 
-            TimeSpan appointment = Constants.openTime;
-           
-            //loops through until all appointment have been checked
-            while (appointment!= Constants.CloseTime)
-            {
-                addTime = true;
-                //loops through each value in the database
-                for (int i = 0; i <= numRows; i++)
-                {
-                    //set dataRow 
-                    dataRow = table.Rows[i];
-                    //check if there is an appointment already at that time
-                    if (dataRow.ItemArray.GetValue(0).ToString() == appointment.ToString())
-                    {
-                        //set to add time to false as time is already take and break out of the for loop 
-                        addTime = false;
-                        break;
-                    }
-                }
-
-                //if there isnt an appointment at that time it gets add to the dropdown list
-                if (addTime == true)
-                {
-                    AppointmentTimes_CB_NA.Items.Add(appointment);
-                }
-               
-                //add 15 minutes to time slot every time(appointment length)
-                appointment += Constants.appointmentLength;
-                
-            }
-
-        }
+        
 
         private void find_FP_BT_Click(object sender, EventArgs e)
         {
@@ -557,7 +564,10 @@ namespace SW_Engineering_2017
 
             }
         }
+        #endregion
 
+        /************************ Find patient panel visibility ****************************/
+        #region  Find patient panel visibility
         private void findPatientCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (findPatientCB.SelectedIndex == 0)
@@ -584,5 +594,6 @@ namespace SW_Engineering_2017
                 addressPanel.Visible = true;
             }
         }
+        #endregion
     }
 }
