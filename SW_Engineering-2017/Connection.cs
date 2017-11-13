@@ -97,7 +97,7 @@ namespace SW_Engineering_2017
 
             command.CommandType = CommandType.Text;
             //sets the command text 
-            command.CommandText = "SELECT Date,Time From Appointments WHERE Staff_ID = @StaffID";
+            command.CommandText = Constants.selectStaffMember;
             //adds the values into the database
             command.Parameters.Add(new SqlParameter("StaffID", StaffID));
 
@@ -128,7 +128,7 @@ namespace SW_Engineering_2017
 
             command.CommandType = CommandType.Text;
             //sets the command text 
-            command.CommandText = "SELECT Time From Appointments WHERE Staff_ID = @StaffID AND Date = @Date";
+            command.CommandText = Constants.selectTime;
             //adds the values into the database
             command.Parameters.Add(new SqlParameter("StaffID", StaffID));
             command.Parameters.Add(new SqlParameter("Date", date));
@@ -148,6 +148,123 @@ namespace SW_Engineering_2017
             dataAdapter.Fill(dataSet);
             //return the dataSet
             return dataSet;
+        }
+        public DataSet selectPatientByID(string patientID)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectPatientByID;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        public DataSet selectPatientByDOB(string firstname,string surname,string dob)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectPatientByDOB;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("Firstname", firstname));
+            command.Parameters.Add(new SqlParameter("Surname", surname));
+            command.Parameters.Add(new SqlParameter("DOB", dob));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        public DataSet selectPatientByAddress(string firstname, string surname, string address)
+        {
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectPatientByAddress;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("Firstname", firstname));
+            command.Parameters.Add(new SqlParameter("Surname", surname));
+            command.Parameters.Add(new SqlParameter("address", address));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        public void updatePatient(string patientID, string firstname, string surname, DateTime dob, string addressLine, string townCity, string county, string postcode)
+        {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.updatePatient;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            command.Parameters.Add(new SqlParameter("Firstname", firstname));
+            command.Parameters.Add(new SqlParameter("Surname", surname));
+            command.Parameters.Add(new SqlParameter("DOB", dob));
+            command.Parameters.Add(new SqlParameter("AddressLine", addressLine));
+            command.Parameters.Add(new SqlParameter("TownCity", townCity));
+            command.Parameters.Add(new SqlParameter("County", county));
+            command.Parameters.Add(new SqlParameter("Postcode", postcode));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
         }
     }
 

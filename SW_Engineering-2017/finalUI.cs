@@ -12,6 +12,7 @@ namespace SW_Engineering_2017
 {
     public partial class finalUI : Form
     {
+        private string privatePatientID;
         public finalUI()
         {
             InitializeComponent();
@@ -276,6 +277,32 @@ namespace SW_Engineering_2017
 
         private void edit_FP_B_Click(object sender, EventArgs e)
         {
+            string temp_DOB;
+
+            string userID = Convert.ToString(patients_DGV_FP.CurrentCell.Value);
+            error_FP_LBL.Text = Convert.ToString(patients_DGV_FP.CurrentCell.Value);
+
+            DataTable table;
+            DataSet dataSet;
+            DataRow dataRow;
+            dataSet = Connection.getDBConnectionInstance().selectPatientByID(userID);
+            table = dataSet.Tables[0];
+            patients_DGV_FP.DataSource = table;
+            dataRow = table.Rows[0];
+
+            temp_DOB = dataRow.ItemArray.GetValue(3).ToString();
+
+            //error_EP_L.Text = temp_DOB;
+            privatePatientID = userID;
+            firstName_EP_TB.Text = dataRow.ItemArray.GetValue(1).ToString();
+            surname_EP_TB.Text = dataRow.ItemArray.GetValue(2).ToString();
+
+            dob_EP_PCK.Value = Convert.ToDateTime(dataRow.ItemArray.GetValue(3).ToString());
+
+            address_EP_TB.Text = dataRow.ItemArray.GetValue(4).ToString();
+            townCity_EP_TB.Text = dataRow.ItemArray.GetValue(5).ToString();
+            county_EP_TB.Text = dataRow.ItemArray.GetValue(6).ToString();
+            postcode_EP_TB.Text = dataRow.ItemArray.GetValue(7).ToString();
             if (!editPatientPanel.Visible)
             {
                 editPatientPanel.Visible = true;
@@ -294,11 +321,38 @@ namespace SW_Engineering_2017
 
         private void confirm_EP_B_Click(object sender, EventArgs e)
         {
-            if (!findPatientPanel.Visible)
-            {
-                findPatientPanel.Visible = true;
-                editPatientPanel.Visible = false;
-            }
+
+                Validation val = new Validation();
+
+                String firstname = firstName_EP_TB.Text, surname = surname_EP_TB.Text, addressLine = address_EP_TB.Text, townCity = townCity_EP_TB.Text, county = county_EP_TB.Text, postcode = postcode_EP_TB.Text, errorMessage = "";
+                DateTime dob = dob_EP_PCK.Value;
+
+                //Validates User inputs and stores results in errorMessage
+                errorMessage += val.validateFirstname(firstname);
+                errorMessage += val.validateSurname(surname);
+                errorMessage += val.validateAddressLine(addressLine);
+                errorMessage += val.validateTownCity(townCity);
+                errorMessage += val.validateCounty(county);
+                errorMessage += val.validatePostcode(postcode);
+
+                //check if there are no error
+                if (errorMessage == "")
+                {
+                    //Adds patient to the database
+                    Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
+                }
+                else
+                {
+                    //display input errors to user
+                    error_EP_L.Text = errorMessage;
+                }
+                /*if (!findPatientPanel.Visible)
+                {
+                    findPatientPanel.Visible = true;
+                    editPatientPanel.Visible = false;
+                }
+                */
+           
         }
 
         private void newAppointment_FP_B_Click(object sender, EventArgs e)
@@ -457,6 +511,78 @@ namespace SW_Engineering_2017
                 
             }
 
+        }
+
+        private void find_FP_BT_Click(object sender, EventArgs e)
+        {
+            Validation val = new Validation();
+            string PatientID = patientID_FP_TB.Text, firstname = firstName_FP_TB.Text, surname = surname_FP_TB.Text, AdressLine = address_FP_TB.Text, errormessage = "";
+            int PatientId;
+            DateTime dob = dob_FP_TB.Value;
+            DataTable table; DataSet dataSet;
+
+            errormessage += val.validateFirstname(firstname);
+            errormessage += val.validateSurname(surname);
+            errormessage += val.validateAddressLine(AdressLine);
+            if ((findPatientCB.SelectedIndex == 0) && (PatientID != ""))
+            {
+
+
+                if (Int32.TryParse(PatientID, out PatientId))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectPatientByID(PatientID);
+                    table = dataSet.Tables[0];
+
+                    patients_DGV_FP.DataSource = table;
+                }
+
+         
+
+            }
+            else if ((findPatientCB.SelectedIndex == 1) && (firstname != "") && (surname != "") && (dob != null))
+            {
+                string dateOfbirthInp = dob.Year.ToString() + "-" + dob.Month.ToString() + "-" + dob.Day.ToString();
+                dataSet = Connection.getDBConnectionInstance().selectPatientByDOB(firstname, surname, dateOfbirthInp);
+                table = dataSet.Tables[0];
+
+                patients_DGV_FP.DataSource = table;
+            }
+            else if ((findPatientCB.SelectedIndex == 2) && (firstname != "") && (surname != "") && (AdressLine != ""))
+            {
+
+                dataSet = Connection.getDBConnectionInstance().selectPatientByAddress(firstname, surname, AdressLine);
+                table = dataSet.Tables[0];
+
+                patients_DGV_FP.DataSource = table;
+
+            }
+        }
+
+        private void findPatientCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (findPatientCB.SelectedIndex == 0)
+            {
+                patientIDPanel.Visible = true;
+                NamePanel.Visible = false;
+                DOBPanel.Visible = false;
+                addressPanel.Visible = false;
+            }
+
+            else if (findPatientCB.SelectedIndex == 1)
+            {
+                patientIDPanel.Visible = false;
+                NamePanel.Visible = true;
+                DOBPanel.Visible = true;
+                addressPanel.Visible = false;
+
+            }
+            else if (findPatientCB.SelectedIndex == 2)
+            {
+                patientIDPanel.Visible = false;
+                NamePanel.Visible = true;
+                DOBPanel.Visible = false;
+                addressPanel.Visible = true;
+            }
         }
     }
 }

@@ -19,8 +19,15 @@ namespace SW_Engineering_2017
         public static string selectingLogin = "SELECT Staff_ID, Password FROM Staff";
         public static string selectAllGPAppointment = "SELECT Staff_ID,Firstname,Surname FROM Staff WHERE staff_Type ='GP'";
         public static string selectAllNurseAppointment = "SELECT Staff_ID,Firstname,Surname FROM Staff WHERE staff_Type ='Nurse'";
-        public static string selectStaffMember = "SELECT Date,Time From Appointments WHERE Staff_ID =StaffID VALUES(@StaffID)";
+        public static string selectStaffMember = "SELECT Date,Time From Appointments WHERE Staff_ID = @StaffID";
+        public static string selectTime = "SELECT Time From Appointments WHERE Staff_ID = @StaffID AND Date = @Date";
 
+
+        public static string selectPatientByID = "SELECT * From Patients WHERE Patient_ID =@patientID";
+        public static string selectPatientByDOB = "SELECT * From Patients WHERE Firstname=@firstname AND Surname=@surname and DOB=@dob";
+        public static string selectPatientByAddress = "SELECT * From Patients WHERE Firstname=@firstname AND Surname=@surname and AddressLine=@address";
+
+        public static string updatePatient = "UPDATE Patients SET Firstname=@firstname, Surname =@Surname , DOB =@DOB, AddressLine=@AddressLine, TownCity=@TownCity, County=@County, Postcode=@Postcode WHERE Patient_ID =@patientID";
 
         /*************************************** Inserts *******************************************/
         public static string insertNewPatient = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
