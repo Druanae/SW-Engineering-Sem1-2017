@@ -266,6 +266,35 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+
+
+       // "INSERT INTO [dbo].[Appointments] ([Patient_ID], [Staff_ID], [Date], [Time]) VALUES (@patientID,@staffID,@date , @time)"
+
+
+          public void addAppointment(string patientID, string staffID, string date, string time)
+          {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.AddAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            command.Parameters.Add(new SqlParameter("staffID", staffID));
+            command.Parameters.Add(new SqlParameter("date", date));
+            command.Parameters.Add(new SqlParameter("time", time));
+
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
+          }
     }
 
 }

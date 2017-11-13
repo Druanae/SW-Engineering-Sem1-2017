@@ -151,7 +151,7 @@
             this.staff_LBL_NA = new System.Windows.Forms.Label();
             this.staffType_CB_NA = new System.Windows.Forms.ComboBox();
             this.errorMessage_LB_NA = new System.Windows.Forms.Label();
-            this.button15 = new System.Windows.Forms.Button();
+            this.Back_BT_NA = new System.Windows.Forms.Button();
             this.appointmentDate_PCK_NA = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.extendPrescriptions_FP_B = new System.Windows.Forms.Button();
@@ -207,7 +207,7 @@
             this.surname_NP_LBL = new System.Windows.Forms.Label();
             this.firstName_NP_TB = new System.Windows.Forms.TextBox();
             this.firstName_NP_LBL = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.Confirm_BT_NA = new System.Windows.Forms.Button();
             this.findPatientPanel = new System.Windows.Forms.Panel();
             this.patientIDPanel = new System.Windows.Forms.Panel();
             this.patientID_FP_LBL = new System.Windows.Forms.Label();
@@ -1570,16 +1570,16 @@
             this.errorMessage_LB_NA.TabIndex = 18;
             this.errorMessage_LB_NA.Text = "Error Label";
             // 
-            // button15
+            // Back_BT_NA
             // 
-            this.button15.Location = new System.Drawing.Point(14, 269);
-            this.button15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(117, 30);
-            this.button15.TabIndex = 9;
-            this.button15.Text = "Back";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
+            this.Back_BT_NA.Location = new System.Drawing.Point(14, 269);
+            this.Back_BT_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Back_BT_NA.Name = "Back_BT_NA";
+            this.Back_BT_NA.Size = new System.Drawing.Size(117, 30);
+            this.Back_BT_NA.TabIndex = 9;
+            this.Back_BT_NA.Text = "Back";
+            this.Back_BT_NA.UseVisualStyleBackColor = true;
+            this.Back_BT_NA.Click += new System.EventHandler(this.Back_BT_NA_Click);
             // 
             // appointmentDate_PCK_NA
             // 
@@ -1751,9 +1751,9 @@
             this.cancel_EP_B.Name = "cancel_EP_B";
             this.cancel_EP_B.Size = new System.Drawing.Size(75, 23);
             this.cancel_EP_B.TabIndex = 9;
-            this.cancel_EP_B.Text = "Cancel";
+            this.cancel_EP_B.Text = "Back";
             this.cancel_EP_B.UseVisualStyleBackColor = true;
-            this.cancel_EP_B.Click += new System.EventHandler(this.mainMenuShow);
+            this.cancel_EP_B.Click += new System.EventHandler(this.cancel_EP_B_Click);
             // 
             // townCity_EP_TB
             // 
@@ -1811,6 +1811,7 @@
             this.dob_EP_PCK.Location = new System.Drawing.Point(109, 130);
             this.dob_EP_PCK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dob_EP_PCK.MaxDate = new System.DateTime(2017, 10, 17, 15, 6, 31, 0);
+            this.dob_EP_PCK.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dob_EP_PCK.Name = "dob_EP_PCK";
             this.dob_EP_PCK.Size = new System.Drawing.Size(163, 22);
             this.dob_EP_PCK.TabIndex = 3;
@@ -1936,7 +1937,7 @@
             // 
             // mainMenu_FP_BT
             // 
-            this.mainMenu_FP_BT.Location = new System.Drawing.Point(13, 340);
+            this.mainMenu_FP_BT.Location = new System.Drawing.Point(16, 372);
             this.mainMenu_FP_BT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainMenu_FP_BT.Name = "mainMenu_FP_BT";
             this.mainMenu_FP_BT.Size = new System.Drawing.Size(117, 30);
@@ -2133,15 +2134,16 @@
             this.firstName_NP_LBL.TabIndex = 0;
             this.firstName_NP_LBL.Text = "First Name";
             // 
-            // button6
+            // Confirm_BT_NA
             // 
-            this.button6.Location = new System.Drawing.Point(182, 269);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(117, 30);
-            this.button6.TabIndex = 51;
-            this.button6.Text = "Confirm";
-            this.button6.UseVisualStyleBackColor = true;
+            this.Confirm_BT_NA.Location = new System.Drawing.Point(182, 269);
+            this.Confirm_BT_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Confirm_BT_NA.Name = "Confirm_BT_NA";
+            this.Confirm_BT_NA.Size = new System.Drawing.Size(117, 30);
+            this.Confirm_BT_NA.TabIndex = 51;
+            this.Confirm_BT_NA.Text = "Confirm";
+            this.Confirm_BT_NA.UseVisualStyleBackColor = true;
+            this.Confirm_BT_NA.Click += new System.EventHandler(this.Confirm_BT_NA_Click);
             // 
             // findPatientPanel
             // 
@@ -2165,10 +2167,10 @@
             this.findPatientPanel.Controls.Add(this.find_FP_BT);
             this.findPatientPanel.Controls.Add(this.mainMenu_FP_BT);
             this.findPatientPanel.Controls.Add(this.findPatient_L);
-            this.findPatientPanel.Location = new System.Drawing.Point(209, 6);
+            this.findPatientPanel.Location = new System.Drawing.Point(210, 6);
             this.findPatientPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.findPatientPanel.Name = "findPatientPanel";
-            this.findPatientPanel.Size = new System.Drawing.Size(1245, 605);
+            this.findPatientPanel.Size = new System.Drawing.Size(1245, 418);
             this.findPatientPanel.TabIndex = 51;
             // 
             // patientIDPanel
@@ -2317,7 +2319,7 @@
             // patients_DGV_FP
             // 
             this.patients_DGV_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.patients_DGV_FP.Location = new System.Drawing.Point(389, 51);
+            this.patients_DGV_FP.Location = new System.Drawing.Point(398, 51);
             this.patients_DGV_FP.Name = "patients_DGV_FP";
             this.patients_DGV_FP.RowTemplate.Height = 24;
             this.patients_DGV_FP.Size = new System.Drawing.Size(498, 320);
@@ -2339,12 +2341,12 @@
             this.newAppointmentPanel.Controls.Add(this.AppointmentTimes_CB_NA);
             this.newAppointmentPanel.Controls.Add(this.Staff_DGV_NA);
             this.newAppointmentPanel.Controls.Add(this.appointmentTime_LB_NA);
-            this.newAppointmentPanel.Controls.Add(this.button6);
+            this.newAppointmentPanel.Controls.Add(this.Confirm_BT_NA);
             this.newAppointmentPanel.Controls.Add(this.Staff_CB_NA);
             this.newAppointmentPanel.Controls.Add(this.staff_LBL_NA);
             this.newAppointmentPanel.Controls.Add(this.staffType_CB_NA);
             this.newAppointmentPanel.Controls.Add(this.errorMessage_LB_NA);
-            this.newAppointmentPanel.Controls.Add(this.button15);
+            this.newAppointmentPanel.Controls.Add(this.Back_BT_NA);
             this.newAppointmentPanel.Controls.Add(this.appointmentDate_PCK_NA);
             this.newAppointmentPanel.Controls.Add(this.label6);
             this.newAppointmentPanel.Controls.Add(this.appointmentDate_LB_NA);
@@ -2401,9 +2403,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1906, 816);
-            this.Controls.Add(this.findPatientPanel);
-            this.Controls.Add(this.newAppointmentPanel);
-            this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.newPatientPanel);
             this.Controls.Add(this.staffScheduleSearchPanel);
@@ -2411,6 +2410,9 @@
             this.Controls.Add(this.testResultSearchPanel);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.mainMenuPanel);
+            this.Controls.Add(this.findPatientPanel);
+            this.Controls.Add(this.newAppointmentPanel);
+            this.Controls.Add(this.prescriptionPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "finalUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalUI_FormClosed);
@@ -2584,7 +2586,7 @@
         private System.Windows.Forms.Label staff_LBL_NA;
         private System.Windows.Forms.ComboBox staffType_CB_NA;
         private System.Windows.Forms.Label errorMessage_LB_NA;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button Back_BT_NA;
         private System.Windows.Forms.DateTimePicker appointmentDate_PCK_NA;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button extendPrescriptions_FP_B;
@@ -2640,7 +2642,7 @@
         private System.Windows.Forms.Label surname_NP_LBL;
         private System.Windows.Forms.TextBox firstName_NP_TB;
         private System.Windows.Forms.Label firstName_NP_LBL;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button Confirm_BT_NA;
         private System.Windows.Forms.Panel findPatientPanel;
         private System.Windows.Forms.Label findPatient_L;
         private System.Windows.Forms.Panel newAppointmentPanel;
