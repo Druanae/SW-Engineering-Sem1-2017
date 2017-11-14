@@ -143,13 +143,11 @@ namespace SW_Engineering_2017
                             }
                         }
                         else
-                            loginErrorlbl.Visible = true;
-                        loginErrorlbl.Text = "Incorrect Username or Password";
+                            loginerrorlabel();
                     }
                     else
                     {
-                        loginErrorlbl.Visible = true; // return error if text isnt correct
-                        loginErrorlbl.Text = "Incorrect Username or Password";
+                        loginerrorlabel();
                     }
                 }
 
@@ -162,7 +160,7 @@ namespace SW_Engineering_2017
             password_L_tb.PasswordChar = '*';
         }
 
-        private void loginerrorlabel()
+        private void loginerrorlabel() // error message method 
         {
             loginErrorlbl.Visible = true;
             loginErrorlbl.Text = "Please fill in username and password";
@@ -300,29 +298,34 @@ namespace SW_Engineering_2017
                 postcode_EP_TB.Text = "";
             }
 
-            #endregion
+        #endregion
 
         #endregion
 
         #region Patient
-
-            #region Add Patient Code
-            private void confirm_NP_BTN_Click(object sender, EventArgs e)
+        
+        #region patient validation method
+        private string validate_patient_input(string firstname,string surname, string addressLine, string townCity, string county, string postcode)
+        {
+            string errorMessage = "";
+            Validation val = new Validation();
+            //Validates User inputs and stores results in errorMessage
+            errorMessage += val.validateFirstname(firstname);
+            errorMessage += val.validateSurname(surname);
+            errorMessage += val.validateAddressLine(addressLine);
+            errorMessage += val.validateTownCity(townCity);
+            errorMessage += val.validateCounty(county);
+            errorMessage += val.validatePostcode(postcode);
+            return errorMessage;
+        }
+        #endregion
+        #region Add Patient Code
+        private void confirm_NP_BTN_Click(object sender, EventArgs e)
             {
-
-                Validation val = new Validation();
-
                 String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity = townCity_NP_TB.Text, county = county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage = "";
                 DateTime dob = dob_EP_PCK.Value;
 
-                //Validates User inputs and stores results in errorMessage
-                errorMessage += val.validateFirstname(firstname);
-                errorMessage += val.validateSurname(surname);
-                errorMessage += val.validateAddressLine(addressLine);
-                errorMessage += val.validateTownCity(townCity);
-                errorMessage += val.validateCounty(county);
-                errorMessage += val.validatePostcode(postcode);
-
+            errorMessage = validate_patient_input(firstname , surname , addressLine , townCity , county , postcode);
                 //check if there are no error
                 if (errorMessage == "")
                 {
@@ -359,40 +362,38 @@ namespace SW_Engineering_2017
             }
 
             #endregion
-
-            #region  Edit patient
+        #region  Edit patient
 
             private void edit_FP_B_Click(object sender, EventArgs e)
             {
-                string temp_DOB, userID;
+                string userID; // String for finding usingID
                 if (PrivatePatientFound == true)
                 {
-                    int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
-                    DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
-                    userID = selectedRow.Cells[0].Value.ToString();
+                    int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex; //Select patient row
+                    DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex]; // Show in Datagrid view
+                    userID = selectedRow.Cells[0].Value.ToString(); //Set the USerID to the selected row
 
-                    DataTable table;
+                    DataTable table; // Get the data from the database
                     DataSet dataSet;
                     DataRow dataRow;
-                    dataSet = Connection.getDBConnectionInstance().selectPatientByID(userID);
-                    table = dataSet.Tables[0];
-                    patients_DGV_FP.DataSource = table;
-                    dataRow = table.Rows[0];
+                    dataSet = Connection.getDBConnectionInstance().selectPatientByID(userID); //Make a connection to the database and then pull the userID
+                    // this returns a dataset.
 
-                    temp_DOB = dataRow.ItemArray.GetValue(3).ToString();
-
-
+                    table = dataSet.Tables[0]; //Stores dataset in the table
+                    patients_DGV_FP.DataSource = table; 
+                    dataRow = table.Rows[0]; // Stores the table information to the user. 
                     privatePatientID = userID;
-                    firstName_EP_TB.Text = dataRow.ItemArray.GetValue(1).ToString();
-                    surname_EP_TB.Text = dataRow.ItemArray.GetValue(2).ToString();
 
-                    dob_EP_PCK.Value = Convert.ToDateTime(dataRow.ItemArray.GetValue(3).ToString());
+                    firstName_EP_TB.Text = dataRow.ItemArray.GetValue(1).ToString(); //Get Firstname from Database
+                    surname_EP_TB.Text = dataRow.ItemArray.GetValue(2).ToString(); //Get Surname from Database
 
-                    address_EP_TB.Text = dataRow.ItemArray.GetValue(4).ToString();
-                    townCity_EP_TB.Text = dataRow.ItemArray.GetValue(5).ToString();
-                    county_EP_TB.Text = dataRow.ItemArray.GetValue(6).ToString();
-                    postcode_EP_TB.Text = dataRow.ItemArray.GetValue(7).ToString();
-                    if (!editPatientPanel.Visible)
+                dob_EP_PCK.Value = Convert.ToDateTime(dataRow.ItemArray.GetValue(3).ToString()); //Get DOB from Database and converts to a normal format that the database accepts.
+
+                address_EP_TB.Text = dataRow.ItemArray.GetValue(4).ToString(); //Get Address from Database
+                townCity_EP_TB.Text = dataRow.ItemArray.GetValue(5).ToString(); //Get town or city from Database
+                county_EP_TB.Text = dataRow.ItemArray.GetValue(6).ToString(); //Get county from Database
+                postcode_EP_TB.Text = dataRow.ItemArray.GetValue(7).ToString();//Get postcode from Database
+                if (!editPatientPanel.Visible)
                     {
                         editPatientPanel.Visible = true;
                         findPatientPanel.Visible = false;
@@ -401,14 +402,11 @@ namespace SW_Engineering_2017
                 }
                 else
                 {
-                    error_FP_LBL.Text = "Patient Required";
+                    error_FP_LBL.Text = "Patient Required"; // If patient hasn't been selected
                 }
-
-
-
             }
 
-            private void cancel_EP_B_Click(object sender, EventArgs e)
+            private void cancel_EP_B_Click(object sender, EventArgs e) // Cancel edit patient and clear data changes & hides panel
             {
                 clearEditPatient();
 
@@ -422,27 +420,20 @@ namespace SW_Engineering_2017
             private void confirm_EP_B_Click(object sender, EventArgs e)
             {
 
-                Validation val = new Validation();
-
-                String firstname = firstName_EP_TB.Text, surname = surname_EP_TB.Text, addressLine = address_EP_TB.Text, townCity = townCity_EP_TB.Text, county = county_EP_TB.Text, postcode = postcode_EP_TB.Text, errorMessage = "";
+            // Get text box information
+                String firstname = firstName_EP_TB.Text, surname = surname_EP_TB.Text, addressLine = address_EP_TB.Text, townCity = townCity_EP_TB.Text, county = county_EP_TB.Text, postcode = postcode_EP_TB.Text, errorMessage = ""; 
                 DateTime dob = dob_EP_PCK.Value;
 
-                //Validates User inputs and stores results in errorMessage
-                errorMessage += val.validateFirstname(firstname);
-                errorMessage += val.validateSurname(surname);
-                errorMessage += val.validateAddressLine(addressLine);
-                errorMessage += val.validateTownCity(townCity);
-                errorMessage += val.validateCounty(county);
-                errorMessage += val.validatePostcode(postcode);
-
-                //check if there are no error
-                if (errorMessage == "")
+            //Validates User inputs and stores results in errorMessage
+            errorMessage = validate_patient_input(firstname, surname, addressLine, townCity, county, postcode);
+            //check if there are no error
+            if (errorMessage == "")
                 {
                     //Adds patient to the database
                     Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
 
                     error_EP_L.Text = "Patient infomation Updated";
-                    clearEditPatient();
+                    clearEditPatient(); // Clear text box data.
                 }
                 else
                 {
@@ -454,7 +445,7 @@ namespace SW_Engineering_2017
 
             #endregion
 
-            #region  Find patient
+        #region  Find patient
 
             private void find_FP_BT_Click(object sender, EventArgs e)
             {
@@ -506,10 +497,7 @@ namespace SW_Engineering_2017
                         PrivatePatientFound = true;
                     }
                 }
-
-
             }
-
             private void findPatientCB_SelectedIndexChanged(object sender, EventArgs e)
             {
                 if (findPatientCB.SelectedIndex == 0)
