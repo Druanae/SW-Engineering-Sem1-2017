@@ -15,8 +15,8 @@ namespace SW_Engineering_2017
         #region Set up
         /****************************************** Private Strings************************************/
             #region Private variables
-            private string privatePatientID;
-            private bool PrivatePatientFound=false;
+            private string privatePatientID, privateAppointmentID, privateStaffID, privateDate,privateTime, privateStaffType;
+            private bool PrivatePatientFound = false, NewAppointment = true;
             #endregion
 
             #region form initiation, Load and Close 
@@ -268,7 +268,7 @@ namespace SW_Engineering_2017
 
             #region Clear Method/ Reset Panels
 
-            public void clearNewAppointment()
+            private void clearNewAppointment()
             {
                 //resets values for next time
                 staffType_CB_NA.Text = "";
@@ -277,7 +277,7 @@ namespace SW_Engineering_2017
                 Staff_DGV_NA.DataSource = null;
                 appointmentDate_PCK_NA.Value = DateTime.Today;
             }
-            public void clearFindPatient()
+            private void clearFindPatient()
             {
                 //resets values for next time
                 patientID_FP_TB.Text = "";
@@ -289,7 +289,8 @@ namespace SW_Engineering_2017
                 patients_DGV_FP.DataSource = null;
                 appointments_DGV_FP.DataSource = null;
                 patients_DGV_FP.DataSource = null;
-            }
+
+        }
             private void clearEditPatient()
             {
                 firstName_EP_TB.Text = "";
@@ -299,8 +300,15 @@ namespace SW_Engineering_2017
                 county_EP_TB.Text = "";
                 postcode_EP_TB.Text = "";
             }
+            private void hideFindPatientPanels()
+        {
+            patientIDPanel.Visible = false;
+            NamePanel.Visible = false;
+            DOBPanel.Visible = false;
+            addressPanel.Visible = false;
+        }
 
-        #endregion
+            #endregion
 
         #endregion
 
@@ -371,7 +379,7 @@ namespace SW_Engineering_2017
             private void edit_FP_B_Click(object sender, EventArgs e)
             {
                 string userID; // String for finding usingID
-                if (PrivatePatientFound == true)
+                if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
                 {
                     int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex; //Select patient row
                     DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex]; // Show in Datagrid view
@@ -402,6 +410,7 @@ namespace SW_Engineering_2017
                         editPatientPanel.Visible = true;
                         findPatientPanel.Visible = false;
                         clearFindPatient();
+                        hideFindPatientPanels();
                     }
                 }
                 else
@@ -531,13 +540,41 @@ namespace SW_Engineering_2017
 
                 clearFindPatient();
             }
-            #endregion
+        #endregion
 
         #endregion
 
         #region Appointment
 
         #region New Appointment
+        private void newAppointment_FP_B_Click(object sender, EventArgs e)
+        {
+            //check there is patient infomation found
+            if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
+            {
+                AppointmentHeader_L_NA.Text = "New Appointment";
+                NewAppointment = true;
+                //selects row and selects patientID and stores it
+                int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
+                privatePatientID = selectedRow.Cells[0].Value.ToString();
+                //display PatientID
+                PatientID_LB_NA.Text = "PatientID:" + privatePatientID;
+                errorMessage_LB_NA.Text = "";
+
+                //opens appointment panel
+                appointmentPanel();
+
+
+            }
+            else
+            {
+                //displays error message if user doesnt find a patient before click add appointment
+                error_FP_LBL.Text = "Patient Required";
+            }
+
+        }
+
         private void staffType_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
         {
             //variables
@@ -679,34 +716,18 @@ namespace SW_Engineering_2017
 
         }
 
-        private void newAppointment_FP_B_Click(object sender, EventArgs e)
+        private void appointmentPanel()
         {
-            //check there is patient infomation found
-            if (PrivatePatientFound == true)
+            //opens Panel 
+            if (!newAppointmentPanel.Visible)
             {
-                //selects row and selects patientID and stores it
-                int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
-                privatePatientID = selectedRow.Cells[0].Value.ToString();
-                //display PatientID
-                PatientID_LB_NA.Text = "PatientID:" + privatePatientID;
+                newAppointmentPanel.Visible = true;
+                findPatientPanel.Visible = false;
                 errorMessage_LB_NA.Text = "";
-
-                //opens Panel 
-                if (!newAppointmentPanel.Visible)
-                {
-                    newAppointmentPanel.Visible = true;
-                    findPatientPanel.Visible = false;
-                }
-                //clears findPatient Panel
-                clearFindPatient();
             }
-            else
-            {
-                //displays error message if user doesnt find a patient before click add appointment
-                error_FP_LBL.Text = "Patient Required";
-            }
-
+            //clears findPatient Panel
+            clearFindPatient();
+            hideFindPatientPanels();
         }
 
         private void Back_BT_NA_Click(object sender, EventArgs e)
@@ -726,7 +747,7 @@ namespace SW_Engineering_2017
             //strings 
             string staffType = staffType_CB_NA.Text,staff = Staff_CB_NA.Text, appointmentTime = AppointmentTimes_CB_NA.Text;
             string appointmentDate = appointmentDate_PCK_NA.Value.Year.ToString() + "-" + appointmentDate_PCK_NA.Value.Month.ToString() + "-" + appointmentDate_PCK_NA.Value.Day.ToString();
-
+           
             //validates staff type was selected
             if (staffType != "")
             {
@@ -736,12 +757,24 @@ namespace SW_Engineering_2017
                     //validates time was selected
                     if (appointmentTime != "")
                     {
-                       //if user has enter all the correct information then it add appointment to the database
-                        Connection.getDBConnectionInstance().addAppointment(privatePatientID,staff, appointmentDate, appointmentTime);
-                        errorMessage_LB_NA.Text = "Appointment added";
-                        //clears the window
-                        clearNewAppointment();
+                        //check if it a new appointment
+                        if (NewAppointment == true)
+                        {
+                            //if user has enter all the correct information then it add appointment to the database
+                            Connection.getDBConnectionInstance().addAppointment(privatePatientID, staff, appointmentDate, appointmentTime);
+                            errorMessage_LB_NA.Text = "Appointment added";
 
+                            Logger.instance.log(DateTime.Today.ToString("dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + appointmentDate.ToString() + "\r\n     Appointment Time:" + appointmentTime.ToString());
+                            //clears inputs
+                            clearNewAppointment();
+                        }
+                        else
+                        {
+                            //if edit appointment then runs this method
+                            confirmChangeAppointment(staff, appointmentDate, appointmentTime);
+                            //clears inputs
+                            clearNewAppointment();
+                        }
                     }
                     else
                     {
@@ -761,6 +794,7 @@ namespace SW_Engineering_2017
                 //if user doesn't select staff typ then displays errormessage 
                 errorMessage_LB_NA.Text = "staff Type needs to be Selected";
             }
+            
         }
 
         #endregion
@@ -797,31 +831,39 @@ namespace SW_Engineering_2017
         #region Delete Appointment
         private void Cancel_FP_B_Click(object sender, EventArgs e)
         {
-            //selected appointment
-            int selectedRowIndex = appointments_DGV_FP.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = appointments_DGV_FP.Rows[selectedRowIndex];
-            //strings variables
-            string appointment = selectedRow.Cells[0].Value.ToString();
-            string date = DateTime.Today.Year.ToString() + "-" + DateTime.Today.Month.ToString() + "-" + DateTime.Today.Day.ToString(); ;
-            string time = DateTime.Now.TimeOfDay.ToString();
-
-            //database variable 
-            DataTable table;
-            DataSet dataSet;
-
-            //check that the user is sure they 
-            if (MessageBox.Show("Do you cancel that appointment?", "Cancel Appointment",
-            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if ((appointments_DGV_FP.DataSource != null)&&(appointments_DGV_FP.Rows.Count>0))
             {
-                //delete selected appointment
-                Connection.getDBConnectionInstance().selectDeleteAppointment(appointment);
+                //selected appointment
+                int selectedRowIndex = appointments_DGV_FP.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = appointments_DGV_FP.Rows[selectedRowIndex];
+                //strings variables
+                string appointment = selectedRow.Cells[0].Value.ToString();
+                string date = DateTime.Today.Year.ToString() + "-" + DateTime.Today.Month.ToString() + "-" + DateTime.Today.Day.ToString(); ;
+                string time = DateTime.Now.TimeOfDay.ToString();
 
-                //resfresh appointment table
-                dataSet = Connection.getDBConnectionInstance().selectPatentAppointment(privatePatientID, date, time);
-                table = dataSet.Tables[0];
+                //database variable 
+                DataTable table;
+                DataSet dataSet;
 
-                //output to the table
-                appointments_DGV_FP.DataSource = table;
+                //check that the user is sure they 
+                if (MessageBox.Show("Do you cancel that appointment?", "Cancel Appointment",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //delete selected appointment
+                    Connection.getDBConnectionInstance().selectDeleteAppointment(appointment);
+
+                    //resfresh appointment table
+                    dataSet = Connection.getDBConnectionInstance().selectPatentAppointment(privatePatientID, date, time);
+                    table = dataSet.Tables[0];
+
+                    //output to the table
+                    appointments_DGV_FP.DataSource = table;
+                }
+            }
+            else
+            {
+                // If patient hasn't been selected
+                error_FP_LBL.Text = "Patient and Appointment Required "; 
             }
 
         }
@@ -829,11 +871,98 @@ namespace SW_Engineering_2017
 
         #region Change Appointment
 
+        private void changeAppointment_FP_B_Click(object sender, EventArgs e)
+        {
+            //checks to makes sure there is data to be selected
+            if ((appointments_DGV_FP.DataSource != null) && (appointments_DGV_FP.Rows.Count > 0))
+            {
+                NewAppointment =false;
+                AppointmentHeader_L_NA.Text = "Change Appointment";
+                DataTable table;
+                DataSet dataSet;
+                DataRow dataRow;
 
+                //selectappointmentID from selected row 
+                int selectedRowIndex = appointments_DGV_FP.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = appointments_DGV_FP.Rows[selectedRowIndex];
 
+                //strings variables
+                privateAppointmentID = selectedRow.Cells[0].Value.ToString();
+
+                //pulls the appointment from the appointment tabl
+                dataSet=Connection.getDBConnectionInstance().selectAppointment(privateAppointmentID);
+
+                //store the table
+                table = dataSet.Tables[0];
+                //stores first row in table
+                dataRow = table.Rows[0];
+                
+                //pulls and stores values from the appointment table
+                privateStaffID = dataRow.ItemArray.GetValue(0).ToString();
+                privateDate = dataRow.ItemArray.GetValue(1).ToString();
+                privateTime = dataRow.ItemArray.GetValue(2).ToString();
+
+                //convert date into correct format and displays it in datetime picker
+                appointmentDate_PCK_NA.Value = Convert.ToDateTime(privateDate);
+                //display time in timepicker dropdown
+                AppointmentTimes_CB_NA.Text = privateTime;
+
+                //gets the staff type 
+                dataSet = Connection.getDBConnectionInstance().selectStaffType(privateStaffID);
+
+                //store the table
+                table = dataSet.Tables[0];
+                //stores first row in table
+                dataRow = table.Rows[0];
+
+                //gets the staff members job type
+                privateStaffType = dataRow.ItemArray.GetValue(0).ToString();
+
+                //stores and outputs staff type
+                staffType_CB_NA.Text = privateStaffType;
+                //outputs staff id 
+                Staff_CB_NA.Text = privateStaffID;
+                //opens Panel 
+                appointmentPanel();
+
+            }
+            else
+            {
+                // If patient hasn't been selected
+                error_FP_LBL.Text = "Patient Required"; 
+            }
+        }
+        public void confirmChangeAppointment(string staff, string date, string time)
+        {
+            //convert date into datatype
+            DateTime Date = Convert.ToDateTime(date);
+            //set date string to be validated
+            date = Date.ToString();
+
+            //checks user is changing appointment information
+            if ((privateStaffID == staff) && (privateDate == date) && (privateTime == time))
+            {
+                //display message to user that appointment hasnt been changed
+                MessageBox.Show("appointment hasnt changed click cancel to exit", "Change Appointment", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
+             }
+            else
+            {
+                //converts string onto correct format for storing 
+                date= Date.Year.ToString() + "-" + Date.Month.ToString() + "-" + Date.Day.ToString(); ;
+                //if user has enter all the correct information then it update appointment to the database
+                Connection.getDBConnectionInstance().UpdateAppointment(privateAppointmentID, staff, date, time);
+
+                //
+                errorMessage_LB_NA.Text = "Appointment Updated";
+
+              //  Logger.instance.log(DateTime.Today.ToString("dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nChange Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + date + "\r\n     Appointment Time:" + time);
+                //clears the window
+                clearNewAppointment();
+           }
+        }
         #endregion
 
         #endregion
-
     }
 }

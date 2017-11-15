@@ -149,6 +149,37 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
+        
+        public DataSet selectStaffType(string StaffID)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectStaffType;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+
         public DataSet selectPatientByID(string patientID)
         {
 
@@ -267,8 +298,8 @@ namespace SW_Engineering_2017
             closeConnection();
         }
 
-
-          public void addAppointment(string patientID, string staffID, string date, string time)
+#region Add Appointment
+        public void addAppointment(string patientID, string staffID, string date, string time)
           {
             //creates SQL command
             SqlCommand command = new SqlCommand();
@@ -292,7 +323,31 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
           }
+        #endregion
+        public void UpdateAppointment(string appointmentID, string staffID, string date, string time)
+        {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.UpdateAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("appointmentID",appointmentID));
+            command.Parameters.Add(new SqlParameter("staffID", staffID));
+            command.Parameters.Add(new SqlParameter("date", date));
+            command.Parameters.Add(new SqlParameter("time", time));
 
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
+        }
         public DataSet selectPatentAppointment(string patientID, string date, string time)
         {
             DataSet dataSet;
@@ -322,6 +377,7 @@ namespace SW_Engineering_2017
             dataAdapter.Fill(dataSet);
             //return the dataSet
             return dataSet;
+            
         }
 
         public void selectDeleteAppointment(string appointmentID)
@@ -345,6 +401,35 @@ namespace SW_Engineering_2017
             closeConnection();
         }
 
+        public DataSet selectAppointment(string appointmentID)
+        { 
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("appointmentID", appointmentID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+            
+        }
     }
 
 }
