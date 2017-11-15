@@ -268,9 +268,6 @@ namespace SW_Engineering_2017
         }
 
 
-       // "INSERT INTO [dbo].[Appointments] ([Patient_ID], [Staff_ID], [Date], [Time]) VALUES (@patientID,@staffID,@date , @time)"
-
-
           public void addAppointment(string patientID, string staffID, string date, string time)
           {
             //creates SQL command
@@ -295,6 +292,59 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
           }
+
+        public DataSet selectPatentAppointment(string patientID, string date, string time)
+        {
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectPatientAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            command.Parameters.Add(new SqlParameter("date", date));
+            command.Parameters.Add(new SqlParameter("time", time));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+
+            //close connection 
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+
+        public void selectDeleteAppointment(string appointmentID)
+        {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.deleteAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("appointmentID", appointmentID));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
+        }
+
     }
 
 }

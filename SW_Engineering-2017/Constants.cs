@@ -30,8 +30,11 @@ namespace SW_Engineering_2017
         public static string updatePatient = "UPDATE Patients SET Firstname=@firstname, Surname =@Surname , DOB =@DOB, AddressLine=@AddressLine, TownCity=@TownCity, County=@County, Postcode=@Postcode WHERE Patient_ID =@patientID";
 
 
-        public static string selectPatientAppointment = "SELECT * From Appointments WHERE Patient_ID =@patientID";
+        public static string selectPatientAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Patient_ID =@patientID AND ( Date > @date OR Date = @date AND Time > @time)";
 
+
+        //delete Appointment
+        public static string deleteAppointment = "DELETE FROM Appointments WHERE Appointment_ID =@appointmentID";
 
         /*************************************** Inserts *******************************************/
         public static string insertNewPatient = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
