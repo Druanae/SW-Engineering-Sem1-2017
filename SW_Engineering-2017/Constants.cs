@@ -16,7 +16,7 @@ namespace SW_Engineering_2017
         /*********************************** Selects ****************************************/
         public static string selectAllStaff = "SELECT * FROM Staff";
         public static string selectAllPatients = "SELECT * FROM Patients";
-        public static string selectingLogin = "SELECT Staff_ID, Password FROM Staff";
+        public static string selectingLogin = "SELECT Staff_ID, Password, Staff_Type FROM Staff";
         public static string selectAllGPAppointment = "SELECT Staff_ID,Firstname,Surname FROM Staff WHERE staff_Type ='GP'";
         public static string selectAllNurseAppointment = "SELECT Staff_ID,Firstname,Surname FROM Staff WHERE staff_Type ='Nurse'";
         public static string selectStaffMember = "SELECT Date,Time From Appointments WHERE Staff_ID = @StaffID";

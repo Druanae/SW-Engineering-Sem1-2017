@@ -96,12 +96,16 @@ namespace SW_Engineering_2017
                 loginPanel.Location = new Point(0, 0);
                 newPatientPanel.Location = new Point(0, 0);
             }
-            #endregion
+        #endregion
 
         #endregion
-       
-        #region Login 
 
+        #region Login 
+        // This class is used so that the string can be used to determin what staff member has access to what.
+        public static class access
+        {
+            public static string accessType;
+        }
         private void loginBtn_Click(object sender, EventArgs e)
         {
             DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectingLogin);
@@ -116,7 +120,8 @@ namespace SW_Engineering_2017
 
             string loginID = userName_L_tb.Text;
             string loginPassword = password_L_tb.Text;
-
+            string loginPermission;
+            
             if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
                 loginerrorlabel(); //Error message for having nothing in either text box.
@@ -132,14 +137,24 @@ namespace SW_Engineering_2017
                     {
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
+                            loginPermission = dataRow.ItemArray.GetValue(2).ToString();
+                            access.accessType = loginPermission;
                             if (!mainMenuPanel.Visible) // if correct username and password go to menu page
                             {
-                                loginErrorlbl.Visible = false;
-                                mainMenuPanel.Visible = true;
-                                loginPanel.Visible = false;
-                                password_L_tb.Text = "";
-                                userName_L_tb.Text = "";
-                                break;
+                                if (loginPermission == "Receptionist") // if it is the receptionst give access to the add patient section
+                                {
+                                    addPatientBTN.Visible = true;
+                                }
+                                else // if not the receptionist disable add patient
+                                {
+                                    addPatientBTN.Visible = false;
+                                }
+                                    loginErrorlbl.Visible = false;
+                                    mainMenuPanel.Visible = true;
+                                    loginPanel.Visible = false;
+                                    password_L_tb.Text = "";
+                                    userName_L_tb.Text = "";
+                                    break;
                             }
                         }
                         else
@@ -201,7 +216,17 @@ namespace SW_Engineering_2017
             {
                 //clears error label
                 error_FP_LBL.Text = "";
-
+            //Set the access so that receptionist can't change perscriptions and only Nurse / GP can.
+            if (access.accessType == "Receptionist")
+            {
+                newPrescriptions_FP_B.Visible = false;
+                extendPrescriptions_FP_B.Visible = false;
+            }
+            else
+            {
+                newPrescriptions_FP_B.Visible = true;
+                extendPrescriptions_FP_B.Visible = true;
+            }
                 if (!findPatientPanel.Visible)
                 {
                     findPatientPanel.Visible = true;
@@ -540,8 +565,6 @@ namespace SW_Engineering_2017
 
                 clearFindPatient();
             }
-        #endregion
-
         #endregion
 
         #region Appointment
@@ -966,3 +989,4 @@ namespace SW_Engineering_2017
         #endregion
     }
 }
+        #endregion
