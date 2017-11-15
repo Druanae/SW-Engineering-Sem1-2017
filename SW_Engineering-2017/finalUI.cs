@@ -220,12 +220,12 @@ namespace SW_Engineering_2017
             if (access.accessType == "Receptionist")
             {
                 newPrescriptions_FP_B.Visible = false;
-                extendPrescriptions_FP_B.Visible = false;
+                
             }
             else
             {
                 newPrescriptions_FP_B.Visible = true;
-                extendPrescriptions_FP_B.Visible = true;
+                
             }
                 if (!findPatientPanel.Visible)
                 {
