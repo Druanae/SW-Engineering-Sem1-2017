@@ -105,9 +105,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
             
-            //close connection 
             
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -136,9 +134,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+            
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -166,9 +162,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+           
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -196,10 +190,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
-
+           
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
 
@@ -227,9 +218,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+            
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -257,9 +246,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+           
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -276,7 +263,7 @@ namespace SW_Engineering_2017
             SqlCommand command = new SqlCommand();
             //sets command type to text
             command.CommandType = CommandType.Text;
-            //sets the command text to constants insertNewPatient
+            //sets the command text to constants updatePatient
             command.CommandText = Constants.updatePatient;
             //adds the values into the database
             command.Parameters.Add(new SqlParameter("patientID", patientID));
@@ -365,9 +352,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+       
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -416,9 +401,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            //runs the SQL code
-
-            //close connection 
+        
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -430,6 +413,52 @@ namespace SW_Engineering_2017
             return dataSet;
             
         }
-    }
+        public void addmedicalRecord(string patientID, string medicalRecord)
+        {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants insertNewPatient
+            command.CommandText = Constants.addMedicalRecord;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            command.Parameters.Add(new SqlParameter("medicalRecords", medicalRecord));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
+        }
+        public DataSet selectMedicalRecords(string patientID)
+        {
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectMedicalRecord;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        }
 
 }

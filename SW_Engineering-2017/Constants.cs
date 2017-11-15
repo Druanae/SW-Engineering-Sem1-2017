@@ -14,6 +14,7 @@ namespace SW_Engineering_2017
         public static TimeSpan CloseTime = new TimeSpan(18, 00, 00);
         public static TimeSpan appointmentLength = new TimeSpan(00, 15, 00);
         /*********************************** Selects ****************************************/
+        public static string selectMedicalRecord = "SELECT medicalRecord FROM medicalRecords WHERE Patient_ID =@patientID";
         public static string selectAllStaff = "SELECT * FROM Staff";
         public static string selectAllPatients = "SELECT * FROM Patients";
         public static string selectingLogin = "SELECT Staff_ID, Password, Staff_Type FROM Staff";
@@ -41,5 +42,6 @@ namespace SW_Engineering_2017
         /*************************************** Inserts *******************************************/
         public static string insertNewPatient = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
         public static string AddAppointment = "INSERT INTO [dbo].[Appointments] ([Patient_ID], [Staff_ID], [Date], [Time]) VALUES (@patientID,@staffID,@date , @time)";
+        public static string addMedicalRecord = "INSERT INTO[dbo].[medicalRecords]([Patient_ID], [medicalRecord]) VALUES (@patientID, @medicalRecords)";
     }
 }
