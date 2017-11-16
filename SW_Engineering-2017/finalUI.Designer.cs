@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.addPatientBTN = new System.Windows.Forms.Button();
@@ -208,6 +208,7 @@
             this.firstName_NP_LBL = new System.Windows.Forms.Label();
             this.Confirm_BT_NA = new System.Windows.Forms.Button();
             this.findPatientPanel = new System.Windows.Forms.Panel();
+            this.medicalHistory_DVG_FP = new System.Windows.Forms.DataGridView();
             this.newMedicalHistory_FP_B = new System.Windows.Forms.Button();
             this.addMedicalRecord_TB_FP = new System.Windows.Forms.TextBox();
             this.medicalHistory_FP_L = new System.Windows.Forms.Label();
@@ -235,7 +236,6 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
-            this.medicalHistory_DVG_FP = new System.Windows.Forms.DataGridView();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -255,6 +255,7 @@
             this.editPatientPanel.SuspendLayout();
             this.newPatientPanel.SuspendLayout();
             this.findPatientPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.medicalHistory_DVG_FP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prescriptions_DGV_FP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_DGV_FP)).BeginInit();
             this.patientIDPanel.SuspendLayout();
@@ -264,7 +265,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.patients_DGV_FP)).BeginInit();
             this.newAppointmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicalHistory_DVG_FP)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuPanel
@@ -341,7 +341,7 @@
             // loginPanel
             // 
             this.loginPanel.Controls.Add(this.Loginbx);
-            this.loginPanel.Location = new System.Drawing.Point(25, 24);
+            this.loginPanel.Location = new System.Drawing.Point(39, 26);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(525, 280);
             this.loginPanel.TabIndex = 9;
@@ -1603,7 +1603,7 @@
             this.editPatientPanel.Location = new System.Drawing.Point(1192, 394);
             this.editPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.editPatientPanel.Name = "editPatientPanel";
-            this.editPatientPanel.Size = new System.Drawing.Size(237, 279);
+            this.editPatientPanel.Size = new System.Drawing.Size(237, 325);
             this.editPatientPanel.TabIndex = 50;
             // 
             // county_EP_TB
@@ -1617,7 +1617,7 @@
             // error_EP_L
             // 
             this.error_EP_L.AutoSize = true;
-            this.error_EP_L.Location = new System.Drawing.Point(23, 223);
+            this.error_EP_L.Location = new System.Drawing.Point(19, 226);
             this.error_EP_L.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.error_EP_L.Name = "error_EP_L";
             this.error_EP_L.Size = new System.Drawing.Size(58, 13);
@@ -1626,7 +1626,7 @@
             // 
             // confirm_EP_B
             // 
-            this.confirm_EP_B.Location = new System.Drawing.Point(148, 250);
+            this.confirm_EP_B.Location = new System.Drawing.Point(149, 227);
             this.confirm_EP_B.Margin = new System.Windows.Forms.Padding(2);
             this.confirm_EP_B.Name = "confirm_EP_B";
             this.confirm_EP_B.Size = new System.Drawing.Size(56, 19);
@@ -1637,7 +1637,7 @@
             // 
             // cancel_EP_B
             // 
-            this.cancel_EP_B.Location = new System.Drawing.Point(24, 250);
+            this.cancel_EP_B.Location = new System.Drawing.Point(149, 257);
             this.cancel_EP_B.Margin = new System.Windows.Forms.Padding(2);
             this.cancel_EP_B.Name = "cancel_EP_B";
             this.cancel_EP_B.Size = new System.Drawing.Size(56, 19);
@@ -2066,6 +2066,25 @@
             this.findPatientPanel.Size = new System.Drawing.Size(1428, 345);
             this.findPatientPanel.TabIndex = 51;
             // 
+            // medicalHistory_DVG_FP
+            // 
+            this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(896, 58);
+            this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
+            this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
+            this.medicalHistory_DVG_FP.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.medicalHistory_DVG_FP.Size = new System.Drawing.Size(522, 180);
+            this.medicalHistory_DVG_FP.TabIndex = 70;
+            // 
             // newMedicalHistory_FP_B
             // 
             this.newMedicalHistory_FP_B.Location = new System.Drawing.Point(1302, 272);
@@ -2359,30 +2378,12 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
-            // medicalHistory_DVG_FP
-            // 
-            this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
-            this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(896, 58);
-            this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
-            this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
-            this.medicalHistory_DVG_FP.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.medicalHistory_DVG_FP.Size = new System.Drawing.Size(522, 180);
-            this.medicalHistory_DVG_FP.TabIndex = 70;
-            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1631, 777);
+            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.findPatientPanel);
             this.Controls.Add(this.newAppointmentPanel);
@@ -2390,7 +2391,6 @@
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
-            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.prescriptionPanel);
             this.Name = "finalUI";
@@ -2427,6 +2427,7 @@
             this.newPatientPanel.PerformLayout();
             this.findPatientPanel.ResumeLayout(false);
             this.findPatientPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.medicalHistory_DVG_FP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prescriptions_DGV_FP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_DGV_FP)).EndInit();
             this.patientIDPanel.ResumeLayout(false);
@@ -2441,7 +2442,6 @@
             this.newAppointmentPanel.ResumeLayout(false);
             this.newAppointmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicalHistory_DVG_FP)).EndInit();
             this.ResumeLayout(false);
 
         }

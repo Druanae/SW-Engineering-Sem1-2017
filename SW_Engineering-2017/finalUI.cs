@@ -121,6 +121,7 @@ namespace SW_Engineering_2017
             string loginID = userName_L_tb.Text;
             string loginPassword = password_L_tb.Text;
             string loginPermission;
+            
 
             if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
@@ -137,6 +138,9 @@ namespace SW_Engineering_2017
                     {
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
+                            // Logger for successful Login
+                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n"+"dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: Yes");
+
                             loginPermission = dataRow.ItemArray.GetValue(2).ToString();
                             access.accessType = loginPermission;
                             if (!mainMenuPanel.Visible) // if correct username and password go to menu page
@@ -158,12 +162,16 @@ namespace SW_Engineering_2017
                             }
                         }
                         else
+                            //Logger for failed login
                             loginerrorlabel();
+                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: No");
                     }
                     else
                     {
+                        
                         loginerrorlabel();
                     }
+                    
                 }
 
             }
@@ -471,14 +479,17 @@ namespace SW_Engineering_2017
             {
                 //Adds patient to the database
                 Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
-
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: Yes");
                 error_EP_L.Text = "Patient infomation Updated";
                 clearEditPatient(); // Clear text box data.
+
             }
             else
             {
                 //display input errors to user
                 error_EP_L.Text = errorMessage;
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: No");
+
             }
 
         }
@@ -1031,9 +1042,11 @@ namespace SW_Engineering_2017
                 privatePatientID = selectedRow.Cells[0].Value.ToString(); //Set the USerID to the selected row
                 medicalRecord = addMedicalRecord_TB_FP.Text;
 
+
                 //Adds medicalRecord to the database
                 Connection.getDBConnectionInstance().addmedicalRecord(privatePatientID, medicalRecord);
-                
+                //Log for successfu ladding of medical record
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: Yes");
                 medicalRecordViewer();
                 addMedicalRecord_TB_FP.Clear(); //Clear Datagrid text box
 
