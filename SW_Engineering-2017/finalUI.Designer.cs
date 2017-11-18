@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.addPatientBTN = new System.Windows.Forms.Button();
@@ -2070,14 +2070,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(896, 58);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2383,6 +2383,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1631, 777);
+            this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.findPatientPanel);
@@ -2391,7 +2392,6 @@
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
-            this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.prescriptionPanel);
             this.Name = "finalUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalUI_FormClosed);

@@ -17,6 +17,7 @@ namespace SW_Engineering_2017
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType;
         private bool PrivatePatientFound = false, NewAppointment = true;
+        private int loginAttempt = 0;
         #endregion
 
         #region form initiation, Load and Close 
@@ -122,6 +123,7 @@ namespace SW_Engineering_2017
             string loginPassword = password_L_tb.Text;
             string loginPermission;
             
+            
 
             if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
@@ -139,7 +141,8 @@ namespace SW_Engineering_2017
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
                             // Logger for successful Login
-                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n"+"dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: Yes");
+                            loginAttempt++;
+                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: Yes" + "\r\nLogged in on attempt: " + loginAttempt);
 
                             loginPermission = dataRow.ItemArray.GetValue(2).ToString();
                             access.accessType = loginPermission;
@@ -163,8 +166,8 @@ namespace SW_Engineering_2017
                         }
                         else
                             //Logger for failed login
-                            loginerrorlabel();
-                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: No");
+                           
+                        loginerrorlabel();
                     }
                     else
                     {
@@ -175,6 +178,8 @@ namespace SW_Engineering_2017
                 }
 
             }
+            loginAttempt++;
+
         }
 
         private void password_L_tb_TextChanged(object sender, EventArgs e)
@@ -213,6 +218,7 @@ namespace SW_Engineering_2017
         #region Navigation Buttons
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            loginAttempt = 0;
             if (!loginPanel.Visible)
             {
                 mainMenuPanel.Visible = false;
@@ -479,7 +485,7 @@ namespace SW_Engineering_2017
             {
                 //Adds patient to the database
                 Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: Yes");
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: Yes");
                 error_EP_L.Text = "Patient infomation Updated";
                 clearEditPatient(); // Clear text box data.
 
@@ -488,7 +494,7 @@ namespace SW_Engineering_2017
             {
                 //display input errors to user
                 error_EP_L.Text = errorMessage;
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: No");
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: No");
 
             }
 
@@ -1034,7 +1040,7 @@ namespace SW_Engineering_2017
         private void newMedicalHistory_FP_B_Click(object sender, EventArgs e)
         {
             string medicalRecord;
-
+           
             if ((addMedicalRecord_TB_FP.Text != "") && (PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
                 int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex; //Select patient row
@@ -1049,6 +1055,11 @@ namespace SW_Engineering_2017
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: Yes");
                 medicalRecordViewer();
                 addMedicalRecord_TB_FP.Clear(); //Clear Datagrid text box
+
+            }
+            else
+            {
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: No");
 
             }
 
