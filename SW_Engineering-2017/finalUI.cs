@@ -17,6 +17,7 @@ namespace SW_Engineering_2017
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType;
         private bool PrivatePatientFound = false, NewAppointment = true;
+        private int loginAttempt = 0;
         #endregion
 
         #region form initiation, Load and Close 
@@ -122,6 +123,7 @@ namespace SW_Engineering_2017
             string loginPassword = password_L_tb.Text;
             string loginPermission;
             
+            
 
             if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
@@ -139,7 +141,8 @@ namespace SW_Engineering_2017
                         if (loginPassword == dataRow.ItemArray.GetValue(1).ToString())
                         {
                             // Logger for successful Login
-                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n"+"dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: Yes");
+                            loginAttempt++;
+                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: Yes" + "\r\nLogged in on attempt: " + loginAttempt);
 
                             loginPermission = dataRow.ItemArray.GetValue(2).ToString();
                             access.accessType = loginPermission;
@@ -163,8 +166,8 @@ namespace SW_Engineering_2017
                         }
                         else
                             //Logger for failed login
-                            loginerrorlabel();
-                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attempted Login in \r\n  StaffID:" + loginID + "\r\n  Login Successful?: No");
+                           
+                        loginerrorlabel();
                     }
                     else
                     {
@@ -175,6 +178,8 @@ namespace SW_Engineering_2017
                 }
 
             }
+            loginAttempt++;
+
         }
 
         private void password_L_tb_TextChanged(object sender, EventArgs e)
@@ -213,6 +218,7 @@ namespace SW_Engineering_2017
         #region Navigation Buttons
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            loginAttempt = 0;
             if (!loginPanel.Visible)
             {
                 mainMenuPanel.Visible = false;
@@ -378,6 +384,9 @@ namespace SW_Engineering_2017
                 //Adds patient to the database
                 Connection.getDBConnectionInstance().addPatient(firstname, surname, dob, addressLine, townCity, county, postcode);
 
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Patient added\r\nFirstname: " + firstname + "\r\nSurname: " + surname + "\r\nDOB: " + dob + "\r\nAddress: " + addressLine + "\r\nTownCity: " + townCity + "\r\nCounty: " + county + "\r\nPostcode: " + postcode);
+
                 //set data set 
                 DataSet dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllPatients);
 
@@ -479,7 +488,7 @@ namespace SW_Engineering_2017
             {
                 //Adds patient to the database
                 Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: Yes");
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: Yes");
                 error_EP_L.Text = "Patient infomation Updated";
                 clearEditPatient(); // Clear text box data.
 
@@ -488,7 +497,7 @@ namespace SW_Engineering_2017
             {
                 //display input errors to user
                 error_EP_L.Text = errorMessage;
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Login Successful?: No");
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: No");
 
             }
 
@@ -585,11 +594,15 @@ namespace SW_Engineering_2017
         #region Appointment
 
         #region New Appointment
+            #region Loading New Appointment Panel
         private void newAppointment_FP_B_Click(object sender, EventArgs e)
         {
             //check there is patient infomation found
             if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Add Appointment button clicked : ID SELECTED");
+
                 AppointmentHeader_L_NA.Text = "New Appointment";
                 NewAppointment = true;
                 //selects row and selects patientID and stores it
@@ -600,6 +613,8 @@ namespace SW_Engineering_2017
                 PatientID_LB_NA.Text = "PatientID:" + privatePatientID;
                 errorMessage_LB_NA.Text = "";
 
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-----------------\r\n" + "hh:mm") + "Patient:" + privatePatientID.ToString());
                 //opens appointment panel
                 appointmentPanel();
 
@@ -609,10 +624,14 @@ namespace SW_Engineering_2017
             {
                 //displays error message if user doesnt find a patient before click add appointment
                 error_FP_LBL.Text = "Patient Required";
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Add Appointment button clicked : ID NOT SELECTED");
             }
 
         }
+        #endregion
 
+            #region Select new Appointment
         private void staffType_CB_NA_SelectedIndexChanged(object sender, EventArgs e)
         {
             //variables
@@ -627,11 +646,13 @@ namespace SW_Engineering_2017
             {
                 //set data set to all the GP
                 dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllGPAppointment);
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Staff Type selected : GP");
             }
             else
             {
                 //set data set to all Nurse
                 dataSet = Connection.getDBConnectionInstance().GetDataSet(Constants.selectAllNurseAppointment);
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Staff Type selected : Nurse");
 
             }
             //sets the table equal to the data set
@@ -640,6 +661,7 @@ namespace SW_Engineering_2017
             numRows = table.Rows.Count - 1;
             //clear Staff selection combobox
             Staff_CB_NA.Items.Clear();
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Staff Table load with selected Type");
 
             //loops throw all the staff in the table and 
             for (int i = 0; i <= numRows; i++)
@@ -660,6 +682,7 @@ namespace SW_Engineering_2017
             //check if data and staff have both been selected 
             if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
             {
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Staff Member Selected");
                 //call method 
                 checkingAppointment();
             }
@@ -671,6 +694,7 @@ namespace SW_Engineering_2017
             if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
             {
                 //call method
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Appointmet Selected");
                 checkingAppointment();
             }
         }
@@ -749,13 +773,17 @@ namespace SW_Engineering_2017
             if (AppointmentTimes_CB_NA.Items.Count == 0)
             {
                 //if theres no then tells the user
-                errorMessage_LB_NA.Text = "There are no more Appointments Today";
-            }
+                errorMessage_LB_NA.Text = "There are no more Appointments On selected day";
 
+            }
+            //Updates logger 
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Shows Available Appointments");
         }
 
         private void appointmentPanel()
         {
+            //Updates logger 
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Clears Appointment Panel");
             //opens Panel 
             if (!newAppointmentPanel.Visible)
             {
@@ -767,16 +795,77 @@ namespace SW_Engineering_2017
             clearFindPatient();
             hideFindPatientPanels();
         }
+        #endregion
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+            #region Confirm New Appointment
+                    private void Confirm_BT_NA_Click(object sender, EventArgs e)
+                    {
+                        //strings 
+                        string staffType = staffType_CB_NA.Text, staff = Staff_CB_NA.Text, appointmentTime = AppointmentTimes_CB_NA.Text;
+                        string appointmentDate = appointmentDate_PCK_NA.Value.Year.ToString() + "-" + appointmentDate_PCK_NA.Value.Month.ToString() + "-" + appointmentDate_PCK_NA.Value.Day.ToString();
 
-        }
+                        //validates staff type was selected
+                        if (staffType != "")
+                        {
+                            //validates staff member was selected
+                            if (staff != "")
+                            {
+                                //validates time was selected
+                                if (appointmentTime != "")
+                                {
+                                    //check if it a new appointment
+                                    if (NewAppointment == true)
+                                    {
+                                        //if user has enter all the correct information then it add appointment to the database
+                                        Connection.getDBConnectionInstance().addAppointment(privatePatientID, staff, appointmentDate, appointmentTime);
+                                        errorMessage_LB_NA.Text = "Appointment added";
 
+                                        //Updates logger 
+                                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + appointmentDate.ToString() + "\r\n Appointment Time:" + appointmentTime.ToString());
+                                        //clears inputs
+                                        clearNewAppointment();
+                                    }
+                                    else
+                                    {
+                                        //if edit appointment then runs this method
+                                        confirmChangeAppointment(staff, appointmentDate, appointmentTime);
+                                        //clears inputs
+                                        clearNewAppointment();
+                                    }
+                                }
+                                else
+                                {
+                                    //if user doesn't select time then displays errormessage 
+                                    errorMessage_LB_NA.Text = "time needs to be Selected";
+                                    //Updates logger 
+                                    Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + appointmentDate.ToString() + "\r\n Appointment Time not selected");
+                                }
+                            }
+                            else
+                            {
+                                //if user doesn't select staff member then displays errormessage 
+                                errorMessage_LB_NA.Text = "staff needs to be Selected";
+                                //Updates logger 
+                                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date: Not Selected");
+                            }
 
+                        }
+                        else
+                        {
+                            //if user doesn't select staff typ then displays errormessage 
+                            errorMessage_LB_NA.Text = "staff Type needs to be Selected";
+                            //Updates logger 
+                            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + appointmentDate.ToString() + "\r\n Appointment Time not selected");
+                        }
 
+                    }
+            #endregion
+
+            #region navigation
         private void Back_BT_NA_Click(object sender, EventArgs e)
         {
+            //Updates logger 
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Back Button Clicked to Find Patient Panel");
             //clears newAppointment
             clearNewAppointment();
             //changes panel to find patient 
@@ -786,69 +875,15 @@ namespace SW_Engineering_2017
                 findPatientPanel.Visible = true;
             }
         }
-
-        private void Confirm_BT_NA_Click(object sender, EventArgs e)
-        {
-            //strings 
-            string staffType = staffType_CB_NA.Text, staff = Staff_CB_NA.Text, appointmentTime = AppointmentTimes_CB_NA.Text;
-            string appointmentDate = appointmentDate_PCK_NA.Value.Year.ToString() + "-" + appointmentDate_PCK_NA.Value.Month.ToString() + "-" + appointmentDate_PCK_NA.Value.Day.ToString();
-
-            //validates staff type was selected
-            if (staffType != "")
-            {
-                //validates staff member was selected
-                if (staff != "")
-                {
-                    //validates time was selected
-                    if (appointmentTime != "")
-                    {
-                        //check if it a new appointment
-                        if (NewAppointment == true)
-                        {
-                            //if user has enter all the correct information then it add appointment to the database
-                            Connection.getDBConnectionInstance().addAppointment(privatePatientID, staff, appointmentDate, appointmentTime);
-                            errorMessage_LB_NA.Text = "Appointment added";
-
-                            Logger.instance.log(DateTime.Today.ToString("dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + appointmentDate.ToString() + "\r\n     Appointment Time:" + appointmentTime.ToString());
-                            //clears inputs
-                            clearNewAppointment();
-                        }
-                        else
-                        {
-                            //if edit appointment then runs this method
-                            confirmChangeAppointment(staff, appointmentDate, appointmentTime);
-                            //clears inputs
-                            clearNewAppointment();
-                        }
-                    }
-                    else
-                    {
-                        //if user doesn't select time then displays errormessage 
-                        errorMessage_LB_NA.Text = "time needs to be Selected";
-                    }
-                }
-                else
-                {
-                    //if user doesn't select staff member then displays errormessage 
-                    errorMessage_LB_NA.Text = "staff needs to be Selected";
-                }
-
-            }
-            else
-            {
-                //if user doesn't select staff typ then displays errormessage 
-                errorMessage_LB_NA.Text = "staff Type needs to be Selected";
-            }
-
-        }
-
+        #endregion
         #endregion
 
         #region Load Appointment
 
         private void patients_DGV_FP_Click(object sender, DataGridViewCellEventArgs e)
         {
-            
+            //Updates logger 
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Patient Selected");
             //string variables
             string patientID, date, time;
             //database variables
@@ -870,9 +905,9 @@ namespace SW_Engineering_2017
             //display appoint to user 
             appointments_DGV_FP.DataSource = table;
             privatePatientID = patientID;
-            if((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
-                {
-               
+            if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
+            {
+
                 medicalRecordViewer();
             }
         }
@@ -882,8 +917,11 @@ namespace SW_Engineering_2017
         #region Delete Appointment
         private void Cancel_FP_B_Click(object sender, EventArgs e)
         {
+
             if ((appointments_DGV_FP.DataSource != null) && (appointments_DGV_FP.Rows.Count > 0))
             {
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Delete Appointment Button Clicked: Appointment Select for Deleting");
                 //selected appointment
                 int selectedRowIndex = appointments_DGV_FP.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = appointments_DGV_FP.Rows[selectedRowIndex];
@@ -900,6 +938,8 @@ namespace SW_Engineering_2017
                 if (MessageBox.Show("Do you cancel that appointment?", "Cancel Appointment",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    //Updates logger 
+                    Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Delete Appointment Confirmed Clicked: Appointment Deleted");
                     //delete selected appointment
                     Connection.getDBConnectionInstance().selectDeleteAppointment(appointment);
 
@@ -915,6 +955,7 @@ namespace SW_Engineering_2017
             {
                 // If patient hasn't been selected
                 error_FP_LBL.Text = "Patient and Appointment Required ";
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Delete Appointment Button Clicked: NO Appointment Selected");
             }
 
         }
@@ -975,15 +1016,19 @@ namespace SW_Engineering_2017
                 Staff_CB_NA.Text = privateStaffID;
                 //opens Panel 
                 appointmentPanel();
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Change Appointment Button Clicked: Loads Panel");
 
             }
             else
             {
                 // If patient hasn't been selected
                 error_FP_LBL.Text = "Patient Required";
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Change Appointment Button Clicked: Patient Required");
             }
         }
-        public void confirmChangeAppointment(string staff, string date, string time)
+        private void confirmChangeAppointment(string staff, string date, string time)
         {
             //convert date into datatype
             DateTime Date = Convert.ToDateTime(date);
@@ -1006,7 +1051,7 @@ namespace SW_Engineering_2017
 
 
                 errorMessage_LB_NA.Text = "Appointment Updated";
-
+                //Updates logger 
                 Logger.instance.log(DateTime.Today.ToString("dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nChange Appointment to Appoitnemt Table:\r\n  PatientID:" + privatePatientID.ToString() + "\r\n  StaffID:" + staff.ToString() + "\r\n  Appointment Date:" + date + "\r\n     Appointment Time:" + time);
                 //clears the window
                 clearNewAppointment();
@@ -1034,7 +1079,7 @@ namespace SW_Engineering_2017
         private void newMedicalHistory_FP_B_Click(object sender, EventArgs e)
         {
             string medicalRecord;
-
+           
             if ((addMedicalRecord_TB_FP.Text != "") && (PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
                 int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex; //Select patient row
@@ -1049,6 +1094,11 @@ namespace SW_Engineering_2017
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: Yes");
                 medicalRecordViewer();
                 addMedicalRecord_TB_FP.Clear(); //Clear Datagrid text box
+
+            }
+            else
+            {
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: No");
 
             }
 

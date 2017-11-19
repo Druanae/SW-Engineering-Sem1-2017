@@ -10,6 +10,7 @@ namespace SW_Engineering_2017
 {
     class Connection
     {
+        #region Private Variables
         //private string for the connection
         private static string connectionString;
 
@@ -20,8 +21,9 @@ namespace SW_Engineering_2017
         private SqlDataAdapter dataAdapter;
 
         private static Connection _instance;
-       
+        #endregion
 
+        #region Instance
         //methods
         public static Connection getDBConnectionInstance()
         {
@@ -31,8 +33,9 @@ namespace SW_Engineering_2017
 
             return _instance;
         }
+        #endregion
 
-
+        #region Connection 
         public void openConnection()
         {
             //creates the connection to the database
@@ -47,7 +50,9 @@ namespace SW_Engineering_2017
             //close the connection to the database
             connectionToDatabase.Close();
         }
+        #endregion
 
+        #region getDataSet
         public DataSet GetDataSet(string sqlStatement)
         {
             DataSet dataSet;
@@ -61,7 +66,10 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
+        #endregion
 
+        #region Patient
+        #region Add Patient
         public void addPatient(string firstname, string surname, DateTime dob, string addressLine, string townCity, string county, string postcode)
         {
             //creates SQL command
@@ -88,92 +96,9 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
-        public DataSet staffView(string StaffID)
-        {
+        #endregion
 
-            DataSet dataSet;
-            //creates SQL command
-            SqlCommand command = new SqlCommand();
-
-            command.CommandType = CommandType.Text;
-            //sets the command text 
-            command.CommandText = Constants.selectStaffMember;
-            //adds the values into the database
-            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
-
-            //opens connection
-            openConnection();
-            //sets the connection
-            command.Connection = connectionToDatabase;
-            
-            
-            //creates an object to minipulate a table in the database using the connection
-            dataAdapter = new SqlDataAdapter(command);
-
-            //creates the dataset
-            dataSet = new System.Data.DataSet();
-            dataAdapter.Fill(dataSet);
-            //return the dataSet
-            return dataSet;
-
-        }
-        public DataSet staffDateView(string StaffID,string date)
-        {
-
-            DataSet dataSet;
-            //creates SQL command
-            SqlCommand command = new SqlCommand();
-
-            command.CommandType = CommandType.Text;
-            //sets the command text 
-            command.CommandText = Constants.selectTime;
-            //adds the values into the database
-            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
-            command.Parameters.Add(new SqlParameter("Date", date));
-            //opens connection
-            openConnection();
-            //sets the connection
-            command.Connection = connectionToDatabase;
-            
-
-            //creates an object to minipulate a table in the database using the connection
-            dataAdapter = new SqlDataAdapter(command);
-
-            //creates the dataset
-            dataSet = new System.Data.DataSet();
-            dataAdapter.Fill(dataSet);
-            //return the dataSet
-            return dataSet;
-        }
-        
-        public DataSet selectStaffType(string StaffID)
-        {
-
-            DataSet dataSet;
-            //creates SQL command
-            SqlCommand command = new SqlCommand();
-
-            command.CommandType = CommandType.Text;
-            //sets the command text 
-            command.CommandText = Constants.selectStaffType;
-            //adds the values into the database
-            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
-            //opens connection
-            openConnection();
-            //sets the connection
-            command.Connection = connectionToDatabase;
-           
-
-            //creates an object to minipulate a table in the database using the connection
-            dataAdapter = new SqlDataAdapter(command);
-
-            //creates the dataset
-            dataSet = new System.Data.DataSet();
-            dataAdapter.Fill(dataSet);
-            //return the dataSet
-            return dataSet;
-        }
-
+        #region Select Patient by ID
         public DataSet selectPatientByID(string patientID)
         {
 
@@ -190,7 +115,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-           
+
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
 
@@ -200,7 +125,10 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
-        public DataSet selectPatientByDOB(string firstname,string surname,string dob)
+        #endregion
+
+        #region Select Patient by Date of Birth
+        public DataSet selectPatientByDOB(string firstname, string surname, string dob)
         {
 
             DataSet dataSet;
@@ -218,7 +146,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            
+
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -229,6 +157,9 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
+        #endregion
+
+        #region Select Patient By Address
         public DataSet selectPatientByAddress(string firstname, string surname, string address)
         {
             DataSet dataSet;
@@ -246,7 +177,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-           
+
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -257,6 +188,9 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
+        #endregion
+
+        #region UpdatePatient
         public void updatePatient(string patientID, string firstname, string surname, DateTime dob, string addressLine, string townCity, string county, string postcode)
         {
             //creates SQL command
@@ -284,10 +218,110 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+        #endregion
 
-#region Add Appointment
+        #endregion
+
+        #region Staff
+        #region Select Staff by ID
+        public DataSet staffView(string StaffID)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectStaffMember;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+
+        }
+        #endregion
+
+        #region Staff Member dates
+        public DataSet staffDateView(string StaffID, string date)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectTime;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+            command.Parameters.Add(new SqlParameter("Date", date));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        #endregion
+
+        #region Select Staff Type
+        public DataSet selectStaffType(string StaffID)
+        {
+
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectStaffType;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("StaffID", StaffID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+        }
+        #endregion
+
+        #endregion
+
+        #region Appointment
+        #region Add Appointment
         public void addAppointment(string patientID, string staffID, string date, string time)
-          {
+        {
             //creates SQL command
             SqlCommand command = new SqlCommand();
             //sets command type to text
@@ -309,8 +343,10 @@ namespace SW_Engineering_2017
             command.ExecuteNonQuery();
             //close connection 
             closeConnection();
-          }
+        }
         #endregion
+
+        #region Update Appointment
         public void UpdateAppointment(string appointmentID, string staffID, string date, string time)
         {
             //creates SQL command
@@ -320,7 +356,7 @@ namespace SW_Engineering_2017
             //sets the command text to constants insertNewPatient
             command.CommandText = Constants.UpdateAppointment;
             //adds the values into the database
-            command.Parameters.Add(new SqlParameter("appointmentID",appointmentID));
+            command.Parameters.Add(new SqlParameter("appointmentID", appointmentID));
             command.Parameters.Add(new SqlParameter("staffID", staffID));
             command.Parameters.Add(new SqlParameter("date", date));
             command.Parameters.Add(new SqlParameter("time", time));
@@ -335,6 +371,39 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+        #endregion
+
+        #region Select Appointment by AppointmentID
+        public DataSet selectAppointment(string appointmentID)
+        {
+            DataSet dataSet;
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+            //sets the command text 
+            command.CommandText = Constants.selectAppointment;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("appointmentID", appointmentID));
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+
+
+            //creates an object to minipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            //creates the dataset
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            //return the dataSet
+            return dataSet;
+
+        }
+        #endregion#region Select Patient Appointment
+
+        #region Select Patient Appointment
         public DataSet selectPatentAppointment(string patientID, string date, string time)
         {
             DataSet dataSet;
@@ -352,7 +421,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-       
+
 
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
@@ -362,9 +431,11 @@ namespace SW_Engineering_2017
             dataAdapter.Fill(dataSet);
             //return the dataSet
             return dataSet;
-            
-        }
 
+        }
+        #endregion
+
+        #region Delete Appointment
         public void selectDeleteAppointment(string appointmentID)
         {
             //creates SQL command
@@ -385,34 +456,13 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+        #endregion
 
-        public DataSet selectAppointment(string appointmentID)
-        { 
-            DataSet dataSet;
-            //creates SQL command
-            SqlCommand command = new SqlCommand();
+        #endregion
 
-            command.CommandType = CommandType.Text;
-            //sets the command text 
-            command.CommandText = Constants.selectAppointment;
-            //adds the values into the database
-            command.Parameters.Add(new SqlParameter("appointmentID", appointmentID));
-            //opens connection
-            openConnection();
-            //sets the connection
-            command.Connection = connectionToDatabase;
-        
+        #region Medical Records
 
-            //creates an object to minipulate a table in the database using the connection
-            dataAdapter = new SqlDataAdapter(command);
-
-            //creates the dataset
-            dataSet = new System.Data.DataSet();
-            dataAdapter.Fill(dataSet);
-            //return the dataSet
-            return dataSet;
-            
-        }
+        #region Add Medical Record
         public void addmedicalRecord(string patientID, string medicalRecord)
         {
             //creates SQL command
@@ -434,6 +484,9 @@ namespace SW_Engineering_2017
             //close connection 
             closeConnection();
         }
+        #endregion
+
+        #region Select Medical Records
         public DataSet selectMedicalRecords(string patientID)
         {
             DataSet dataSet;
@@ -449,7 +502,7 @@ namespace SW_Engineering_2017
             openConnection();
             //sets the connection
             command.Connection = connectionToDatabase;
-            
+
             //creates an object to minipulate a table in the database using the connection
             dataAdapter = new SqlDataAdapter(command);
 
@@ -459,6 +512,8 @@ namespace SW_Engineering_2017
             //return the dataSet
             return dataSet;
         }
-        }
+        #endregion
 
+        #endregion
+    }
 }
