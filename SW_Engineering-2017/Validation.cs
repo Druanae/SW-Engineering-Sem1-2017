@@ -10,18 +10,31 @@ namespace SW_Engineering_2017
     {
         public string validateFirstname(string firstname)
         {
-            
             string errormessage;
             //check if firstname is blank
             if (firstname == "")
             {
                 //error message set
                 errormessage = "Requires Firstname\r\n";
+                Logger.instance.log("--Validation Firstname: INVALID Firstname Required");
+            }
+            else if (firstname.All(char.IsLetter) == false)
+            {
+                //error message set
+                errormessage = "Firstname can only have letters \r\n";
+                Logger.instance.log("--Validation Firstname: INVALID Firstname can only have letters");
+            }
+            else if (firstname.Length < 2)
+            {
+                //error message set
+                errormessage = "Firstname is not long enough \r\n";
+                Logger.instance.log("--Validation Firstname: INVALID Firstname is not long enough");
             }
             else
             {
                 //valid input 
                 errormessage = "";
+                Logger.instance.log("--Validation Firstname: VALID Firstname Required");
             }
 
             //return errorMessage
@@ -37,11 +50,25 @@ namespace SW_Engineering_2017
             {
                 //error message set
                 errormessage = "Requires Surname\r\n";
+                Logger.instance.log("--Validation Surname: INVALID Surname Required");
+            }
+            else if (surname.All(char.IsLetter) == false)
+            {
+                //error message set
+                errormessage = "Surname can only have letters \r\n";
+                Logger.instance.log("--Validation Surname: INVALID Surname can only have letters");
+            }
+            else if (surname.Length < 2)
+            {
+                //error message set
+                errormessage = "Surname is not long enough \r\n";
+                Logger.instance.log("--Validation Surname: INVALID Surname is not long enough");
             }
             else
             {
                 //valid input 
                 errormessage = "";
+                Logger.instance.log("--Validation Surname: VALID Surname Required");
             }
 
             //return errorMessage
@@ -57,11 +84,19 @@ namespace SW_Engineering_2017
             {
                 //error message set
                 errormessage = "Requires AddressLine\r\n";
+                Logger.instance.log("--Validation Address: INVALID Address Required");
+            }
+            else if (addressLine.Length < 5)
+            {
+                //error message set
+                errormessage = "Address is not long enough need to be min 5 character long\r\n";
+                Logger.instance.log("--Validation Address: INVALID Address is not long enough");
             }
             else
             {
                 //valid input 
                 errormessage = "";
+                Logger.instance.log("--Validation Address: VALID Address Required");
             }
 
             //return errorMessage
@@ -77,11 +112,25 @@ namespace SW_Engineering_2017
             {
                 //error message set
                 errormessage = "Requires Town/City\r\n";
+                Logger.instance.log("--Validation TownCity: INVALID TownCity Required");
+            }
+            else if (townCity.All(char.IsLetter) == false)
+            {
+                //error message set
+                errormessage = "TownCity can only have letters\r\n";
+                Logger.instance.log("--Validation TownCity: INVALID TownCity can only have letters");
+            }
+            else if (townCity.Length < 3)
+            {
+                //error message set
+                errormessage = "TownCity is not long enough need to be min 3 character long\r\n";
+                Logger.instance.log("--Validation TowCity: INVALID TownCity is not long enough");
             }
             else
             {
                 //valid input 
                 errormessage = "";
+                Logger.instance.log("--Validation TownCity: INVALID TownCity Required");
             }
 
             //return errorMessage
@@ -97,11 +146,25 @@ namespace SW_Engineering_2017
             {
                 //error message set
                 errormessage = "Requires County\r\n";
+                Logger.instance.log("--Validation County: INVALID County Required");
+            }
+            else if (county.All(char.IsLetter) == false)
+            {
+                //error message set
+                errormessage = "County can only have letters \r\n";
+                Logger.instance.log("--Validation County: INVALID County can only have letters");
+            }
+            else if (county.Length < 3)
+            {
+                //error message set
+                errormessage = "County is not long enough need to be min 3 character long\r\n";
+                Logger.instance.log("--Validation County: INVALID County is not long enough ");
             }
             else
             {
                 //valid input 
                 errormessage = "";
+                Logger.instance.log("--Validation County: VALID County Required");
             }
 
             //return errorMessage
@@ -117,12 +180,14 @@ namespace SW_Engineering_2017
             {
                 //error message set
                 errormessage = "Requires Postcode\r\n";
+                Logger.instance.log("--Validation Postcode: INVALID Postcode Required");
             }
             //checks that postcode is the correct length
-            else if ((postcode.Length <6) || (postcode.Length > 7))
+            else if ((postcode.Length < 6) || (postcode.Length > 7))
             {
                 //error message set
                 errormessage = "Invalided Postcode\r\n";
+                Logger.instance.log("--Validation Postcode: VALID Postcode is not correct valid length");
             }
             else
             {

@@ -2113,7 +2113,6 @@
             this.medicalHistory_FP_L.Size = new System.Drawing.Size(138, 24);
             this.medicalHistory_FP_L.TabIndex = 66;
             this.medicalHistory_FP_L.Text = "Medical History";
-            this.medicalHistory_FP_L.Click += new System.EventHandler(this.label2_Click);
             // 
             // prescriptions_DGV_FP
             // 
