@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.prsNotesGrp = new System.Windows.Forms.GroupBox();
             this.prsNotesEntry = new System.Windows.Forms.TextBox();
             this.prsQuantityEntry = new System.Windows.Forms.TextBox();
-            this.prsPrescriptionNameEntry = new System.Windows.Forms.TextBox();
+            this.prsNameEntry = new System.Windows.Forms.TextBox();
             this.prsDatePicker = new System.Windows.Forms.DateTimePicker();
             this.prsDateLbl = new System.Windows.Forms.Label();
             this.prsQuantityLbl = new System.Windows.Forms.Label();
@@ -1087,7 +1087,7 @@
             this.prsPrescriptionGrp.Controls.Add(this.prsDurationLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsNotesGrp);
             this.prsPrescriptionGrp.Controls.Add(this.prsQuantityEntry);
-            this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameEntry);
+            this.prsPrescriptionGrp.Controls.Add(this.prsNameEntry);
             this.prsPrescriptionGrp.Controls.Add(this.prsDatePicker);
             this.prsPrescriptionGrp.Controls.Add(this.prsDateLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsQuantityLbl);
@@ -1104,6 +1104,9 @@
             this.prsDurationCombo.FormattingEnabled = true;
             this.prsDurationCombo.Items.AddRange(new object[] {
             "1",
+            "10",
+            "11",
+            "12",
             "2",
             "3",
             "4",
@@ -1111,14 +1114,13 @@
             "6",
             "7",
             "8",
-            "9",
-            "10",
-            "11",
-            "12"});
+            "9"});
             this.prsDurationCombo.Location = new System.Drawing.Point(99, 96);
             this.prsDurationCombo.Name = "prsDurationCombo";
             this.prsDurationCombo.Size = new System.Drawing.Size(151, 21);
+            this.prsDurationCombo.Sorted = true;
             this.prsDurationCombo.TabIndex = 8;
+            this.prsDurationCombo.Text = "1";
             // 
             // prsDurationLbl
             // 
@@ -1155,12 +1157,12 @@
             this.prsQuantityEntry.Size = new System.Drawing.Size(151, 20);
             this.prsQuantityEntry.TabIndex = 5;
             // 
-            // prsPrescriptionNameEntry
+            // prsNameEntry
             // 
-            this.prsPrescriptionNameEntry.Location = new System.Drawing.Point(99, 18);
-            this.prsPrescriptionNameEntry.Name = "prsPrescriptionNameEntry";
-            this.prsPrescriptionNameEntry.Size = new System.Drawing.Size(151, 20);
-            this.prsPrescriptionNameEntry.TabIndex = 4;
+            this.prsNameEntry.Location = new System.Drawing.Point(99, 18);
+            this.prsNameEntry.Name = "prsNameEntry";
+            this.prsNameEntry.Size = new System.Drawing.Size(151, 20);
+            this.prsNameEntry.TabIndex = 4;
             // 
             // prsDatePicker
             // 
@@ -1931,14 +1933,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2401,7 +2403,7 @@
         private System.Windows.Forms.GroupBox prsNotesGrp;
         private System.Windows.Forms.TextBox prsNotesEntry;
         private System.Windows.Forms.TextBox prsQuantityEntry;
-        private System.Windows.Forms.TextBox prsPrescriptionNameEntry;
+        private System.Windows.Forms.TextBox prsNameEntry;
         private System.Windows.Forms.DateTimePicker prsDatePicker;
         private System.Windows.Forms.Label prsDateLbl;
         private System.Windows.Forms.Label prsQuantityLbl;

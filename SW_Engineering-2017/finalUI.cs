@@ -367,6 +367,15 @@ namespace SW_Engineering_2017
             DOBPanel.Visible = false;
             addressPanel.Visible = false;
         }
+        
+        private void clearPrescriptionForm()
+        {
+            prsNameEntry.Text = "";
+            prsQuantityEntry.Text = "";
+            prsDatePicker.Value = DateTime.Today;
+            prsDurationCombo.Text = "1";
+            prsNotesEntry.Text = "";
+        }
 
         #endregion
 
