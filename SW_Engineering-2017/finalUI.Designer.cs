@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -1104,9 +1104,6 @@
             this.prsDurationCombo.FormattingEnabled = true;
             this.prsDurationCombo.Items.AddRange(new object[] {
             "1",
-            "10",
-            "11",
-            "12",
             "2",
             "3",
             "4",
@@ -1114,11 +1111,13 @@
             "6",
             "7",
             "8",
-            "9"});
+            "9",
+            "10",
+            "11",
+            "12"});
             this.prsDurationCombo.Location = new System.Drawing.Point(99, 96);
             this.prsDurationCombo.Name = "prsDurationCombo";
             this.prsDurationCombo.Size = new System.Drawing.Size(151, 21);
-            this.prsDurationCombo.Sorted = true;
             this.prsDurationCombo.TabIndex = 8;
             this.prsDurationCombo.Text = "1";
             // 
@@ -1207,7 +1206,7 @@
             this.btnPresCancel.TabIndex = 2;
             this.btnPresCancel.Text = "Cancel";
             this.btnPresCancel.UseVisualStyleBackColor = true;
-            this.btnPresCancel.Click += new System.EventHandler(this.mainMenuShow);
+            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
             // 
             // prescriptionPanel
             // 
@@ -1933,14 +1932,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle6;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
