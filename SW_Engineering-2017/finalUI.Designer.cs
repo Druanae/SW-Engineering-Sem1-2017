@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -126,28 +126,8 @@
             this.prsQuantityLbl = new System.Windows.Forms.Label();
             this.prsPrescriptionNameLbl = new System.Windows.Forms.Label();
             this.btnPresCancel = new System.Windows.Forms.Button();
-            this.prsDOBPicker = new System.Windows.Forms.DateTimePicker();
-            this.prsTitleCombo = new System.Windows.Forms.ComboBox();
-            this.prsTitleLbl = new System.Windows.Forms.Label();
-            this.prsDateOfBirthLbl = new System.Windows.Forms.Label();
-            this.prsAddressGrp = new System.Windows.Forms.GroupBox();
-            this.prsPostCodeEntry = new System.Windows.Forms.TextBox();
-            this.prsPostCodeLbl = new System.Windows.Forms.Label();
-            this.prsTownLbl = new System.Windows.Forms.Label();
-            this.prsCountyEntry = new System.Windows.Forms.TextBox();
-            this.prsCountyLbl = new System.Windows.Forms.Label();
-            this.prsTownEntry = new System.Windows.Forms.TextBox();
-            this.prsAddLn2Entry = new System.Windows.Forms.TextBox();
-            this.prsAddLn2Lbl = new System.Windows.Forms.Label();
-            this.prsAddLn1Entry = new System.Windows.Forms.TextBox();
-            this.prsAddLn1Lbl = new System.Windows.Forms.Label();
             this.prescriptionPanel = new System.Windows.Forms.Panel();
             this.btnPresMenu = new System.Windows.Forms.Button();
-            this.prsPatientGrp = new System.Windows.Forms.GroupBox();
-            this.prsFornameEntry = new System.Windows.Forms.TextBox();
-            this.prsForenameLbl = new System.Windows.Forms.Label();
-            this.presSurnameLbl = new System.Windows.Forms.Label();
-            this.prsSurnameEntry = new System.Windows.Forms.TextBox();
             this.btnApply = new System.Windows.Forms.Button();
             this.Staff_CB_NA = new System.Windows.Forms.ComboBox();
             this.staff_LBL_NA = new System.Windows.Forms.Label();
@@ -250,9 +230,7 @@
             this.PatientTestResults.SuspendLayout();
             this.prsPrescriptionGrp.SuspendLayout();
             this.prsNotesGrp.SuspendLayout();
-            this.prsAddressGrp.SuspendLayout();
             this.prescriptionPanel.SuspendLayout();
-            this.prsPatientGrp.SuspendLayout();
             this.editPatientPanel.SuspendLayout();
             this.newPatientPanel.SuspendLayout();
             this.findPatientPanel.SuspendLayout();
@@ -1114,7 +1092,7 @@
             this.prsPrescriptionGrp.Controls.Add(this.prsDateLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsQuantityLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameLbl);
-            this.prsPrescriptionGrp.Location = new System.Drawing.Point(370, 13);
+            this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 3);
             this.prsPrescriptionGrp.Name = "prsPrescriptionGrp";
             this.prsPrescriptionGrp.Size = new System.Drawing.Size(256, 207);
             this.prsPrescriptionGrp.TabIndex = 1;
@@ -1208,7 +1186,7 @@
             // btnPresCancel
             // 
             this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPresCancel.Location = new System.Drawing.Point(551, 250);
+            this.btnPresCancel.Location = new System.Drawing.Point(186, 216);
             this.btnPresCancel.Name = "btnPresCancel";
             this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
             this.btnPresCancel.TabIndex = 2;
@@ -1216,153 +1194,20 @@
             this.btnPresCancel.UseVisualStyleBackColor = true;
             this.btnPresCancel.Click += new System.EventHandler(this.mainMenuShow);
             // 
-            // prsDOBPicker
-            // 
-            this.prsDOBPicker.Location = new System.Drawing.Point(203, 44);
-            this.prsDOBPicker.Name = "prsDOBPicker";
-            this.prsDOBPicker.Size = new System.Drawing.Size(125, 20);
-            this.prsDOBPicker.TabIndex = 9;
-            // 
-            // prsTitleCombo
-            // 
-            this.prsTitleCombo.FormattingEnabled = true;
-            this.prsTitleCombo.Location = new System.Drawing.Point(61, 45);
-            this.prsTitleCombo.Name = "prsTitleCombo";
-            this.prsTitleCombo.Size = new System.Drawing.Size(100, 21);
-            this.prsTitleCombo.TabIndex = 8;
-            // 
-            // prsTitleLbl
-            // 
-            this.prsTitleLbl.AutoSize = true;
-            this.prsTitleLbl.Location = new System.Drawing.Point(6, 48);
-            this.prsTitleLbl.Name = "prsTitleLbl";
-            this.prsTitleLbl.Size = new System.Drawing.Size(27, 13);
-            this.prsTitleLbl.TabIndex = 7;
-            this.prsTitleLbl.Text = "Title";
-            // 
-            // prsDateOfBirthLbl
-            // 
-            this.prsDateOfBirthLbl.AutoSize = true;
-            this.prsDateOfBirthLbl.Location = new System.Drawing.Point(167, 48);
-            this.prsDateOfBirthLbl.Name = "prsDateOfBirthLbl";
-            this.prsDateOfBirthLbl.Size = new System.Drawing.Size(30, 13);
-            this.prsDateOfBirthLbl.TabIndex = 6;
-            this.prsDateOfBirthLbl.Text = "DOB";
-            // 
-            // prsAddressGrp
-            // 
-            this.prsAddressGrp.Controls.Add(this.prsPostCodeEntry);
-            this.prsAddressGrp.Controls.Add(this.prsPostCodeLbl);
-            this.prsAddressGrp.Controls.Add(this.prsTownLbl);
-            this.prsAddressGrp.Controls.Add(this.prsCountyEntry);
-            this.prsAddressGrp.Controls.Add(this.prsCountyLbl);
-            this.prsAddressGrp.Controls.Add(this.prsTownEntry);
-            this.prsAddressGrp.Controls.Add(this.prsAddLn2Entry);
-            this.prsAddressGrp.Controls.Add(this.prsAddLn2Lbl);
-            this.prsAddressGrp.Controls.Add(this.prsAddLn1Entry);
-            this.prsAddressGrp.Controls.Add(this.prsAddLn1Lbl);
-            this.prsAddressGrp.Location = new System.Drawing.Point(9, 72);
-            this.prsAddressGrp.Name = "prsAddressGrp";
-            this.prsAddressGrp.Size = new System.Drawing.Size(319, 126);
-            this.prsAddressGrp.TabIndex = 4;
-            this.prsAddressGrp.TabStop = false;
-            this.prsAddressGrp.Text = "Address";
-            // 
-            // prsPostCodeEntry
-            // 
-            this.prsPostCodeEntry.Location = new System.Drawing.Point(84, 97);
-            this.prsPostCodeEntry.Name = "prsPostCodeEntry";
-            this.prsPostCodeEntry.Size = new System.Drawing.Size(68, 20);
-            this.prsPostCodeEntry.TabIndex = 10;
-            // 
-            // prsPostCodeLbl
-            // 
-            this.prsPostCodeLbl.AutoSize = true;
-            this.prsPostCodeLbl.Location = new System.Drawing.Point(6, 100);
-            this.prsPostCodeLbl.Name = "prsPostCodeLbl";
-            this.prsPostCodeLbl.Size = new System.Drawing.Size(56, 13);
-            this.prsPostCodeLbl.TabIndex = 9;
-            this.prsPostCodeLbl.Text = "Post Code";
-            // 
-            // prsTownLbl
-            // 
-            this.prsTownLbl.AutoSize = true;
-            this.prsTownLbl.Location = new System.Drawing.Point(6, 74);
-            this.prsTownLbl.Name = "prsTownLbl";
-            this.prsTownLbl.Size = new System.Drawing.Size(56, 13);
-            this.prsTownLbl.TabIndex = 8;
-            this.prsTownLbl.Text = "Town/City";
-            // 
-            // prsCountyEntry
-            // 
-            this.prsCountyEntry.Location = new System.Drawing.Point(204, 71);
-            this.prsCountyEntry.Name = "prsCountyEntry";
-            this.prsCountyEntry.Size = new System.Drawing.Size(108, 20);
-            this.prsCountyEntry.TabIndex = 7;
-            // 
-            // prsCountyLbl
-            // 
-            this.prsCountyLbl.AutoSize = true;
-            this.prsCountyLbl.Location = new System.Drawing.Point(158, 74);
-            this.prsCountyLbl.Name = "prsCountyLbl";
-            this.prsCountyLbl.Size = new System.Drawing.Size(40, 13);
-            this.prsCountyLbl.TabIndex = 6;
-            this.prsCountyLbl.Text = "County";
-            // 
-            // prsTownEntry
-            // 
-            this.prsTownEntry.Location = new System.Drawing.Point(84, 71);
-            this.prsTownEntry.Name = "prsTownEntry";
-            this.prsTownEntry.Size = new System.Drawing.Size(68, 20);
-            this.prsTownEntry.TabIndex = 5;
-            // 
-            // prsAddLn2Entry
-            // 
-            this.prsAddLn2Entry.Location = new System.Drawing.Point(84, 45);
-            this.prsAddLn2Entry.Name = "prsAddLn2Entry";
-            this.prsAddLn2Entry.Size = new System.Drawing.Size(228, 20);
-            this.prsAddLn2Entry.TabIndex = 4;
-            // 
-            // prsAddLn2Lbl
-            // 
-            this.prsAddLn2Lbl.AutoSize = true;
-            this.prsAddLn2Lbl.Location = new System.Drawing.Point(6, 48);
-            this.prsAddLn2Lbl.Name = "prsAddLn2Lbl";
-            this.prsAddLn2Lbl.Size = new System.Drawing.Size(72, 13);
-            this.prsAddLn2Lbl.TabIndex = 3;
-            this.prsAddLn2Lbl.Text = "Address Ln. 2";
-            // 
-            // prsAddLn1Entry
-            // 
-            this.prsAddLn1Entry.Location = new System.Drawing.Point(84, 17);
-            this.prsAddLn1Entry.Name = "prsAddLn1Entry";
-            this.prsAddLn1Entry.Size = new System.Drawing.Size(228, 20);
-            this.prsAddLn1Entry.TabIndex = 2;
-            // 
-            // prsAddLn1Lbl
-            // 
-            this.prsAddLn1Lbl.AutoSize = true;
-            this.prsAddLn1Lbl.Location = new System.Drawing.Point(7, 20);
-            this.prsAddLn1Lbl.Name = "prsAddLn1Lbl";
-            this.prsAddLn1Lbl.Size = new System.Drawing.Size(72, 13);
-            this.prsAddLn1Lbl.TabIndex = 0;
-            this.prsAddLn1Lbl.Text = "Address Ln. 1";
-            // 
             // prescriptionPanel
             // 
             this.prescriptionPanel.Controls.Add(this.btnPresMenu);
-            this.prescriptionPanel.Controls.Add(this.prsPatientGrp);
             this.prescriptionPanel.Controls.Add(this.btnPresCancel);
             this.prescriptionPanel.Controls.Add(this.btnApply);
             this.prescriptionPanel.Controls.Add(this.prsPrescriptionGrp);
             this.prescriptionPanel.Location = new System.Drawing.Point(684, 11);
             this.prescriptionPanel.Name = "prescriptionPanel";
-            this.prescriptionPanel.Size = new System.Drawing.Size(645, 295);
+            this.prescriptionPanel.Size = new System.Drawing.Size(276, 295);
             this.prescriptionPanel.TabIndex = 44;
             // 
             // btnPresMenu
             // 
-            this.btnPresMenu.Location = new System.Drawing.Point(25, 250);
+            this.btnPresMenu.Location = new System.Drawing.Point(5, 216);
             this.btnPresMenu.Name = "btnPresMenu";
             this.btnPresMenu.Size = new System.Drawing.Size(75, 23);
             this.btnPresMenu.TabIndex = 4;
@@ -1370,60 +1215,9 @@
             this.btnPresMenu.UseVisualStyleBackColor = true;
             this.btnPresMenu.Click += new System.EventHandler(this.mainMenuShow);
             // 
-            // prsPatientGrp
-            // 
-            this.prsPatientGrp.AccessibleName = "Patient Details";
-            this.prsPatientGrp.Controls.Add(this.prsDOBPicker);
-            this.prsPatientGrp.Controls.Add(this.prsTitleCombo);
-            this.prsPatientGrp.Controls.Add(this.prsTitleLbl);
-            this.prsPatientGrp.Controls.Add(this.prsDateOfBirthLbl);
-            this.prsPatientGrp.Controls.Add(this.prsAddressGrp);
-            this.prsPatientGrp.Controls.Add(this.prsFornameEntry);
-            this.prsPatientGrp.Controls.Add(this.prsForenameLbl);
-            this.prsPatientGrp.Controls.Add(this.presSurnameLbl);
-            this.prsPatientGrp.Controls.Add(this.prsSurnameEntry);
-            this.prsPatientGrp.Location = new System.Drawing.Point(25, 13);
-            this.prsPatientGrp.Name = "prsPatientGrp";
-            this.prsPatientGrp.Size = new System.Drawing.Size(339, 207);
-            this.prsPatientGrp.TabIndex = 0;
-            this.prsPatientGrp.TabStop = false;
-            this.prsPatientGrp.Text = "Patient Details";
-            // 
-            // prsFornameEntry
-            // 
-            this.prsFornameEntry.Location = new System.Drawing.Point(228, 18);
-            this.prsFornameEntry.Name = "prsFornameEntry";
-            this.prsFornameEntry.Size = new System.Drawing.Size(100, 20);
-            this.prsFornameEntry.TabIndex = 3;
-            // 
-            // prsForenameLbl
-            // 
-            this.prsForenameLbl.AutoSize = true;
-            this.prsForenameLbl.Location = new System.Drawing.Point(167, 22);
-            this.prsForenameLbl.Name = "prsForenameLbl";
-            this.prsForenameLbl.Size = new System.Drawing.Size(54, 13);
-            this.prsForenameLbl.TabIndex = 2;
-            this.prsForenameLbl.Text = "Forename";
-            // 
-            // presSurnameLbl
-            // 
-            this.presSurnameLbl.AutoSize = true;
-            this.presSurnameLbl.Location = new System.Drawing.Point(6, 22);
-            this.presSurnameLbl.Name = "presSurnameLbl";
-            this.presSurnameLbl.Size = new System.Drawing.Size(49, 13);
-            this.presSurnameLbl.TabIndex = 1;
-            this.presSurnameLbl.Text = "Surname";
-            // 
-            // prsSurnameEntry
-            // 
-            this.prsSurnameEntry.Location = new System.Drawing.Point(61, 19);
-            this.prsSurnameEntry.Name = "prsSurnameEntry";
-            this.prsSurnameEntry.Size = new System.Drawing.Size(100, 20);
-            this.prsSurnameEntry.TabIndex = 0;
-            // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(451, 250);
+            this.btnApply.Location = new System.Drawing.Point(105, 216);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 3;
@@ -2124,14 +1918,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2444,6 +2238,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1631, 777);
+            this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.findPatientPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.newAppointmentPanel);
@@ -2451,7 +2246,6 @@
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
-            this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.mainMenuPanel);
             this.Name = "finalUI";
@@ -2478,11 +2272,7 @@
             this.prsPrescriptionGrp.PerformLayout();
             this.prsNotesGrp.ResumeLayout(false);
             this.prsNotesGrp.PerformLayout();
-            this.prsAddressGrp.ResumeLayout(false);
-            this.prsAddressGrp.PerformLayout();
             this.prescriptionPanel.ResumeLayout(false);
-            this.prsPatientGrp.ResumeLayout(false);
-            this.prsPatientGrp.PerformLayout();
             this.editPatientPanel.ResumeLayout(false);
             this.editPatientPanel.PerformLayout();
             this.newPatientPanel.ResumeLayout(false);
@@ -2604,27 +2394,7 @@
         private System.Windows.Forms.Label prsQuantityLbl;
         private System.Windows.Forms.Label prsPrescriptionNameLbl;
         private System.Windows.Forms.Button btnPresCancel;
-        private System.Windows.Forms.DateTimePicker prsDOBPicker;
-        private System.Windows.Forms.ComboBox prsTitleCombo;
-        private System.Windows.Forms.Label prsTitleLbl;
-        private System.Windows.Forms.Label prsDateOfBirthLbl;
-        private System.Windows.Forms.GroupBox prsAddressGrp;
-        private System.Windows.Forms.TextBox prsPostCodeEntry;
-        private System.Windows.Forms.Label prsPostCodeLbl;
-        private System.Windows.Forms.Label prsTownLbl;
-        private System.Windows.Forms.TextBox prsCountyEntry;
-        private System.Windows.Forms.Label prsCountyLbl;
-        private System.Windows.Forms.TextBox prsTownEntry;
-        private System.Windows.Forms.TextBox prsAddLn2Entry;
-        private System.Windows.Forms.Label prsAddLn2Lbl;
-        private System.Windows.Forms.TextBox prsAddLn1Entry;
-        private System.Windows.Forms.Label prsAddLn1Lbl;
         private System.Windows.Forms.Panel prescriptionPanel;
-        private System.Windows.Forms.GroupBox prsPatientGrp;
-        private System.Windows.Forms.TextBox prsFornameEntry;
-        private System.Windows.Forms.Label prsForenameLbl;
-        private System.Windows.Forms.Label presSurnameLbl;
-        private System.Windows.Forms.TextBox prsSurnameEntry;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.ComboBox Staff_CB_NA;
         private System.Windows.Forms.Label staff_LBL_NA;
