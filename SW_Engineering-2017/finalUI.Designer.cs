@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -115,8 +115,8 @@
             this.PatientTR = new System.Windows.Forms.Label();
             this.StaffNameTRS = new System.Windows.Forms.Label();
             this.prsPrescriptionGrp = new System.Windows.Forms.GroupBox();
-            this.prsRenewCombo = new System.Windows.Forms.ComboBox();
-            this.prsRenewLbl = new System.Windows.Forms.Label();
+            this.prsDurationCombo = new System.Windows.Forms.ComboBox();
+            this.prsDurationLbl = new System.Windows.Forms.Label();
             this.prsNotesGrp = new System.Windows.Forms.GroupBox();
             this.prsNotesEntry = new System.Windows.Forms.TextBox();
             this.prsQuantityEntry = new System.Windows.Forms.TextBox();
@@ -1083,8 +1083,8 @@
             // 
             // prsPrescriptionGrp
             // 
-            this.prsPrescriptionGrp.Controls.Add(this.prsRenewCombo);
-            this.prsPrescriptionGrp.Controls.Add(this.prsRenewLbl);
+            this.prsPrescriptionGrp.Controls.Add(this.prsDurationCombo);
+            this.prsPrescriptionGrp.Controls.Add(this.prsDurationLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsNotesGrp);
             this.prsPrescriptionGrp.Controls.Add(this.prsQuantityEntry);
             this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameEntry);
@@ -1099,22 +1099,35 @@
             this.prsPrescriptionGrp.TabStop = false;
             this.prsPrescriptionGrp.Text = "Prescription Details";
             // 
-            // prsRenewCombo
+            // prsDurationCombo
             // 
-            this.prsRenewCombo.FormattingEnabled = true;
-            this.prsRenewCombo.Location = new System.Drawing.Point(58, 96);
-            this.prsRenewCombo.Name = "prsRenewCombo";
-            this.prsRenewCombo.Size = new System.Drawing.Size(54, 21);
-            this.prsRenewCombo.TabIndex = 8;
+            this.prsDurationCombo.FormattingEnabled = true;
+            this.prsDurationCombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.prsDurationCombo.Location = new System.Drawing.Point(99, 96);
+            this.prsDurationCombo.Name = "prsDurationCombo";
+            this.prsDurationCombo.Size = new System.Drawing.Size(151, 21);
+            this.prsDurationCombo.TabIndex = 8;
             // 
-            // prsRenewLbl
+            // prsDurationLbl
             // 
-            this.prsRenewLbl.AutoSize = true;
-            this.prsRenewLbl.Location = new System.Drawing.Point(6, 99);
-            this.prsRenewLbl.Name = "prsRenewLbl";
-            this.prsRenewLbl.Size = new System.Drawing.Size(41, 13);
-            this.prsRenewLbl.TabIndex = 7;
-            this.prsRenewLbl.Text = "Renew";
+            this.prsDurationLbl.AutoSize = true;
+            this.prsDurationLbl.Location = new System.Drawing.Point(6, 100);
+            this.prsDurationLbl.Name = "prsDurationLbl";
+            this.prsDurationLbl.Size = new System.Drawing.Size(87, 13);
+            this.prsDurationLbl.TabIndex = 7;
+            this.prsDurationLbl.Text = "Duration (weeks)";
             // 
             // prsNotesGrp
             // 
@@ -1137,29 +1150,29 @@
             // 
             // prsQuantityEntry
             // 
-            this.prsQuantityEntry.Location = new System.Drawing.Point(58, 44);
+            this.prsQuantityEntry.Location = new System.Drawing.Point(99, 44);
             this.prsQuantityEntry.Name = "prsQuantityEntry";
-            this.prsQuantityEntry.Size = new System.Drawing.Size(116, 20);
+            this.prsQuantityEntry.Size = new System.Drawing.Size(151, 20);
             this.prsQuantityEntry.TabIndex = 5;
             // 
             // prsPrescriptionNameEntry
             // 
-            this.prsPrescriptionNameEntry.Location = new System.Drawing.Point(58, 19);
+            this.prsPrescriptionNameEntry.Location = new System.Drawing.Point(99, 18);
             this.prsPrescriptionNameEntry.Name = "prsPrescriptionNameEntry";
-            this.prsPrescriptionNameEntry.Size = new System.Drawing.Size(192, 20);
+            this.prsPrescriptionNameEntry.Size = new System.Drawing.Size(151, 20);
             this.prsPrescriptionNameEntry.TabIndex = 4;
             // 
             // prsDatePicker
             // 
-            this.prsDatePicker.Location = new System.Drawing.Point(58, 70);
+            this.prsDatePicker.Location = new System.Drawing.Point(99, 70);
             this.prsDatePicker.Name = "prsDatePicker";
-            this.prsDatePicker.Size = new System.Drawing.Size(116, 20);
+            this.prsDatePicker.Size = new System.Drawing.Size(151, 20);
             this.prsDatePicker.TabIndex = 3;
             // 
             // prsDateLbl
             // 
             this.prsDateLbl.AutoSize = true;
-            this.prsDateLbl.Location = new System.Drawing.Point(6, 73);
+            this.prsDateLbl.Location = new System.Drawing.Point(63, 74);
             this.prsDateLbl.Name = "prsDateLbl";
             this.prsDateLbl.Size = new System.Drawing.Size(30, 13);
             this.prsDateLbl.TabIndex = 2;
@@ -1168,7 +1181,7 @@
             // prsQuantityLbl
             // 
             this.prsQuantityLbl.AutoSize = true;
-            this.prsQuantityLbl.Location = new System.Drawing.Point(6, 48);
+            this.prsQuantityLbl.Location = new System.Drawing.Point(47, 48);
             this.prsQuantityLbl.Name = "prsQuantityLbl";
             this.prsQuantityLbl.Size = new System.Drawing.Size(46, 13);
             this.prsQuantityLbl.TabIndex = 1;
@@ -1177,7 +1190,7 @@
             // prsPrescriptionNameLbl
             // 
             this.prsPrescriptionNameLbl.AutoSize = true;
-            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(6, 22);
+            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(58, 22);
             this.prsPrescriptionNameLbl.Name = "prsPrescriptionNameLbl";
             this.prsPrescriptionNameLbl.Size = new System.Drawing.Size(35, 13);
             this.prsPrescriptionNameLbl.TabIndex = 0;
@@ -1918,14 +1931,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2383,8 +2396,8 @@
         private System.Windows.Forms.Label PatientTR;
         private System.Windows.Forms.Label StaffNameTRS;
         private System.Windows.Forms.GroupBox prsPrescriptionGrp;
-        private System.Windows.Forms.ComboBox prsRenewCombo;
-        private System.Windows.Forms.Label prsRenewLbl;
+        private System.Windows.Forms.ComboBox prsDurationCombo;
+        private System.Windows.Forms.Label prsDurationLbl;
         private System.Windows.Forms.GroupBox prsNotesGrp;
         private System.Windows.Forms.TextBox prsNotesEntry;
         private System.Windows.Forms.TextBox prsQuantityEntry;
