@@ -16,7 +16,7 @@ namespace SW_Engineering_2017
         /****************************************** Private Strings************************************/
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType;
-        private bool PrivatePatientFound = false, NewAppointment = true;
+        private bool PrivatePatientFound = false, NewAppointment = true, NewPrescription = true;
         private int loginAttempt = 0;
         #endregion
 
@@ -252,12 +252,12 @@ namespace SW_Engineering_2017
             //Set the access so that receptionist can't change perscriptions and only Nurse / GP can.
             if (access.accessType == "Receptionist")
             {
-                newPrescriptions_FP_B.Visible = false;
+                newPrescription_FP_B.Visible = false;
 
             }
             else
             {
-                newPrescriptions_FP_B.Visible = true;
+                newPrescription_FP_B.Visible = true;
 
             }
             if (!findPatientPanel.Visible)
@@ -1138,14 +1138,35 @@ namespace SW_Engineering_2017
         #endregion
 
         #region New Prescription
-        private void newPrescriptions_FP_B_Click(object sender, EventArgs e)
+        #region Load New Prescription
+        private void newPrescription_FP_B_Click(object sender, EventArgs e)
         {
-            if (!prescriptionPanel.Visible)
+            if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
-                prescriptionPanel.Visible = true;
-                findPatientPanel.Visible = false;
+                // Update Logger
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : ID SELECTED");
+
+                prsHeader.Text = "New Prescription";
+                NewPrescription = true;
+
+                // select patient row and gets the patient ID
+                int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
+                privatePatientID = selectedRow.Cells[0].Value.ToString();
+                //display PatientID
+                prsPrescriptionGrp.Text = "Patient ID: " + privatePatientID;
+
+
+            }
+            else
+            {
+                // Display error message if a patient hasn't been selected.
+                error_FP_LBL.Text = "Patient Required";
+                // Updates Logger
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : ID NOT SELECTED");
             }
         }
+        #endregion
         #endregion
 
         #region Extend Prescription

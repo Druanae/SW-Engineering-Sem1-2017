@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -127,6 +127,7 @@
             this.prsPrescriptionNameLbl = new System.Windows.Forms.Label();
             this.btnPresCancel = new System.Windows.Forms.Button();
             this.prescriptionPanel = new System.Windows.Forms.Panel();
+            this.prsHeader = new System.Windows.Forms.Label();
             this.btnPresMenu = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.Staff_CB_NA = new System.Windows.Forms.ComboBox();
@@ -137,7 +138,7 @@
             this.appointmentDate_PCK_NA = new System.Windows.Forms.DateTimePicker();
             this.AppointmentHeader_L_NA = new System.Windows.Forms.Label();
             this.extendPrescriptions_FP_B = new System.Windows.Forms.Button();
-            this.newPrescriptions_FP_B = new System.Windows.Forms.Button();
+            this.newPrescription_FP_B = new System.Windows.Forms.Button();
             this.Cancel_FP_B = new System.Windows.Forms.Button();
             this.appointmentDate_LB_NA = new System.Windows.Forms.Label();
             this.staffType_LBL_AP = new System.Windows.Forms.Label();
@@ -1092,7 +1093,7 @@
             this.prsPrescriptionGrp.Controls.Add(this.prsDateLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsQuantityLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameLbl);
-            this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 3);
+            this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 53);
             this.prsPrescriptionGrp.Name = "prsPrescriptionGrp";
             this.prsPrescriptionGrp.Size = new System.Drawing.Size(256, 207);
             this.prsPrescriptionGrp.TabIndex = 1;
@@ -1200,7 +1201,7 @@
             // btnPresCancel
             // 
             this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPresCancel.Location = new System.Drawing.Point(186, 216);
+            this.btnPresCancel.Location = new System.Drawing.Point(186, 266);
             this.btnPresCancel.Name = "btnPresCancel";
             this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
             this.btnPresCancel.TabIndex = 2;
@@ -1210,6 +1211,7 @@
             // 
             // prescriptionPanel
             // 
+            this.prescriptionPanel.Controls.Add(this.prsHeader);
             this.prescriptionPanel.Controls.Add(this.btnPresMenu);
             this.prescriptionPanel.Controls.Add(this.btnPresCancel);
             this.prescriptionPanel.Controls.Add(this.btnApply);
@@ -1219,9 +1221,20 @@
             this.prescriptionPanel.Size = new System.Drawing.Size(276, 295);
             this.prescriptionPanel.TabIndex = 44;
             // 
+            // prsHeader
+            // 
+            this.prsHeader.AutoSize = true;
+            this.prsHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prsHeader.Location = new System.Drawing.Point(8, 7);
+            this.prsHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.prsHeader.Name = "prsHeader";
+            this.prsHeader.Size = new System.Drawing.Size(158, 31);
+            this.prsHeader.TabIndex = 71;
+            this.prsHeader.Text = "Prescription";
+            // 
             // btnPresMenu
             // 
-            this.btnPresMenu.Location = new System.Drawing.Point(5, 216);
+            this.btnPresMenu.Location = new System.Drawing.Point(5, 266);
             this.btnPresMenu.Name = "btnPresMenu";
             this.btnPresMenu.Size = new System.Drawing.Size(75, 23);
             this.btnPresMenu.TabIndex = 4;
@@ -1231,7 +1244,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(105, 216);
+            this.btnApply.Location = new System.Drawing.Point(105, 266);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 3;
@@ -1331,17 +1344,17 @@
             this.extendPrescriptions_FP_B.Text = "Extend";
             this.extendPrescriptions_FP_B.UseVisualStyleBackColor = true;
             // 
-            // newPrescriptions_FP_B
+            // newPrescription_FP_B
             // 
-            this.newPrescriptions_FP_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newPrescriptions_FP_B.Location = new System.Drawing.Point(905, 613);
-            this.newPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.newPrescriptions_FP_B.Name = "newPrescriptions_FP_B";
-            this.newPrescriptions_FP_B.Size = new System.Drawing.Size(80, 29);
-            this.newPrescriptions_FP_B.TabIndex = 46;
-            this.newPrescriptions_FP_B.Text = "New ";
-            this.newPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            this.newPrescriptions_FP_B.Click += new System.EventHandler(this.newPrescriptions_FP_B_Click);
+            this.newPrescription_FP_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newPrescription_FP_B.Location = new System.Drawing.Point(905, 613);
+            this.newPrescription_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.newPrescription_FP_B.Name = "newPrescription_FP_B";
+            this.newPrescription_FP_B.Size = new System.Drawing.Size(80, 29);
+            this.newPrescription_FP_B.TabIndex = 46;
+            this.newPrescription_FP_B.Text = "New ";
+            this.newPrescription_FP_B.UseVisualStyleBackColor = true;
+            this.newPrescription_FP_B.Click += new System.EventHandler(this.newPrescription_FP_B_Click);
             // 
             // Cancel_FP_B
             // 
@@ -1911,7 +1924,7 @@
             this.findPatientPanel.Controls.Add(this.NamePanel);
             this.findPatientPanel.Controls.Add(this.patients_DGV_FP);
             this.findPatientPanel.Controls.Add(this.extendPrescriptions_FP_B);
-            this.findPatientPanel.Controls.Add(this.newPrescriptions_FP_B);
+            this.findPatientPanel.Controls.Add(this.newPrescription_FP_B);
             this.findPatientPanel.Controls.Add(this.Cancel_FP_B);
             this.findPatientPanel.Controls.Add(this.changeAppointment_FP_B);
             this.findPatientPanel.Controls.Add(this.newAppointment_FP_B);
@@ -1932,14 +1945,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2287,6 +2300,7 @@
             this.prsNotesGrp.ResumeLayout(false);
             this.prsNotesGrp.PerformLayout();
             this.prescriptionPanel.ResumeLayout(false);
+            this.prescriptionPanel.PerformLayout();
             this.editPatientPanel.ResumeLayout(false);
             this.editPatientPanel.PerformLayout();
             this.newPatientPanel.ResumeLayout(false);
@@ -2418,7 +2432,7 @@
         private System.Windows.Forms.DateTimePicker appointmentDate_PCK_NA;
         private System.Windows.Forms.Label AppointmentHeader_L_NA;
         private System.Windows.Forms.Button extendPrescriptions_FP_B;
-        private System.Windows.Forms.Button newPrescriptions_FP_B;
+        private System.Windows.Forms.Button newPrescription_FP_B;
         private System.Windows.Forms.Button Cancel_FP_B;
         private System.Windows.Forms.Label appointmentDate_LB_NA;
         private System.Windows.Forms.Label staffType_LBL_AP;
@@ -2502,5 +2516,6 @@
         private System.Windows.Forms.TextBox addMedicalRecord_TB_FP;
         private System.Windows.Forms.DataGridView medicalHistory_DVG_FP;
         private System.Windows.Forms.Label welcome_L;
+        private System.Windows.Forms.Label prsHeader;
     }
 }
