@@ -613,6 +613,9 @@ namespace SW_Engineering_2017
         }
         #endregion
 
+
+        #endregion
+
         #region Appointment
 
         #region New Appointment
@@ -1082,7 +1085,6 @@ namespace SW_Engineering_2017
         }
         #endregion
 
-        #endregion
         #endregion
 
         #region Medical Record
