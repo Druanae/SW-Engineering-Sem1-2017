@@ -42,6 +42,8 @@ namespace SW_Engineering_2017
 
         private void finalUI_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
             /************************************ Date related Code*******************************************/
             #region Date Related Code
             //set the values appointments
@@ -85,17 +87,29 @@ namespace SW_Engineering_2017
         #region Panel Positoning Code
         private void Positioning()
         {
-            mainMenuPanel.Location = new Point(0, 0);
-            prescriptionPanel.Location = new Point(0, 0);
-            testResultSearchPanel.Location = new Point(0, 0);
-            staffScheduleSearchPanel.Location = new Point(0, 0);
-            changeStaffSchedulePanel.Location = new Point(0, 0);
-            newPatientPanel.Location = new Point(0, 0);
-            findPatientPanel.Location = new Point(0, 0);
-            editPatientPanel.Location = new Point(0, 0);
-            newAppointmentPanel.Location = new Point(0, 0);
-            loginPanel.Location = new Point(0, 0);
-            newPatientPanel.Location = new Point(0, 0);
+            mainMenuPanel.Location = new Point(this.Width/2 - mainMenuPanel.Width/2, this.Height/2 - mainMenuPanel.Height/2);
+            mainMenuPanel.Anchor = AnchorStyles.None;
+            prescriptionPanel.Location = new Point(this.Width / 2 - prescriptionPanel.Width / 2, this.Height / 2 - prescriptionPanel.Height / 2);
+            prescriptionPanel.Anchor = AnchorStyles.None;
+            testResultSearchPanel.Location = new Point(this.Width / 2 - testResultSearchPanel.Width / 2, this.Height / 2 - testResultSearchPanel.Height / 2);
+            testResultSearchPanel.Anchor = AnchorStyles.None;
+            staffScheduleSearchPanel.Location = new Point(this.Width / 2 - staffScheduleSearchPanel.Width / 2, this.Height / 2 - staffScheduleSearchPanel.Height / 2);
+            staffScheduleSearchPanel.Anchor = AnchorStyles.None;
+            changeStaffSchedulePanel.Location = new Point(this.Width / 2 - changeStaffSchedulePanel.Width / 2, this.Height / 2 - changeStaffSchedulePanel.Height / 2);
+            changeStaffSchedulePanel.Anchor = AnchorStyles.None;
+            newPatientPanel.Location = new Point(this.Width / 2 - newPatientPanel.Width / 2, this.Height / 2 - newPatientPanel.Height / 2);
+            changeStaffSchedulePanel.Anchor = AnchorStyles.None;
+            findPatientPanel.Location = new Point(this.Width / 2 - findPatientPanel.Width / 2, this.Height / 2 - findPatientPanel.Height / 2);
+            findPatientPanel.Anchor = AnchorStyles.None;
+            editPatientPanel.Location = new Point(this.Width / 2 - editPatientPanel.Width / 2, this.Height / 2 - editPatientPanel.Height / 2);
+            editPatientPanel.Anchor = AnchorStyles.None;
+            newAppointmentPanel.Location = new Point(this.Width / 2 - newAppointmentPanel.Width / 2, this.Height / 2 - newAppointmentPanel.Height / 2);
+            newAppointmentPanel.Anchor = AnchorStyles.None;
+            loginPanel.Location = new Point(this.Width / 2 - loginPanel.Width / 2, this.Height / 2 - loginPanel.Height / 2);
+            loginPanel.Anchor = AnchorStyles.None;
+            newPatientPanel.Location = new Point(this.Width / 2 - newPatientPanel.Width / 2, this.Height / 2 - newPatientPanel.Height / 2);
+            newPatientPanel.Anchor = AnchorStyles.None;
+
         }
         #endregion
 
@@ -103,7 +117,7 @@ namespace SW_Engineering_2017
 
         #region Login 
         // This class is used so that the string can be used to determin what staff member has access to what.
-        public static class access
+        private static class access
         {
             public static string accessType;
         }
@@ -122,8 +136,10 @@ namespace SW_Engineering_2017
             string loginID = userName_L_tb.Text;
             string loginPassword = password_L_tb.Text;
             string loginPermission;
-            
-            
+            welcome_L.Text ="Logged in as user: "+ loginID;
+
+
+
 
             if (loginID == "" || loginPassword == "") // Checks for empty login or password
             {
@@ -151,10 +167,13 @@ namespace SW_Engineering_2017
                                 if (loginPermission == "Receptionist") // if it is the receptionst give access to the add patient section
                                 {
                                     addPatientBTN.Visible = true;
+                                    newMedicalHistory_FP_B.Visible = false;
                                 }
                                 else // if not the receptionist disable add patient
                                 {
                                     addPatientBTN.Visible = false;
+                                    newMedicalHistory_FP_B.Visible = true;
+
                                 }
                                 loginErrorlbl.Visible = false;
                                 mainMenuPanel.Visible = true;
@@ -876,6 +895,7 @@ namespace SW_Engineering_2017
             }
         }
         #endregion
+
         #endregion
 
         #region Load Appointment
@@ -1082,6 +1102,7 @@ namespace SW_Engineering_2017
            
             if ((addMedicalRecord_TB_FP.Text != "") && (PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
+                
                 int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex; //Select patient row
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex]; // Show in Datagrid view
                 privatePatientID = selectedRow.Cells[0].Value.ToString(); //Set the USerID to the selected row
