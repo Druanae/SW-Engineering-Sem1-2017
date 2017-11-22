@@ -17,6 +17,7 @@ namespace SW_Engineering_2017
         private string TownCity;
         private string County;
         private string Postcode;
+        private string PatientID;
 
         public static Patient instance
         {
@@ -41,7 +42,11 @@ namespace SW_Engineering_2017
             County= county;
             Postcode = postcode;
         }
+        public void setPatientID(string patientID)
+        {
 
+            PatientID = patientID;
+        }
         public string addPatient()
         {
             //Adds patient to the database
@@ -63,5 +68,13 @@ namespace SW_Engineering_2017
 
             return dataRow.ItemArray.GetValue(0).ToString();
         }
+        public void editPatient()
+        {
+            //Adds patient to the database
+            Connection.getDBConnectionInstance().updatePatient(PatientID, Firstname, Surname, DOB, AddressLine, TownCity, County, Postcode);
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + PatientID + "\r\n  Patient Updated?: Yes");
+
+        }
+        
     }
 }

@@ -21,6 +21,8 @@ namespace SW_Engineering_2017
         private Validation val = new Validation();
 
         private Appointment appointment = new Appointment();
+        private Patient patient = new Patient();
+        private medicalRecord MedicalRecord = new medicalRecord();
 
         #endregion
 
@@ -411,7 +413,6 @@ namespace SW_Engineering_2017
         private void confirm_NP_BTN_Click(object sender, EventArgs e)
         {
             string PatientID;
-            Patient patient = new Patient();
             String firstname = firstName_NP_TB.Text, surname = surname_NP_TB.Text, addressLine = address_NP_TB.Text, townCity = townCity_NP_TB.Text, county = county_NP_TB.Text, postcode = postcode_NP_TB.Text, errorMessage = "";
             DateTime dob = dob_EP_PCK.Value;
 
@@ -509,11 +510,12 @@ namespace SW_Engineering_2017
             //Validates User inputs and stores results in errorMessage
             errorMessage = validate_patient_input(firstname, surname, addressLine, townCity, county, postcode);
             //check if there are no error
+
             if (errorMessage == "")
             {
-                //Adds patient to the database
-                Connection.getDBConnectionInstance().updatePatient(privatePatientID, firstname, surname, dob, addressLine, townCity, county, postcode);
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: Yes");
+                patient.setPatientID(privatePatientID);
+                patient.setPatientInfo(firstname, surname, dob, addressLine, townCity, county, postcode);
+                patient.editPatient();
                 error_EP_L.Text = "Patient infomation Updated";
                 clearEditPatient(); // Clear text box data.
 
@@ -525,6 +527,7 @@ namespace SW_Engineering_2017
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Attemp to modify patient information - \r\n  PatientID:" + privatePatientID + "\r\n  Patient Updated?: No");
 
             }
+
 
         }
 
@@ -1093,12 +1096,9 @@ namespace SW_Engineering_2017
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex]; // Show in Datagrid view
                 privatePatientID = selectedRow.Cells[0].Value.ToString(); //Set the USerID to the selected row
                 medicalRecord = addMedicalRecord_TB_FP.Text;
-
-
+                //Runs medicalRecord class
+                MedicalRecord.addMedicalRecord(privatePatientID,medicalRecord);
                 //Adds medicalRecord to the database
-                Connection.getDBConnectionInstance().addmedicalRecord(privatePatientID, medicalRecord);
-                //Log for successfu ladding of medical record
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\n Added Medical record- \r\n  PatientID:" + privatePatientID + "\r\n  Record Add successful?: Yes");
                 medicalRecordViewer();
                 addMedicalRecord_TB_FP.Clear(); //Clear Datagrid text box
 
