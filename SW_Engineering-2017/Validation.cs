@@ -198,5 +198,44 @@ namespace SW_Engineering_2017
             //return errorMessage
             return errormessage;
         }
+        public string validateAppointment(string staffType,string staff,string appointmentTime)
+        {
+            string errormessage = "";
+            if (staffType != "")
+            {
+                //validates staff member was selected
+                if (staff != "")
+                {
+                    //validates time was selected
+                    if (appointmentTime != "")
+                    {
+                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Ap  StaffID:" + staff.ToString() + "\r\n Appointment Valided");
+                    }
+                    else
+                    {
+                        //if user doesn't select time then displays errormessage 
+                        errormessage = "time needs to be Selected";
+                        //Updates logger 
+                        Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Ap  StaffID:" + staff.ToString()+"\r\n Appointment Time not selected");
+                    }
+                }
+                else
+                {
+                    //if user doesn't select staff member then displays errormessage 
+                    errormessage = "staff needs to be Selected";
+                    //Updates logger 
+                    Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appointment Table:\r\nStaffID:" + staff.ToString() + "\r\n  Appointment Date: Not Selected");
+                }
+
+            }
+            else
+            {
+                //if user doesn't select staff typ then displays errormessage 
+                errormessage = "staff Type needs to be Selected";
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "\r\nAdd Appointment to Appointment Table:\r\nStaffID:" + staff.ToString() + "\r\n Appointment Time not selected");
+            }
+            return errormessage;
+        }
     }
 }
