@@ -409,7 +409,7 @@ namespace SW_Engineering_2017
         }
         #endregion
 
-        #region Add Patient Code
+        #region Add Patient
         private void confirm_NP_BTN_Click(object sender, EventArgs e)
         {
             string PatientID;

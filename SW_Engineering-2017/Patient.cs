@@ -34,6 +34,7 @@ namespace SW_Engineering_2017
         }
         public void setPatientInfo(string firstname, string surname, DateTime dob, string addressLine, string townCity, string county, string postcode)
         {
+            //set private variables to valid inputs
             Firstname = firstname;
             Surname = surname;
             DOB=dob;
@@ -47,6 +48,7 @@ namespace SW_Engineering_2017
 
             PatientID = patientID;
         }
+
         public string addPatient()
         {
             //Adds patient to the database

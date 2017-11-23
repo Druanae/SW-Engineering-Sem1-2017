@@ -1,14 +1,19 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SW_Engineering_2017;
 
-namespace UnitTests
+
+namespace SW_Engineering_2017
 {
     [TestClass]
-    public class UnitTest1
+    public class addPatient
     {
         [TestMethod]
-        public void TestMethod1()
+        public void AddPatient()
         {
+            
+
+            
         }
     }
 }

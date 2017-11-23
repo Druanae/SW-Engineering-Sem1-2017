@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -2001,25 +2001,27 @@
             this.newPatientPanel.Controls.Add(this.surname_NP_LBL);
             this.newPatientPanel.Controls.Add(this.firstName_NP_TB);
             this.newPatientPanel.Controls.Add(this.firstName_NP_LBL);
-            this.newPatientPanel.Location = new System.Drawing.Point(1216, 615);
+            this.newPatientPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newPatientPanel.Location = new System.Drawing.Point(1264, 4);
             this.newPatientPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.newPatientPanel.Name = "newPatientPanel";
-            this.newPatientPanel.Size = new System.Drawing.Size(677, 290);
+            this.newPatientPanel.Size = new System.Drawing.Size(828, 420);
             this.newPatientPanel.TabIndex = 49;
             // 
             // county_NP_TB
             // 
-            this.county_NP_TB.Location = new System.Drawing.Point(439, 134);
+            this.county_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.county_NP_TB.Location = new System.Drawing.Point(498, 149);
             this.county_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.county_NP_TB.Name = "county_NP_TB";
-            this.county_NP_TB.Size = new System.Drawing.Size(100, 22);
+            this.county_NP_TB.Size = new System.Drawing.Size(124, 27);
             this.county_NP_TB.TabIndex = 6;
             // 
             // county_NP_L
             // 
             this.county_NP_L.AutoSize = true;
             this.county_NP_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.county_NP_L.Location = new System.Drawing.Point(321, 132);
+            this.county_NP_L.Location = new System.Drawing.Point(417, 149);
             this.county_NP_L.Name = "county_NP_L";
             this.county_NP_L.Size = new System.Drawing.Size(75, 25);
             this.county_NP_L.TabIndex = 20;
@@ -2028,15 +2030,15 @@
             // error_NP_L
             // 
             this.error_NP_L.AutoSize = true;
-            this.error_NP_L.Location = new System.Drawing.Point(5, 170);
+            this.error_NP_L.Location = new System.Drawing.Point(5, 199);
             this.error_NP_L.Name = "error_NP_L";
-            this.error_NP_L.Size = new System.Drawing.Size(0, 17);
+            this.error_NP_L.Size = new System.Drawing.Size(0, 20);
             this.error_NP_L.TabIndex = 18;
             // 
             // confirm_NP_BTN
             // 
             this.confirm_NP_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirm_NP_BTN.Location = new System.Drawing.Point(543, 250);
+            this.confirm_NP_BTN.Location = new System.Drawing.Point(572, 293);
             this.confirm_NP_BTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.confirm_NP_BTN.Name = "confirm_NP_BTN";
             this.confirm_NP_BTN.Size = new System.Drawing.Size(117, 36);
@@ -2048,7 +2050,7 @@
             // cancel_NP_BTN
             // 
             this.cancel_NP_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel_NP_BTN.Location = new System.Drawing.Point(388, 250);
+            this.cancel_NP_BTN.Location = new System.Drawing.Point(417, 293);
             this.cancel_NP_BTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cancel_NP_BTN.Name = "cancel_NP_BTN";
             this.cancel_NP_BTN.Size = new System.Drawing.Size(93, 36);
@@ -2059,17 +2061,18 @@
             // 
             // townCity_NP_TB
             // 
-            this.townCity_NP_TB.Location = new System.Drawing.Point(439, 101);
+            this.townCity_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.townCity_NP_TB.Location = new System.Drawing.Point(498, 109);
             this.townCity_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.townCity_NP_TB.Name = "townCity_NP_TB";
-            this.townCity_NP_TB.Size = new System.Drawing.Size(100, 22);
+            this.townCity_NP_TB.Size = new System.Drawing.Size(124, 27);
             this.townCity_NP_TB.TabIndex = 5;
             // 
             // townCity_NP_LBL
             // 
             this.townCity_NP_LBL.AutoSize = true;
             this.townCity_NP_LBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.townCity_NP_LBL.Location = new System.Drawing.Point(320, 100);
+            this.townCity_NP_LBL.Location = new System.Drawing.Point(381, 113);
             this.townCity_NP_LBL.Name = "townCity_NP_LBL";
             this.townCity_NP_LBL.Size = new System.Drawing.Size(111, 25);
             this.townCity_NP_LBL.TabIndex = 17;
@@ -2077,17 +2080,18 @@
             // 
             // postcode_NP_TB
             // 
-            this.postcode_NP_TB.Location = new System.Drawing.Point(439, 162);
+            this.postcode_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postcode_NP_TB.Location = new System.Drawing.Point(498, 188);
             this.postcode_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.postcode_NP_TB.Name = "postcode_NP_TB";
-            this.postcode_NP_TB.Size = new System.Drawing.Size(100, 22);
+            this.postcode_NP_TB.Size = new System.Drawing.Size(124, 27);
             this.postcode_NP_TB.TabIndex = 7;
             // 
             // postcode_NP_LBL
             // 
             this.postcode_NP_LBL.AutoSize = true;
             this.postcode_NP_LBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.postcode_NP_LBL.Location = new System.Drawing.Point(321, 160);
+            this.postcode_NP_LBL.Location = new System.Drawing.Point(398, 187);
             this.postcode_NP_LBL.Name = "postcode_NP_LBL";
             this.postcode_NP_LBL.Size = new System.Drawing.Size(94, 25);
             this.postcode_NP_LBL.TabIndex = 11;
@@ -2095,17 +2099,18 @@
             // 
             // address_NP_TB
             // 
-            this.address_NP_TB.Location = new System.Drawing.Point(439, 73);
+            this.address_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.address_NP_TB.Location = new System.Drawing.Point(498, 75);
             this.address_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.address_NP_TB.Name = "address_NP_TB";
-            this.address_NP_TB.Size = new System.Drawing.Size(163, 22);
+            this.address_NP_TB.Size = new System.Drawing.Size(187, 27);
             this.address_NP_TB.TabIndex = 4;
             // 
             // address_NP_LBL
             // 
             this.address_NP_LBL.AutoSize = true;
             this.address_NP_LBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.address_NP_LBL.Location = new System.Drawing.Point(320, 73);
+            this.address_NP_LBL.Location = new System.Drawing.Point(407, 74);
             this.address_NP_LBL.Name = "address_NP_LBL";
             this.address_NP_LBL.Size = new System.Drawing.Size(85, 25);
             this.address_NP_LBL.TabIndex = 9;
@@ -2113,12 +2118,13 @@
             // 
             // dob_NP_PCK
             // 
-            this.dob_NP_PCK.Location = new System.Drawing.Point(124, 128);
+            this.dob_NP_PCK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dob_NP_PCK.Location = new System.Drawing.Point(125, 154);
             this.dob_NP_PCK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dob_NP_PCK.MaxDate = new System.DateTime(2017, 10, 17, 15, 6, 31, 0);
             this.dob_NP_PCK.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dob_NP_PCK.Name = "dob_NP_PCK";
-            this.dob_NP_PCK.Size = new System.Drawing.Size(163, 22);
+            this.dob_NP_PCK.Size = new System.Drawing.Size(203, 27);
             this.dob_NP_PCK.TabIndex = 3;
             this.dob_NP_PCK.Value = new System.DateTime(2017, 10, 17, 0, 0, 0, 0);
             // 
@@ -2136,7 +2142,7 @@
             // 
             this.dob_NP_LBL.AutoSize = true;
             this.dob_NP_LBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dob_NP_LBL.Location = new System.Drawing.Point(5, 128);
+            this.dob_NP_LBL.Location = new System.Drawing.Point(56, 154);
             this.dob_NP_LBL.Name = "dob_NP_LBL";
             this.dob_NP_LBL.Size = new System.Drawing.Size(55, 25);
             this.dob_NP_LBL.TabIndex = 4;
@@ -2144,17 +2150,18 @@
             // 
             // surname_NP_TB
             // 
-            this.surname_NP_TB.Location = new System.Drawing.Point(124, 101);
+            this.surname_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.surname_NP_TB.Location = new System.Drawing.Point(125, 112);
             this.surname_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.surname_NP_TB.Name = "surname_NP_TB";
-            this.surname_NP_TB.Size = new System.Drawing.Size(163, 22);
+            this.surname_NP_TB.Size = new System.Drawing.Size(203, 27);
             this.surname_NP_TB.TabIndex = 2;
             // 
             // surname_NP_LBL
             // 
             this.surname_NP_LBL.AutoSize = true;
             this.surname_NP_LBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.surname_NP_LBL.Location = new System.Drawing.Point(5, 100);
+            this.surname_NP_LBL.Location = new System.Drawing.Point(19, 112);
             this.surname_NP_LBL.Name = "surname_NP_LBL";
             this.surname_NP_LBL.Size = new System.Drawing.Size(92, 25);
             this.surname_NP_LBL.TabIndex = 2;
@@ -2162,10 +2169,11 @@
             // 
             // firstName_NP_TB
             // 
+            this.firstName_NP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstName_NP_TB.Location = new System.Drawing.Point(125, 73);
             this.firstName_NP_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.firstName_NP_TB.Name = "firstName_NP_TB";
-            this.firstName_NP_TB.Size = new System.Drawing.Size(163, 22);
+            this.firstName_NP_TB.Size = new System.Drawing.Size(203, 27);
             this.firstName_NP_TB.TabIndex = 1;
             // 
             // firstName_NP_LBL
@@ -2226,14 +2234,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(107, 418);
             this.medicalHistory_DVG_FP.Margin = new System.Windows.Forms.Padding(4);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
@@ -2545,16 +2553,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2175, 956);
-            this.Controls.Add(this.findPatientPanel);
+            this.Controls.Add(this.newPatientPanel);
+            this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.editPatientPanel);
             this.Controls.Add(this.newAppointmentPanel);
-            this.Controls.Add(this.newPatientPanel);
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
             this.Controls.Add(this.prescriptionPanel);
             this.Controls.Add(this.loginPanel);
-            this.Controls.Add(this.mainMenuPanel);
+            this.Controls.Add(this.findPatientPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "finalUI";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finalUI_FormClosed);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SW_Engineering_2017
 {
-    class Validation
+    public class Validation
     {
         public string validateFirstname(string firstname)
         {
