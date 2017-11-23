@@ -16,7 +16,7 @@ namespace SW_Engineering_2017
         /****************************************** Private Strings************************************/
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType;
-        private bool PrivatePatientFound = false, NewAppointment = true, NewPrescription = true;
+        private bool PrivatePatientFound = false, NewAppointment = true, NewPrescription = true, EditPrescription = true;
         private int loginAttempt = 0;
         #endregion
 
@@ -1132,29 +1132,50 @@ namespace SW_Engineering_2017
         #endregion
 
         #region Prescription Form
+        // Shows the Prescription panel, hides and clears all data from the Find Patient panel
+        private void ShowPrescriptionPanel()
+        {
+            // Update Logger
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : Show New Prescription Panel");
 
-        #region Edit Prescription
+            // Open panel
+            if (!prescriptionPanel.Visible)
+            {
+                prescriptionPanel.Visible = true;
+                findPatientPanel.Visible = false;
+                errorMessage_LB_NA.Text = "";
+            }
 
-        #endregion
+            // Clear Find Patient panel for next use.
+            clearFindPatient();
+            hideFindPatientPanels();
+        }
 
-        #region New Prescription
-        #region Load New Prescription
-        private void newPrescription_FP_B_Click(object sender, EventArgs e)
+
+        #region Load Prescription Panel
+        private void PrescriptionDataLoad(string headerText)
         {
             if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
             {
-                // Update Logger
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : ID SELECTED");
+                // Log when button is clicked with a PatientID selected.
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + headerText + " Prescription button clicked : ID SELECTED");
+                prsHeader.Text = headerText + " Prescription";
 
-                prsHeader.Text = "New Prescription";
-                NewPrescription = true;
-
-                // select patient row and gets the patient ID
+                
+                // Gets selected patient row and then the patient ID from that row and stores it in a variable.
                 int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
                 privatePatientID = selectedRow.Cells[0].Value.ToString();
-                //display PatientID
+
+                //display PatientID in prescriprion form.
                 prsPrescriptionGrp.Text = "Patient ID: " + privatePatientID;
+                errorMessage_LB_NA.Text = "";
+
+                // Log the PatientID being used 
+                Logger.instance.log(DateTime.Today.ToString("--------------------\r\n" + "dd/MM/yyyy") + "Selected Patient ID: " + privatePatientID.ToString());
+
+                // Show Prescription Panel
+                ShowPrescriptionPanel();
 
 
             }
@@ -1162,11 +1183,24 @@ namespace SW_Engineering_2017
             {
                 // Display error message if a patient hasn't been selected.
                 error_FP_LBL.Text = "Patient Required";
-                // Updates Logger
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : ID NOT SELECTED");
+                // Log when button is clicked with no PatientID selected.
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + headerText + " Prescription button clicked : ID NOT SELECTED");
             }
         }
         #endregion
+
+        #region Edit Prescription
+        
+        #endregion
+
+        #region New Prescription
+        private void newPrescription_FP_B_Click(object sender, EventArgs e)
+        {
+            PrescriptionDataLoad("New");
+            NewPrescription = true;
+        }
+        
+
         #endregion
 
         #region Extend Prescription

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@
             this.prsNameEntry = new System.Windows.Forms.TextBox();
             this.prsDatePicker = new System.Windows.Forms.DateTimePicker();
             this.prsDateLbl = new System.Windows.Forms.Label();
-            this.prsQuantityLbl = new System.Windows.Forms.Label();
+            this.prsDosageLbl = new System.Windows.Forms.Label();
             this.prsPrescriptionNameLbl = new System.Windows.Forms.Label();
             this.btnPresCancel = new System.Windows.Forms.Button();
             this.prescriptionPanel = new System.Windows.Forms.Panel();
@@ -1091,7 +1091,7 @@
             this.prsPrescriptionGrp.Controls.Add(this.prsNameEntry);
             this.prsPrescriptionGrp.Controls.Add(this.prsDatePicker);
             this.prsPrescriptionGrp.Controls.Add(this.prsDateLbl);
-            this.prsPrescriptionGrp.Controls.Add(this.prsQuantityLbl);
+            this.prsPrescriptionGrp.Controls.Add(this.prsDosageLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameLbl);
             this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 53);
             this.prsPrescriptionGrp.Name = "prsPrescriptionGrp";
@@ -1180,14 +1180,14 @@
             this.prsDateLbl.TabIndex = 2;
             this.prsDateLbl.Text = "Date";
             // 
-            // prsQuantityLbl
+            // prsDosageLbl
             // 
-            this.prsQuantityLbl.AutoSize = true;
-            this.prsQuantityLbl.Location = new System.Drawing.Point(47, 48);
-            this.prsQuantityLbl.Name = "prsQuantityLbl";
-            this.prsQuantityLbl.Size = new System.Drawing.Size(46, 13);
-            this.prsQuantityLbl.TabIndex = 1;
-            this.prsQuantityLbl.Text = "Quantity";
+            this.prsDosageLbl.AutoSize = true;
+            this.prsDosageLbl.Location = new System.Drawing.Point(47, 48);
+            this.prsDosageLbl.Name = "prsDosageLbl";
+            this.prsDosageLbl.Size = new System.Drawing.Size(44, 13);
+            this.prsDosageLbl.TabIndex = 1;
+            this.prsDosageLbl.Text = "Dosage";
             // 
             // prsPrescriptionNameLbl
             // 
@@ -1945,14 +1945,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2419,7 +2419,7 @@
         private System.Windows.Forms.TextBox prsNameEntry;
         private System.Windows.Forms.DateTimePicker prsDatePicker;
         private System.Windows.Forms.Label prsDateLbl;
-        private System.Windows.Forms.Label prsQuantityLbl;
+        private System.Windows.Forms.Label prsDosageLbl;
         private System.Windows.Forms.Label prsPrescriptionNameLbl;
         private System.Windows.Forms.Button btnPresCancel;
         private System.Windows.Forms.Panel prescriptionPanel;
