@@ -68,8 +68,8 @@ namespace SW_Engineering_2017.Tests
         [TestMethod()]
         public void validateAddressLineTest()
         {
-            string[] AddressLine = { "1 jane lane",""," ","1 Station-Way" };
-            bool[] AddressLineResult = { true,false,false,true};
+            string[] AddressLine = { "1 jane lane",""," ","1 Station-Way","Saw" };
+            bool[] AddressLineResult = { true,false,false,true,false};
             Validation val = new Validation();
 
             for (int i = 0; i < AddressLine.Length; i++)
@@ -118,7 +118,7 @@ namespace SW_Engineering_2017.Tests
         [TestMethod()]
         public void validateCountyTest()
         {
-            string[] County = {  "Norfolk",""," ","SouthYorkshire!" };
+            string[] County = {  "Norfolk",""," ","Yorkshire!" };
             bool[] CountyResult = { true,false,false,false };
             Validation val = new Validation();
 

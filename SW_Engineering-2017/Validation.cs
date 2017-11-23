@@ -182,6 +182,13 @@ namespace SW_Engineering_2017
                 errormessage = "Requires Postcode\r\n";
                 Logger.instance.log("--Validation Postcode: INVALID Postcode Required");
             }
+            //checks that there is only numbers and letter in Postcode
+            else if (postcode.All(char.IsLetterOrDigit) == false)
+            {
+                //error message set
+                errormessage = "County can only have letters or numbers \r\n";
+                Logger.instance.log("--Validation County: INVALID County can only have letters or numbers");
+            }
             //checks that postcode is the correct length
             else if ((postcode.Length < 6) || (postcode.Length > 7))
             {
