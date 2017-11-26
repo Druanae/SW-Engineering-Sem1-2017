@@ -43,5 +43,6 @@ namespace SW_Engineering_2017
         public static string insertNewPatient = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
         public static string AddAppointment = "INSERT INTO [dbo].[Appointments] ([Patient_ID], [Staff_ID], [Date], [Time]) VALUES (@patientID,@staffID,@date , @time)";
         public static string addMedicalRecord = "INSERT INTO[dbo].[medicalRecords]([Patient_ID], [medicalRecord]) VALUES (@patientID, @medicalRecords)";
+        public static string AddPrescription = "INSERT INTO[dbo].[Prescriptions]([Patient_ID], [Staff_ID], [Prs_Name], [Dosage], [Date], [Duration], [Notes] VALUES (@patientID, @staffID, @name, @dosage, @date, @duration, @notes)";
     }
 }

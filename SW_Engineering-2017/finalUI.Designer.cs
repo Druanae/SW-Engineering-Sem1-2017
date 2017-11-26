@@ -218,6 +218,8 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
+            this.prsStaffEntry = new System.Windows.Forms.TextBox();
+            this.prsStaffLbl = new System.Windows.Forms.Label();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -1084,6 +1086,8 @@
             // 
             // prsPrescriptionGrp
             // 
+            this.prsPrescriptionGrp.Controls.Add(this.prsStaffLbl);
+            this.prsPrescriptionGrp.Controls.Add(this.prsStaffEntry);
             this.prsPrescriptionGrp.Controls.Add(this.prsDurationCombo);
             this.prsPrescriptionGrp.Controls.Add(this.prsDurationLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsNotesGrp);
@@ -1093,9 +1097,9 @@
             this.prsPrescriptionGrp.Controls.Add(this.prsDateLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsDosageLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsPrescriptionNameLbl);
-            this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 53);
+            this.prsPrescriptionGrp.Location = new System.Drawing.Point(5, 41);
             this.prsPrescriptionGrp.Name = "prsPrescriptionGrp";
-            this.prsPrescriptionGrp.Size = new System.Drawing.Size(256, 207);
+            this.prsPrescriptionGrp.Size = new System.Drawing.Size(256, 219);
             this.prsPrescriptionGrp.TabIndex = 1;
             this.prsPrescriptionGrp.TabStop = false;
             this.prsPrescriptionGrp.Text = "Prescription Details";
@@ -1116,16 +1120,16 @@
             "10",
             "11",
             "12"});
-            this.prsDurationCombo.Location = new System.Drawing.Point(99, 96);
+            this.prsDurationCombo.Location = new System.Drawing.Point(103, 110);
             this.prsDurationCombo.Name = "prsDurationCombo";
-            this.prsDurationCombo.Size = new System.Drawing.Size(151, 21);
+            this.prsDurationCombo.Size = new System.Drawing.Size(147, 21);
             this.prsDurationCombo.TabIndex = 8;
             this.prsDurationCombo.Text = "1";
             // 
             // prsDurationLbl
             // 
             this.prsDurationLbl.AutoSize = true;
-            this.prsDurationLbl.Location = new System.Drawing.Point(6, 100);
+            this.prsDurationLbl.Location = new System.Drawing.Point(10, 114);
             this.prsDurationLbl.Name = "prsDurationLbl";
             this.prsDurationLbl.Size = new System.Drawing.Size(87, 13);
             this.prsDurationLbl.TabIndex = 7;
@@ -1134,7 +1138,7 @@
             // prsNotesGrp
             // 
             this.prsNotesGrp.Controls.Add(this.prsNotesEntry);
-            this.prsNotesGrp.Location = new System.Drawing.Point(6, 123);
+            this.prsNotesGrp.Location = new System.Drawing.Point(6, 137);
             this.prsNotesGrp.Name = "prsNotesGrp";
             this.prsNotesGrp.Size = new System.Drawing.Size(244, 78);
             this.prsNotesGrp.TabIndex = 6;
@@ -1152,29 +1156,29 @@
             // 
             // prsQuantityEntry
             // 
-            this.prsQuantityEntry.Location = new System.Drawing.Point(99, 44);
+            this.prsQuantityEntry.Location = new System.Drawing.Point(103, 66);
             this.prsQuantityEntry.Name = "prsQuantityEntry";
-            this.prsQuantityEntry.Size = new System.Drawing.Size(151, 20);
+            this.prsQuantityEntry.Size = new System.Drawing.Size(147, 20);
             this.prsQuantityEntry.TabIndex = 5;
             // 
             // prsNameEntry
             // 
-            this.prsNameEntry.Location = new System.Drawing.Point(99, 18);
+            this.prsNameEntry.Location = new System.Drawing.Point(103, 44);
             this.prsNameEntry.Name = "prsNameEntry";
-            this.prsNameEntry.Size = new System.Drawing.Size(151, 20);
+            this.prsNameEntry.Size = new System.Drawing.Size(147, 20);
             this.prsNameEntry.TabIndex = 4;
             // 
             // prsDatePicker
             // 
-            this.prsDatePicker.Location = new System.Drawing.Point(99, 70);
+            this.prsDatePicker.Location = new System.Drawing.Point(103, 88);
             this.prsDatePicker.Name = "prsDatePicker";
-            this.prsDatePicker.Size = new System.Drawing.Size(151, 20);
+            this.prsDatePicker.Size = new System.Drawing.Size(147, 20);
             this.prsDatePicker.TabIndex = 3;
             // 
             // prsDateLbl
             // 
             this.prsDateLbl.AutoSize = true;
-            this.prsDateLbl.Location = new System.Drawing.Point(63, 74);
+            this.prsDateLbl.Location = new System.Drawing.Point(67, 92);
             this.prsDateLbl.Name = "prsDateLbl";
             this.prsDateLbl.Size = new System.Drawing.Size(30, 13);
             this.prsDateLbl.TabIndex = 2;
@@ -1183,7 +1187,7 @@
             // prsDosageLbl
             // 
             this.prsDosageLbl.AutoSize = true;
-            this.prsDosageLbl.Location = new System.Drawing.Point(47, 48);
+            this.prsDosageLbl.Location = new System.Drawing.Point(53, 70);
             this.prsDosageLbl.Name = "prsDosageLbl";
             this.prsDosageLbl.Size = new System.Drawing.Size(44, 13);
             this.prsDosageLbl.TabIndex = 1;
@@ -1192,11 +1196,11 @@
             // prsPrescriptionNameLbl
             // 
             this.prsPrescriptionNameLbl.AutoSize = true;
-            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(58, 22);
+            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(4, 48);
             this.prsPrescriptionNameLbl.Name = "prsPrescriptionNameLbl";
-            this.prsPrescriptionNameLbl.Size = new System.Drawing.Size(35, 13);
+            this.prsPrescriptionNameLbl.Size = new System.Drawing.Size(93, 13);
             this.prsPrescriptionNameLbl.TabIndex = 0;
-            this.prsPrescriptionNameLbl.Text = "Name";
+            this.prsPrescriptionNameLbl.Text = "Prescription Name";
             // 
             // btnPresCancel
             // 
@@ -2260,6 +2264,22 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
+            // prsStaffEntry
+            // 
+            this.prsStaffEntry.Location = new System.Drawing.Point(103, 22);
+            this.prsStaffEntry.Name = "prsStaffEntry";
+            this.prsStaffEntry.Size = new System.Drawing.Size(147, 20);
+            this.prsStaffEntry.TabIndex = 9;
+            // 
+            // prsStaffLbl
+            // 
+            this.prsStaffLbl.AutoSize = true;
+            this.prsStaffLbl.Location = new System.Drawing.Point(57, 26);
+            this.prsStaffLbl.Name = "prsStaffLbl";
+            this.prsStaffLbl.Size = new System.Drawing.Size(40, 13);
+            this.prsStaffLbl.TabIndex = 10;
+            this.prsStaffLbl.Text = "StaffID";
+            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2517,5 +2537,7 @@
         private System.Windows.Forms.DataGridView medicalHistory_DVG_FP;
         private System.Windows.Forms.Label welcome_L;
         private System.Windows.Forms.Label prsHeader;
+        private System.Windows.Forms.Label prsStaffLbl;
+        private System.Windows.Forms.TextBox prsStaffEntry;
     }
 }

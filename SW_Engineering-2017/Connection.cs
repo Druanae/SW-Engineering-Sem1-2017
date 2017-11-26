@@ -515,5 +515,36 @@ namespace SW_Engineering_2017
         #endregion
 
         #endregion
+
+        #region Prescriptions
+
+        public void addPrescription(string patientID, string staffID, string name, string dosage, string date, string duration, string notes)
+        {
+            // Creates SQL Command
+            SqlCommand command = new SqlCommand();
+            // Sets command type to text
+            command.CommandType = CommandType.Text;
+            // Sets the command text to the value of constants.AddPrescription
+            command.CommandText = Constants.AddPrescription;
+            // Adds the values into the database
+            command.Parameters.Add(new SqlParameter("patientID", patientID));
+            command.Parameters.Add(new SqlParameter("staffID", staffID));
+            command.Parameters.Add(new SqlParameter("name", name));
+            command.Parameters.Add(new SqlParameter("dosage", dosage));
+            command.Parameters.Add(new SqlParameter("date", date));
+            command.Parameters.Add(new SqlParameter("duration", duration));
+            command.Parameters.Add(new SqlParameter("notes", notes));
+
+            // Open database connection
+            openConnection();
+            // Set the connection
+            command.Connection = connectionToDatabase;
+            // Run the SQL command
+            command.ExecuteNonQuery();
+            // Close database connection
+            closeConnection();
+        }
+
+        #endregion
     }
 }

@@ -295,18 +295,6 @@ namespace SW_Engineering_2017
 
         }
 
-        private void btnPresCancel_Click(object sender, EventArgs e)
-        {
-            if (!findPatientPanel.Visible)
-            {
-                prescriptionPanel.Visible = false;
-                findPatientPanel.Visible = true;
-                clearPrescriptionForm();
-            }
-        }
-
-
-
         private void addPatientBTN_Click(object sender, EventArgs e)
         {
             if (!newPatientPanel.Visible)
@@ -364,6 +352,7 @@ namespace SW_Engineering_2017
 
         private void clearPrescriptionForm()
         {
+            prsHeader.Text = "";
             prsNameEntry.Text = "";
             prsQuantityEntry.Text = "";
             prsDatePicker.Value = DateTime.Today;
@@ -1151,7 +1140,18 @@ namespace SW_Engineering_2017
             hideFindPatientPanels();
         }
 
-
+        private void SavePrescription()
+        {
+            //Get data from prescription form:
+            // Get StaffID
+            string staffID = prsStaffEntry.Text;
+            // Get date from the Prescription Form date picker and convert to string.
+            string prsDate = prsDatePicker.Value.Year.ToString() + "-" + prsDatePicker.Value.Month.ToString() + "-" + prsDatePicker.Value.Date.ToString();
+            DataTable prsTable;
+            DataSet prsDataSet;
+            DataRow prsDataRow;
+            int numRows;
+        }
         #region Load Prescription Panel
         private void PrescriptionDataLoad(string headerText)
         {
@@ -1160,8 +1160,10 @@ namespace SW_Engineering_2017
                 // Log when button is clicked with a PatientID selected.
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + headerText + " Prescription button clicked : ID SELECTED");
                 prsHeader.Text = headerText + " Prescription";
+                //string loginID = userName_L_tb.Text;
+                //prsHeader.Text = loginID;
 
-                
+
                 // Gets selected patient row and then the patient ID from that row and stores it in a variable.
                 int selectedRowIndex = patients_DGV_FP.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
@@ -1190,7 +1192,7 @@ namespace SW_Engineering_2017
         #endregion
 
         #region Edit Prescription
-        
+
         #endregion
 
         #region New Prescription
@@ -1199,11 +1201,29 @@ namespace SW_Engineering_2017
             PrescriptionDataLoad("New");
             NewPrescription = true;
         }
-        
-
         #endregion
 
         #region Extend Prescription
+
+        #endregion
+
+        #region Navigation
+
+        private void btnPresCancel_Click(object sender, EventArgs e)
+        {
+            // Log when cancel button is clicked.
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Cancel Button Clicked in Prescription Panel");
+
+            // Reset data in the input sections to default values
+            clearPrescriptionForm();
+
+            // Hide Prescription panel and show Find Patient panel
+            if (!findPatientPanel.Visible)
+            {
+                prescriptionPanel.Visible = false;
+                findPatientPanel.Visible = true;
+            }
+        }
 
         #endregion
 
