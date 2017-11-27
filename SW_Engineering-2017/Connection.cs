@@ -435,6 +435,35 @@ namespace SW_Engineering_2017
         }
         #endregion
 
+        #region Select Staff Appointment 
+
+        public DataSet selectStaffAppointment(string staffID)
+        {
+            DataSet dataSet;
+
+            SqlCommand command = new SqlCommand();
+
+            command.CommandType = CommandType.Text;
+
+            command.CommandText = Constants.selectStaffAppointment;
+
+            command.Parameters.Add(new SqlParameter("staffID", staffID));
+
+            openConnection();
+
+            command.Connection = connectionToDatabase;
+
+            dataAdapter = new SqlDataAdapter(command);
+
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+
+
+            return dataSet;
+        }
+
+        #endregion
+
         #region Delete Appointment
         public void selectDeleteAppointment(string appointmentID)
         {

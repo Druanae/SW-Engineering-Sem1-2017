@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SW_Engineering_2017
@@ -48,6 +49,8 @@ namespace SW_Engineering_2017
 
         private void finalUI_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'surgeryDataSet.Tests' table. You can move, or remove it, as needed.
+            this.testsTableAdapter.Fill(this.surgeryDataSet.Tests);
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.Sizable;
             /************************************ Date related Code*******************************************/
@@ -84,6 +87,7 @@ namespace SW_Engineering_2017
             NamePanel.Visible = false;
             DOBPanel.Visible = false;
             addressPanel.Visible = false;
+            StaffScheduleSearch.Visible = false;
         }
 
         private void finalUI_FormClosed(object sender, FormClosedEventArgs e)
@@ -118,6 +122,8 @@ namespace SW_Engineering_2017
             loginPanel.Anchor = AnchorStyles.None;
             newPatientPanel.Location = new Point(this.Width / 2 - newPatientPanel.Width / 2, this.Height / 2 - newPatientPanel.Height / 2);
             newPatientPanel.Anchor = AnchorStyles.None;
+            StaffScheduleSearch.Location = new Point(this.Width / 2 - StaffScheduleSearch.Width / 2, this.Height / 2 - StaffScheduleSearch.Height / 2);
+            StaffScheduleSearch.Anchor = AnchorStyles.None;
 
         }
         #endregion
@@ -238,7 +244,9 @@ namespace SW_Engineering_2017
             newAppointmentPanel.Visible = false;
             loginPanel.Visible = false;
             loginErrorlbl.Visible = false;
+            StaffScheduleSearch.Visible = false;
 
+            clearSSS();
             clearFindPatient();
         }
         #endregion
@@ -287,9 +295,9 @@ namespace SW_Engineering_2017
 
         private void scheduleBtn_Click(object sender, EventArgs e)
         {
-            if (!staffScheduleSearchPanel.Visible)
+            if (!StaffScheduleSearch.Visible)
             {
-                staffScheduleSearchPanel.Visible = true;
+                StaffScheduleSearch.Visible = true;
                 mainMenuPanel.Visible = false;
             }
         }
@@ -379,6 +387,16 @@ namespace SW_Engineering_2017
             county_EP_TB.Text = "";
             postcode_EP_TB.Text = "";
         }
+
+        private void clearSSS()
+        {
+            StaffID_TB_SSS.Text = "";
+            AppointmentID_TB_SSS.Text = "";
+            PatientID_TB_SSS.Text = "";
+            Date_TB_SSS.Value = DateTime.Today;
+            DGV_SSS.DataSource = null;
+        }
+
         private void hideFindPatientPanels()
         {
             patientIDPanel.Visible = false;
@@ -859,8 +877,8 @@ namespace SW_Engineering_2017
                 {
                     //if edit appointment then runs this method
                     confirmChangeAppointment(staff, appointmentDate, appointmentTime);
-                   
- 
+
+
                 }
 
             }
@@ -886,6 +904,129 @@ namespace SW_Engineering_2017
                 findPatientPanel.Visible = true;
             }
         }
+
+        private void Print_BNT_TRS_Click(object sender, EventArgs e)
+        {
+
+
+            TextWriter writer = new StreamWriter("K:\\Test\\test2.txt"); // just a test location its the h drive i think 
+            for (int i = 0; i < DVG_TRS.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < DVG_TRS.Columns.Count; j++)
+                {
+
+                    writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+
+                }
+                writer.WriteLine("");
+                writer.WriteLine("-----------------------------------------------------"); // creates indentation
+            }
+            writer.Close();
+
+
+
+
+        }
+
+        private void ChangeStaffSchedualtx_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Request_BTN_CSS_Click(object sender, EventArgs e)
+        {
+
+
+            // Text writer to post test result to a note Pad File so it can be printed 
+            TextWriter writer = new StreamWriter("K:\\Requests\\Request_Change.txt"); // just a test location its the h drive i think 
+            for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                {
+
+                    writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+
+                }
+                writer.WriteLine("");
+                writer.WriteLine("-----------------------------------------------------"); // creates indentation
+                writer.WriteLine("");
+                writer.WriteLine("Request change for Shift");
+            }
+            writer.Close();
+
+
+
+
+        }
+
+        private void SearchBNTSSS_Click(object sender, EventArgs e)
+        {
+            DGV_SSS.DataSource = null;
+            DGV_SSS.Refresh();
+            Validation val = new Validation();
+            string StaffID = StaffID_TB_SSS.Text, AppointmentID = AppointmentID_TB_SSS.Text, PatientID = PatientID_TB_SSS.Text;
+            int staffID, appointmentID, patientID;
+            DateTime SSSDate;
+            DataTable table;
+            DataSet dataSet;
+
+            if ((SSS_CB.SelectedIndex == 0) && (StaffID != ""))
+            {
+                if (Int32.TryParse(StaffID, out staffID))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectStaffAppointment(StaffID);
+                    table = dataSet.Tables[0];
+
+                    DGV_SSS.DataSource = table;
+                }
+            }
+            else if ((SSS_CB.SelectedIndex == 1) && (AppointmentID != ""))
+            {
+                if (Int32.TryParse(AppointmentID, out appointmentID))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectAppointment(AppointmentID);
+                    table = dataSet.Tables[0];
+
+                    DGV_SSS.DataSource = table;
+                }
+            }
+
+        }
+
+        private void SSS_CB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SSS_CB.SelectedIndex == 0)
+            {
+                SSS_StaffID_Panel.Visible = true;
+                SSS_AppID_Panel.Visible = false;
+                SSS_PatientID_Panel.Visible = false;
+                SSS_Date_Panel.Visible = false;
+            }
+            else if (SSS_CB.SelectedIndex == 1)
+            {
+                SSS_StaffID_Panel.Visible = false;
+                SSS_AppID_Panel.Visible = true;
+                SSS_PatientID_Panel.Visible = false;
+                SSS_Date_Panel.Visible = false;
+            }
+            else if (SSS_CB.SelectedIndex == 2)
+            {
+                SSS_StaffID_Panel.Visible = false;
+                SSS_AppID_Panel.Visible = false;
+                SSS_PatientID_Panel.Visible = true;
+                SSS_Date_Panel.Visible = false;
+            }
+            else if (SSS_CB.SelectedIndex == 3)
+            {
+                SSS_StaffID_Panel.Visible = false;
+                SSS_AppID_Panel.Visible = false;
+                SSS_PatientID_Panel.Visible = false;
+                SSS_Date_Panel.Visible = true;
+            }
+        }
+
+
+
         #endregion
 
         #endregion
@@ -1105,7 +1246,7 @@ namespace SW_Engineering_2017
                 privatePatientID = selectedRow.Cells[0].Value.ToString(); //Set the USerID to the selected row
                 medicalRecord = addMedicalRecord_TB_FP.Text;
                 //Runs medicalRecord class
-                MedicalRecord.addMedicalRecord(privatePatientID,medicalRecord);
+                MedicalRecord.addMedicalRecord(privatePatientID, medicalRecord);
                 //Adds medicalRecord to the database
                 medicalRecordViewer();
                 addMedicalRecord_TB_FP.Clear(); //Clear Datagrid text box
