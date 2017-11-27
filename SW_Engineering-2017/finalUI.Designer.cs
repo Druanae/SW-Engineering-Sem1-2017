@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -87,33 +88,20 @@
             this.changeStaffSchedulePanel = new System.Windows.Forms.Panel();
             this.testResultSearchPanel = new System.Windows.Forms.Panel();
             this.TestResutsSearch = new System.Windows.Forms.Panel();
+            this.DVG_TRS = new System.Windows.Forms.DataGridView();
+            this.testIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surgeryDataSet1 = new SW_Engineering_2017.SurgeryDataSet1();
             this.MenuTestBNTRS = new System.Windows.Forms.Button();
-            this.StaffTRS = new System.Windows.Forms.Label();
-            this.StaffTypeCombox = new System.Windows.Forms.ComboBox();
             this.TestResultSearchLable = new System.Windows.Forms.TextBox();
-            this.StaffIDTRS = new System.Windows.Forms.Label();
-            this.StaffIDlabletrs = new System.Windows.Forms.TextBox();
+            this.TestID_TRS_L = new System.Windows.Forms.Label();
+            this.TestID_TRS_TB = new System.Windows.Forms.TextBox();
             this.PrintResultsBNTTRS = new System.Windows.Forms.Button();
-            this.PatientIDTRS = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.PatientID_TRS_L = new System.Windows.Forms.Label();
+            this.PatientID_TRS_TB = new System.Windows.Forms.TextBox();
             this.SearchBTNTRS = new System.Windows.Forms.Button();
-            this.PatientTestResults = new System.Windows.Forms.Panel();
-            this.CancelBNTTRS = new System.Windows.Forms.Button();
-            this.SaveBNTTRS = new System.Windows.Forms.Button();
-            this.ChangeBNTTRS = new System.Windows.Forms.Button();
-            this.AppointmentNotesTR = new System.Windows.Forms.Label();
-            this.SurnameTRS = new System.Windows.Forms.Label();
-            this.FirstNameTRS = new System.Windows.Forms.Label();
-            this.AppointmentDt = new System.Windows.Forms.DateTimePicker();
-            this.SurnameTextBox = new System.Windows.Forms.TextBox();
-            this.AppointmentDTRS = new System.Windows.Forms.Label();
-            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
-            this.PerscriptionTextbox = new System.Windows.Forms.TextBox();
-            this.AppointmentNotes = new System.Windows.Forms.RichTextBox();
-            this.PerscriptionTRS = new System.Windows.Forms.Label();
-            this.StaffNameLable = new System.Windows.Forms.TextBox();
-            this.PatientTR = new System.Windows.Forms.Label();
-            this.StaffNameTRS = new System.Windows.Forms.Label();
             this.prsPrescriptionGrp = new System.Windows.Forms.GroupBox();
             this.prsRenewCombo = new System.Windows.Forms.ComboBox();
             this.prsRenewLbl = new System.Windows.Forms.Label();
@@ -237,6 +225,11 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
+            this.surgeryDataSet = new SW_Engineering_2017.SurgeryDataSet();
+            this.testsTableAdapter = new SW_Engineering_2017.SurgeryDataSet1TableAdapters.TestsTableAdapter();
+            this.surgeryDataSet2 = new SW_Engineering_2017.SurgeryDataSet2();
+            this.testsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.testsTableAdapter1 = new SW_Engineering_2017.SurgeryDataSet2TableAdapters.TestsTableAdapter();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -247,7 +240,9 @@
             this.changeStaffSchedulePanel.SuspendLayout();
             this.testResultSearchPanel.SuspendLayout();
             this.TestResutsSearch.SuspendLayout();
-            this.PatientTestResults.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DVG_TRS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet1)).BeginInit();
             this.prsPrescriptionGrp.SuspendLayout();
             this.prsNotesGrp.SuspendLayout();
             this.prsAddressGrp.SuspendLayout();
@@ -266,6 +261,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.patients_DGV_FP)).BeginInit();
             this.newAppointmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuPanel
@@ -836,55 +834,72 @@
             // TestResutsSearch
             // 
             this.TestResutsSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TestResutsSearch.Controls.Add(this.DVG_TRS);
             this.TestResutsSearch.Controls.Add(this.MenuTestBNTRS);
-            this.TestResutsSearch.Controls.Add(this.StaffTRS);
-            this.TestResutsSearch.Controls.Add(this.StaffTypeCombox);
             this.TestResutsSearch.Controls.Add(this.TestResultSearchLable);
-            this.TestResutsSearch.Controls.Add(this.StaffIDTRS);
-            this.TestResutsSearch.Controls.Add(this.StaffIDlabletrs);
+            this.TestResutsSearch.Controls.Add(this.TestID_TRS_L);
+            this.TestResutsSearch.Controls.Add(this.TestID_TRS_TB);
             this.TestResutsSearch.Controls.Add(this.PrintResultsBNTTRS);
-            this.TestResutsSearch.Controls.Add(this.PatientIDTRS);
-            this.TestResutsSearch.Controls.Add(this.textBox5);
+            this.TestResutsSearch.Controls.Add(this.PatientID_TRS_L);
+            this.TestResutsSearch.Controls.Add(this.PatientID_TRS_TB);
             this.TestResutsSearch.Controls.Add(this.SearchBTNTRS);
-            this.TestResutsSearch.Controls.Add(this.PatientTestResults);
-            this.TestResutsSearch.Controls.Add(this.StaffNameLable);
-            this.TestResutsSearch.Controls.Add(this.PatientTR);
-            this.TestResutsSearch.Controls.Add(this.StaffNameTRS);
             this.TestResutsSearch.Location = new System.Drawing.Point(3, 2);
             this.TestResutsSearch.Name = "TestResutsSearch";
-            this.TestResutsSearch.Size = new System.Drawing.Size(565, 419);
+            this.TestResutsSearch.Size = new System.Drawing.Size(414, 208);
             this.TestResutsSearch.TabIndex = 35;
+            // 
+            // DVG_TRS
+            // 
+            this.DVG_TRS.AutoGenerateColumns = false;
+            this.DVG_TRS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DVG_TRS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.testIDDataGridViewTextBoxColumn,
+            this.patientIDDataGridViewTextBoxColumn,
+            this.resultsDataGridViewTextBoxColumn});
+            this.DVG_TRS.DataSource = this.testsBindingSource1;
+            this.DVG_TRS.Location = new System.Drawing.Point(12, 85);
+            this.DVG_TRS.Name = "DVG_TRS";
+            this.DVG_TRS.Size = new System.Drawing.Size(390, 54);
+            this.DVG_TRS.TabIndex = 42;
+            // 
+            // testIDDataGridViewTextBoxColumn
+            // 
+            this.testIDDataGridViewTextBoxColumn.DataPropertyName = "Test_ID";
+            this.testIDDataGridViewTextBoxColumn.HeaderText = "Test_ID";
+            this.testIDDataGridViewTextBoxColumn.Name = "testIDDataGridViewTextBoxColumn";
+            this.testIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // patientIDDataGridViewTextBoxColumn
+            // 
+            this.patientIDDataGridViewTextBoxColumn.DataPropertyName = "Patient_ID";
+            this.patientIDDataGridViewTextBoxColumn.HeaderText = "Patient_ID";
+            this.patientIDDataGridViewTextBoxColumn.Name = "patientIDDataGridViewTextBoxColumn";
+            // 
+            // resultsDataGridViewTextBoxColumn
+            // 
+            this.resultsDataGridViewTextBoxColumn.DataPropertyName = "Results";
+            this.resultsDataGridViewTextBoxColumn.HeaderText = "Results";
+            this.resultsDataGridViewTextBoxColumn.Name = "resultsDataGridViewTextBoxColumn";
+            // 
+            // testsBindingSource
+            // 
+            this.testsBindingSource.DataMember = "Tests";
+            this.testsBindingSource.DataSource = this.surgeryDataSet1;
+            // 
+            // surgeryDataSet1
+            // 
+            this.surgeryDataSet1.DataSetName = "SurgeryDataSet1";
+            this.surgeryDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // MenuTestBNTRS
             // 
-            this.MenuTestBNTRS.Location = new System.Drawing.Point(194, 132);
+            this.MenuTestBNTRS.Location = new System.Drawing.Point(16, 165);
             this.MenuTestBNTRS.Name = "MenuTestBNTRS";
             this.MenuTestBNTRS.Size = new System.Drawing.Size(68, 19);
             this.MenuTestBNTRS.TabIndex = 41;
             this.MenuTestBNTRS.Text = "Menu";
             this.MenuTestBNTRS.UseVisualStyleBackColor = true;
             this.MenuTestBNTRS.Click += new System.EventHandler(this.mainMenuShow);
-            // 
-            // StaffTRS
-            // 
-            this.StaffTRS.AutoSize = true;
-            this.StaffTRS.Location = new System.Drawing.Point(9, 115);
-            this.StaffTRS.Name = "StaffTRS";
-            this.StaffTRS.Size = new System.Drawing.Size(56, 13);
-            this.StaffTRS.TabIndex = 25;
-            this.StaffTRS.Text = "Staff Type";
-            // 
-            // StaffTypeCombox
-            // 
-            this.StaffTypeCombox.FormattingEnabled = true;
-            this.StaffTypeCombox.Items.AddRange(new object[] {
-            "Doctor",
-            "Nurse ",
-            "N/A"});
-            this.StaffTypeCombox.Location = new System.Drawing.Point(12, 132);
-            this.StaffTypeCombox.Name = "StaffTypeCombox";
-            this.StaffTypeCombox.Size = new System.Drawing.Size(156, 21);
-            this.StaffTypeCombox.TabIndex = 24;
             // 
             // TestResultSearchLable
             // 
@@ -897,211 +912,56 @@
             this.TestResultSearchLable.TabIndex = 23;
             this.TestResultSearchLable.Text = "Test Result Search";
             // 
-            // StaffIDTRS
+            // TestID_TRS_L
             // 
-            this.StaffIDTRS.AutoSize = true;
-            this.StaffIDTRS.Location = new System.Drawing.Point(9, 36);
-            this.StaffIDTRS.Name = "StaffIDTRS";
-            this.StaffIDTRS.Size = new System.Drawing.Size(43, 13);
-            this.StaffIDTRS.TabIndex = 22;
-            this.StaffIDTRS.Text = "Staff ID";
+            this.TestID_TRS_L.AutoSize = true;
+            this.TestID_TRS_L.Location = new System.Drawing.Point(9, 36);
+            this.TestID_TRS_L.Name = "TestID_TRS_L";
+            this.TestID_TRS_L.Size = new System.Drawing.Size(42, 13);
+            this.TestID_TRS_L.TabIndex = 22;
+            this.TestID_TRS_L.Text = "Test ID";
             // 
-            // StaffIDlabletrs
+            // TestID_TRS_TB
             // 
-            this.StaffIDlabletrs.Location = new System.Drawing.Point(12, 52);
-            this.StaffIDlabletrs.Name = "StaffIDlabletrs";
-            this.StaffIDlabletrs.Size = new System.Drawing.Size(156, 20);
-            this.StaffIDlabletrs.TabIndex = 21;
+            this.TestID_TRS_TB.Location = new System.Drawing.Point(12, 52);
+            this.TestID_TRS_TB.Name = "TestID_TRS_TB";
+            this.TestID_TRS_TB.Size = new System.Drawing.Size(156, 20);
+            this.TestID_TRS_TB.TabIndex = 21;
             // 
             // PrintResultsBNTTRS
             // 
-            this.PrintResultsBNTTRS.Location = new System.Drawing.Point(432, 393);
+            this.PrintResultsBNTTRS.Location = new System.Drawing.Point(90, 165);
             this.PrintResultsBNTTRS.Name = "PrintResultsBNTTRS";
             this.PrintResultsBNTTRS.Size = new System.Drawing.Size(94, 19);
             this.PrintResultsBNTTRS.TabIndex = 20;
             this.PrintResultsBNTTRS.Text = "Print Results";
             this.PrintResultsBNTTRS.UseVisualStyleBackColor = true;
+            this.PrintResultsBNTTRS.Click += new System.EventHandler(this.PrintResultsBNTTRS_Click);
             // 
-            // PatientIDTRS
+            // PatientID_TRS_L
             // 
-            this.PatientIDTRS.AutoSize = true;
-            this.PatientIDTRS.Location = new System.Drawing.Point(187, 36);
-            this.PatientIDTRS.Name = "PatientIDTRS";
-            this.PatientIDTRS.Size = new System.Drawing.Size(54, 13);
-            this.PatientIDTRS.TabIndex = 19;
-            this.PatientIDTRS.Text = "Patient ID";
+            this.PatientID_TRS_L.AutoSize = true;
+            this.PatientID_TRS_L.Location = new System.Drawing.Point(187, 36);
+            this.PatientID_TRS_L.Name = "PatientID_TRS_L";
+            this.PatientID_TRS_L.Size = new System.Drawing.Size(54, 13);
+            this.PatientID_TRS_L.TabIndex = 19;
+            this.PatientID_TRS_L.Text = "Patient ID";
             // 
-            // textBox5
+            // PatientID_TRS_TB
             // 
-            this.textBox5.Location = new System.Drawing.Point(190, 52);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(156, 20);
-            this.textBox5.TabIndex = 18;
+            this.PatientID_TRS_TB.Location = new System.Drawing.Point(190, 52);
+            this.PatientID_TRS_TB.Name = "PatientID_TRS_TB";
+            this.PatientID_TRS_TB.Size = new System.Drawing.Size(156, 20);
+            this.PatientID_TRS_TB.TabIndex = 18;
             // 
             // SearchBTNTRS
             // 
-            this.SearchBTNTRS.Location = new System.Drawing.Point(194, 91);
+            this.SearchBTNTRS.Location = new System.Drawing.Point(190, 163);
             this.SearchBTNTRS.Name = "SearchBTNTRS";
             this.SearchBTNTRS.Size = new System.Drawing.Size(68, 21);
             this.SearchBTNTRS.TabIndex = 14;
             this.SearchBTNTRS.Text = "Search";
             this.SearchBTNTRS.UseVisualStyleBackColor = true;
-            // 
-            // PatientTestResults
-            // 
-            this.PatientTestResults.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PatientTestResults.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PatientTestResults.Controls.Add(this.CancelBNTTRS);
-            this.PatientTestResults.Controls.Add(this.SaveBNTTRS);
-            this.PatientTestResults.Controls.Add(this.ChangeBNTTRS);
-            this.PatientTestResults.Controls.Add(this.AppointmentNotesTR);
-            this.PatientTestResults.Controls.Add(this.SurnameTRS);
-            this.PatientTestResults.Controls.Add(this.FirstNameTRS);
-            this.PatientTestResults.Controls.Add(this.AppointmentDt);
-            this.PatientTestResults.Controls.Add(this.SurnameTextBox);
-            this.PatientTestResults.Controls.Add(this.AppointmentDTRS);
-            this.PatientTestResults.Controls.Add(this.FirstNameTextBox);
-            this.PatientTestResults.Controls.Add(this.PerscriptionTextbox);
-            this.PatientTestResults.Controls.Add(this.AppointmentNotes);
-            this.PatientTestResults.Controls.Add(this.PerscriptionTRS);
-            this.PatientTestResults.Location = new System.Drawing.Point(8, 170);
-            this.PatientTestResults.Name = "PatientTestResults";
-            this.PatientTestResults.Size = new System.Drawing.Size(550, 217);
-            this.PatientTestResults.TabIndex = 17;
-            // 
-            // CancelBNTTRS
-            // 
-            this.CancelBNTTRS.Location = new System.Drawing.Point(398, 185);
-            this.CancelBNTTRS.Name = "CancelBNTTRS";
-            this.CancelBNTTRS.Size = new System.Drawing.Size(94, 19);
-            this.CancelBNTTRS.TabIndex = 16;
-            this.CancelBNTTRS.Text = "Cancel";
-            this.CancelBNTTRS.UseVisualStyleBackColor = true;
-            // 
-            // SaveBNTTRS
-            // 
-            this.SaveBNTTRS.Location = new System.Drawing.Point(302, 185);
-            this.SaveBNTTRS.Name = "SaveBNTTRS";
-            this.SaveBNTTRS.Size = new System.Drawing.Size(94, 19);
-            this.SaveBNTTRS.TabIndex = 15;
-            this.SaveBNTTRS.Text = "Save";
-            this.SaveBNTTRS.UseVisualStyleBackColor = true;
-            // 
-            // ChangeBNTTRS
-            // 
-            this.ChangeBNTTRS.Location = new System.Drawing.Point(18, 185);
-            this.ChangeBNTTRS.Name = "ChangeBNTTRS";
-            this.ChangeBNTTRS.Size = new System.Drawing.Size(94, 19);
-            this.ChangeBNTTRS.TabIndex = 13;
-            this.ChangeBNTTRS.Text = "Change";
-            this.ChangeBNTTRS.UseVisualStyleBackColor = true;
-            // 
-            // AppointmentNotesTR
-            // 
-            this.AppointmentNotesTR.AutoSize = true;
-            this.AppointmentNotesTR.Location = new System.Drawing.Point(15, 13);
-            this.AppointmentNotesTR.Name = "AppointmentNotesTR";
-            this.AppointmentNotesTR.Size = new System.Drawing.Size(97, 13);
-            this.AppointmentNotesTR.TabIndex = 10;
-            this.AppointmentNotesTR.Text = "Appointment Notes";
-            // 
-            // SurnameTRS
-            // 
-            this.SurnameTRS.AutoSize = true;
-            this.SurnameTRS.Location = new System.Drawing.Point(322, 138);
-            this.SurnameTRS.Name = "SurnameTRS";
-            this.SurnameTRS.Size = new System.Drawing.Size(52, 13);
-            this.SurnameTRS.TabIndex = 3;
-            this.SurnameTRS.Text = "Surname ";
-            // 
-            // FirstNameTRS
-            // 
-            this.FirstNameTRS.AutoSize = true;
-            this.FirstNameTRS.Location = new System.Drawing.Point(319, 98);
-            this.FirstNameTRS.Name = "FirstNameTRS";
-            this.FirstNameTRS.Size = new System.Drawing.Size(60, 13);
-            this.FirstNameTRS.TabIndex = 2;
-            this.FirstNameTRS.Text = "First Name ";
-            // 
-            // AppointmentDt
-            // 
-            this.AppointmentDt.Location = new System.Drawing.Point(322, 29);
-            this.AppointmentDt.Name = "AppointmentDt";
-            this.AppointmentDt.Size = new System.Drawing.Size(117, 20);
-            this.AppointmentDt.TabIndex = 4;
-            // 
-            // SurnameTextBox
-            // 
-            this.SurnameTextBox.Location = new System.Drawing.Point(322, 154);
-            this.SurnameTextBox.Name = "SurnameTextBox";
-            this.SurnameTextBox.Size = new System.Drawing.Size(156, 20);
-            this.SurnameTextBox.TabIndex = 1;
-            // 
-            // AppointmentDTRS
-            // 
-            this.AppointmentDTRS.AutoSize = true;
-            this.AppointmentDTRS.Location = new System.Drawing.Point(319, 13);
-            this.AppointmentDTRS.Name = "AppointmentDTRS";
-            this.AppointmentDTRS.Size = new System.Drawing.Size(90, 13);
-            this.AppointmentDTRS.TabIndex = 5;
-            this.AppointmentDTRS.Text = "Appointment date";
-            // 
-            // FirstNameTextBox
-            // 
-            this.FirstNameTextBox.Location = new System.Drawing.Point(322, 114);
-            this.FirstNameTextBox.Name = "FirstNameTextBox";
-            this.FirstNameTextBox.Size = new System.Drawing.Size(156, 20);
-            this.FirstNameTextBox.TabIndex = 0;
-            // 
-            // PerscriptionTextbox
-            // 
-            this.PerscriptionTextbox.Location = new System.Drawing.Point(322, 72);
-            this.PerscriptionTextbox.Name = "PerscriptionTextbox";
-            this.PerscriptionTextbox.Size = new System.Drawing.Size(156, 20);
-            this.PerscriptionTextbox.TabIndex = 12;
-            // 
-            // AppointmentNotes
-            // 
-            this.AppointmentNotes.Location = new System.Drawing.Point(18, 29);
-            this.AppointmentNotes.Name = "AppointmentNotes";
-            this.AppointmentNotes.Size = new System.Drawing.Size(271, 145);
-            this.AppointmentNotes.TabIndex = 9;
-            this.AppointmentNotes.Text = "";
-            // 
-            // PerscriptionTRS
-            // 
-            this.PerscriptionTRS.AutoSize = true;
-            this.PerscriptionTRS.Location = new System.Drawing.Point(319, 56);
-            this.PerscriptionTRS.Name = "PerscriptionTRS";
-            this.PerscriptionTRS.Size = new System.Drawing.Size(62, 13);
-            this.PerscriptionTRS.TabIndex = 11;
-            this.PerscriptionTRS.Text = "Perscription";
-            // 
-            // StaffNameLable
-            // 
-            this.StaffNameLable.Location = new System.Drawing.Point(12, 92);
-            this.StaffNameLable.Name = "StaffNameLable";
-            this.StaffNameLable.Size = new System.Drawing.Size(156, 20);
-            this.StaffNameLable.TabIndex = 6;
-            // 
-            // PatientTR
-            // 
-            this.PatientTR.AutoSize = true;
-            this.PatientTR.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PatientTR.Location = new System.Drawing.Point(9, 154);
-            this.PatientTR.Name = "PatientTR";
-            this.PatientTR.Size = new System.Drawing.Size(102, 13);
-            this.PatientTR.TabIndex = 1;
-            this.PatientTR.Text = "Patient Test Results";
-            // 
-            // StaffNameTRS
-            // 
-            this.StaffNameTRS.AutoSize = true;
-            this.StaffNameTRS.Location = new System.Drawing.Point(9, 76);
-            this.StaffNameTRS.Name = "StaffNameTRS";
-            this.StaffNameTRS.Size = new System.Drawing.Size(63, 13);
-            this.StaffNameTRS.TabIndex = 15;
-            this.StaffNameTRS.Text = "Staff Name ";
             // 
             // prsPrescriptionGrp
             // 
@@ -1355,7 +1215,7 @@
             this.prescriptionPanel.Controls.Add(this.btnPresCancel);
             this.prescriptionPanel.Controls.Add(this.btnApply);
             this.prescriptionPanel.Controls.Add(this.prsPrescriptionGrp);
-            this.prescriptionPanel.Location = new System.Drawing.Point(684, 11);
+            this.prescriptionPanel.Location = new System.Drawing.Point(1058, 12);
             this.prescriptionPanel.Name = "prescriptionPanel";
             this.prescriptionPanel.Size = new System.Drawing.Size(645, 295);
             this.prescriptionPanel.TabIndex = 44;
@@ -1631,7 +1491,7 @@
             this.editPatientPanel.Controls.Add(this.surname_EP_L);
             this.editPatientPanel.Controls.Add(this.firstName_EP_TB);
             this.editPatientPanel.Controls.Add(this.firstName_EP_L);
-            this.editPatientPanel.Location = new System.Drawing.Point(13, 56);
+            this.editPatientPanel.Location = new System.Drawing.Point(11, 7);
             this.editPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.editPatientPanel.Name = "editPatientPanel";
             this.editPatientPanel.Size = new System.Drawing.Size(311, 300);
@@ -2114,24 +1974,24 @@
             this.findPatientPanel.Controls.Add(this.find_FP_BT);
             this.findPatientPanel.Controls.Add(this.mainMenu_FP_BT);
             this.findPatientPanel.Controls.Add(this.findPatient_L);
-            this.findPatientPanel.Location = new System.Drawing.Point(175, 22);
+            this.findPatientPanel.Location = new System.Drawing.Point(1332, 387);
             this.findPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.findPatientPanel.Name = "findPatientPanel";
-            this.findPatientPanel.Size = new System.Drawing.Size(1317, 713);
+            this.findPatientPanel.Size = new System.Drawing.Size(1578, 713);
             this.findPatientPanel.TabIndex = 51;
             // 
             // medicalHistory_DVG_FP
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2439,6 +2299,29 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
+            // surgeryDataSet
+            // 
+            this.surgeryDataSet.DataSetName = "SurgeryDataSet";
+            this.surgeryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // testsTableAdapter
+            // 
+            this.testsTableAdapter.ClearBeforeFill = true;
+            // 
+            // surgeryDataSet2
+            // 
+            this.surgeryDataSet2.DataSetName = "SurgeryDataSet2";
+            this.surgeryDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // testsBindingSource1
+            // 
+            this.testsBindingSource1.DataMember = "Tests";
+            this.testsBindingSource1.DataSource = this.surgeryDataSet2;
+            // 
+            // testsTableAdapter1
+            // 
+            this.testsTableAdapter1.ClearBeforeFill = true;
+            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2472,8 +2355,9 @@
             this.testResultSearchPanel.ResumeLayout(false);
             this.TestResutsSearch.ResumeLayout(false);
             this.TestResutsSearch.PerformLayout();
-            this.PatientTestResults.ResumeLayout(false);
-            this.PatientTestResults.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DVG_TRS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet1)).EndInit();
             this.prsPrescriptionGrp.ResumeLayout(false);
             this.prsPrescriptionGrp.PerformLayout();
             this.prsNotesGrp.ResumeLayout(false);
@@ -2504,6 +2388,9 @@
             this.newAppointmentPanel.ResumeLayout(false);
             this.newAppointmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Staff_DGV_NA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surgeryDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2565,33 +2452,12 @@
         private System.Windows.Forms.Panel changeStaffSchedulePanel;
         private System.Windows.Forms.Panel testResultSearchPanel;
         private System.Windows.Forms.Panel TestResutsSearch;
-        private System.Windows.Forms.Button MenuTestBNTRS;
-        private System.Windows.Forms.Label StaffTRS;
-        private System.Windows.Forms.ComboBox StaffTypeCombox;
         private System.Windows.Forms.TextBox TestResultSearchLable;
-        private System.Windows.Forms.Label StaffIDTRS;
-        private System.Windows.Forms.TextBox StaffIDlabletrs;
+        private System.Windows.Forms.Label TestID_TRS_L;
+        private System.Windows.Forms.TextBox TestID_TRS_TB;
         private System.Windows.Forms.Button PrintResultsBNTTRS;
-        private System.Windows.Forms.Label PatientIDTRS;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button SearchBTNTRS;
-        private System.Windows.Forms.Panel PatientTestResults;
-        private System.Windows.Forms.Button CancelBNTTRS;
-        private System.Windows.Forms.Button SaveBNTTRS;
-        private System.Windows.Forms.Button ChangeBNTTRS;
-        private System.Windows.Forms.Label AppointmentNotesTR;
-        private System.Windows.Forms.Label SurnameTRS;
-        private System.Windows.Forms.Label FirstNameTRS;
-        private System.Windows.Forms.DateTimePicker AppointmentDt;
-        private System.Windows.Forms.TextBox SurnameTextBox;
-        private System.Windows.Forms.Label AppointmentDTRS;
-        private System.Windows.Forms.TextBox FirstNameTextBox;
-        private System.Windows.Forms.TextBox PerscriptionTextbox;
-        private System.Windows.Forms.RichTextBox AppointmentNotes;
-        private System.Windows.Forms.Label PerscriptionTRS;
-        private System.Windows.Forms.TextBox StaffNameLable;
-        private System.Windows.Forms.Label PatientTR;
-        private System.Windows.Forms.Label StaffNameTRS;
+        private System.Windows.Forms.Label PatientID_TRS_L;
+        private System.Windows.Forms.TextBox PatientID_TRS_TB;
         private System.Windows.Forms.GroupBox prsPrescriptionGrp;
         private System.Windows.Forms.ComboBox prsRenewCombo;
         private System.Windows.Forms.Label prsRenewLbl;
@@ -2718,5 +2584,18 @@
         private System.Windows.Forms.TextBox addMedicalRecord_TB_FP;
         private System.Windows.Forms.DataGridView medicalHistory_DVG_FP;
         private System.Windows.Forms.Label welcome_L;
+        private SurgeryDataSet surgeryDataSet;
+        private System.Windows.Forms.DataGridView DVG_TRS;
+        private System.Windows.Forms.Button MenuTestBNTRS;
+        private System.Windows.Forms.Button SearchBTNTRS;
+        private SurgeryDataSet1 surgeryDataSet1;
+        private System.Windows.Forms.BindingSource testsBindingSource;
+        private SurgeryDataSet1TableAdapters.TestsTableAdapter testsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resultsDataGridViewTextBoxColumn;
+        private SurgeryDataSet2 surgeryDataSet2;
+        private System.Windows.Forms.BindingSource testsBindingSource1;
+        private SurgeryDataSet2TableAdapters.TestsTableAdapter testsTableAdapter1;
     }
 }

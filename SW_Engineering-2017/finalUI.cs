@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+
 
 namespace SW_Engineering_2017
 {
@@ -42,6 +44,12 @@ namespace SW_Engineering_2017
 
         private void finalUI_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'surgeryDataSet2.Tests' table. You can move, or remove it, as needed.
+            this.testsTableAdapter1.Fill(this.surgeryDataSet2.Tests);
+            // TODO: This line of code loads data into the 'surgeryDataSet1.Tests' table. You can move, or remove it, as needed.
+            this.testsTableAdapter.Fill(this.surgeryDataSet1.Tests);
+            // TODO: This line of code loads data into the 'surgeryDataSet.Tests' table. You can move, or remove it, as needed.
+           
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.Sizable;
             /************************************ Date related Code*******************************************/
@@ -893,6 +901,36 @@ namespace SW_Engineering_2017
                 newAppointmentPanel.Visible = false;
                 findPatientPanel.Visible = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void PrintResultsBNTTRS_Click(object sender, EventArgs e)
+        {
+
+            // Text writer to post test result to a note Pad File so it can be printed 
+            TextWriter writer = new StreamWriter("D:\\Demo\\test1.txt"); // just a test location its the h drive i think 
+            for (int i = 0; i < DVG_TRS.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < DVG_TRS.Columns.Count; j++)
+                {
+
+                    writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+
+                }
+                writer.WriteLine("");
+                writer.WriteLine("-----------------------------------------------------");
+            }
+            writer.Close();
+            MessageBox.Show("Data Exported");
+
+
+
+
         }
         #endregion
 
