@@ -710,6 +710,7 @@ namespace SW_Engineering_2017
             //check if data and staff have both been selected 
             if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
             {
+                errorMessage_LB_NA.Text = "";
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Staff Member Selected");
                 //call method 
                 checkingAppointment();
@@ -721,6 +722,7 @@ namespace SW_Engineering_2017
             //check if data and staff have both been selected 
             if ((appointmentDate_PCK_NA.Text != "") && (Staff_CB_NA.Text != ""))
             {
+                errorMessage_LB_NA.Text = "";
                 //call method
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + "Appointmet Selected");
                 checkingAppointment();
@@ -857,8 +859,8 @@ namespace SW_Engineering_2017
                 {
                     //if edit appointment then runs this method
                     confirmChangeAppointment(staff, appointmentDate, appointmentTime);
-                    //clears inputs
-                    clearNewAppointment();
+                   
+ 
                 }
 
             }
@@ -1064,6 +1066,12 @@ namespace SW_Engineering_2017
                 errorMessage_LB_NA.Text = "Appointment Updated";
                 //clears the window
                 clearNewAppointment();
+
+                if (!findPatientPanel.Visible)
+                {
+                    newAppointmentPanel.Visible = false;
+                    findPatientPanel.Visible = true;
+                }
             }
         }
         #endregion

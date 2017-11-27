@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -1595,7 +1595,7 @@
             // 
             this.errorMessage_LB_NA.AutoSize = true;
             this.errorMessage_LB_NA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorMessage_LB_NA.Location = new System.Drawing.Point(11, 241);
+            this.errorMessage_LB_NA.Location = new System.Drawing.Point(11, 240);
             this.errorMessage_LB_NA.Name = "errorMessage_LB_NA";
             this.errorMessage_LB_NA.Size = new System.Drawing.Size(107, 25);
             this.errorMessage_LB_NA.TabIndex = 18;
@@ -2234,14 +2234,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(107, 418);
             this.medicalHistory_DVG_FP.Margin = new System.Windows.Forms.Padding(4);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
@@ -2517,9 +2517,6 @@
             // AppointmentTimes_CB_NA
             // 
             this.AppointmentTimes_CB_NA.FormattingEnabled = true;
-            this.AppointmentTimes_CB_NA.Items.AddRange(new object[] {
-            "GP",
-            "Nurse"});
             this.AppointmentTimes_CB_NA.Location = new System.Drawing.Point(195, 194);
             this.AppointmentTimes_CB_NA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AppointmentTimes_CB_NA.Name = "AppointmentTimes_CB_NA";
@@ -2552,11 +2549,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2175, 956);
+            this.ClientSize = new System.Drawing.Size(1924, 956);
+            this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.newPatientPanel);
             this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.editPatientPanel);
-            this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.staffScheduleSearchPanel);
             this.Controls.Add(this.changeStaffSchedulePanel);
             this.Controls.Add(this.testResultSearchPanel);
