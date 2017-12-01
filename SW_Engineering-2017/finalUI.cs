@@ -354,10 +354,11 @@ namespace SW_Engineering_2017
         {
             prsHeader.Text = "";
             prsNameEntry.Text = "";
-            prsQuantityEntry.Text = "";
+            prsDosageEntry.Text = "";
             prsDatePicker.Value = DateTime.Today;
             prsDurationCombo.Text = "1";
             prsNotesEntry.Text = "";
+            prsErrorLbl.Text = "* required field.";
         }
 
         #endregion
@@ -1043,6 +1044,12 @@ namespace SW_Engineering_2017
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + DateTime.Now.TimeOfDay + "Change Appointment Button Clicked: Patient Required");
             }
         }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void confirmChangeAppointment(string staff, string date, string time)
         {
             //convert date into datatype
@@ -1121,37 +1128,37 @@ namespace SW_Engineering_2017
         #endregion
 
         #region Prescription Form
-        // Shows the Prescription panel, hides and clears all data from the Find Patient panel
-        private void ShowPrescriptionPanel()
-        {
-            // Update Logger
-            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : Show New Prescription Panel");
 
-            // Open panel
-            if (!prescriptionPanel.Visible)
-            {
-                prescriptionPanel.Visible = true;
-                findPatientPanel.Visible = false;
-                errorMessage_LB_NA.Text = "";
-            }
-
-            // Clear Find Patient panel for next use.
-            clearFindPatient();
-            hideFindPatientPanels();
-        }
-
+        #region Save Prescription
         private void SavePrescription()
         {
-            //Get data from prescription form:
-            // Get StaffID
-            string staffID = prsStaffEntry.Text;
             // Get date from the Prescription Form date picker and convert to string.
             string prsDate = prsDatePicker.Value.Year.ToString() + "-" + prsDatePicker.Value.Month.ToString() + "-" + prsDatePicker.Value.Date.ToString();
-            DataTable prsTable;
-            DataSet prsDataSet;
-            DataRow prsDataRow;
-            int numRows;
+            string staffID = prsStaffEntry.Text;        // Get StaffID
+            string name = prsNameEntry.Text;            // Get prescription name
+            string dosage = prsDosageEntry.Text;        // Get the dosage
+            string duration = prsDurationCombo.Text;    // Get the duration
+            string notes = prsNotesEntry.Text;          // Get the optional notes section.
+
+            if ((staffID != "") && (name != "") && (dosage != "") && (duration != "") && (prsDate != ""))
+            {
+                Connection.getDBConnectionInstance().addPrescription(privatePatientID, staffID, name, dosage, prsDate, duration, notes);
+
+                // Log when a save is attempted with incomplete fields.
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription save attempted : ALL DATA PRESENT");
+                clearPrescriptionForm();
+            }
+            else
+            {
+                // Log when a save is attempted with incomplete fields.
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription save attempted : EMPTY FIELD");
+                prsErrorLbl.Text = "Please fill in the required fields.";
+            }
         }
+
+
+        #endregion
+
         #region Load Prescription Panel
         private void PrescriptionDataLoad(string headerText)
         {
@@ -1169,9 +1176,15 @@ namespace SW_Engineering_2017
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
                 privatePatientID = selectedRow.Cells[0].Value.ToString();
 
-                //display PatientID in prescriprion form.
+                // Gisplay PatientID in prescriprion form.
                 prsPrescriptionGrp.Text = "Patient ID: " + privatePatientID;
                 errorMessage_LB_NA.Text = "";
+
+                // Change apply button to say save if new Prescription
+                if (headerText == "New")
+                {
+                    prsApplyBtn
+                }
 
                 // Log the PatientID being used 
                 Logger.instance.log(DateTime.Today.ToString("--------------------\r\n" + "dd/MM/yyyy") + "Selected Patient ID: " + privatePatientID.ToString());
@@ -1188,6 +1201,25 @@ namespace SW_Engineering_2017
                 // Log when button is clicked with no PatientID selected.
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " " + headerText + " Prescription button clicked : ID NOT SELECTED");
             }
+        }
+
+        // Shows the Prescription panel, hides and clears all data from the Find Patient panel
+        private void ShowPrescriptionPanel()
+        {
+            // Update Logger
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " New Prescription button clocked : Show New Prescription Panel");
+
+            // Open panel
+            if (!prescriptionPanel.Visible)
+            {
+                prescriptionPanel.Visible = true;
+                findPatientPanel.Visible = false;
+                errorMessage_LB_NA.Text = "";
+            }
+
+            // Clear Find Patient panel for next use.
+            clearFindPatient();
+            hideFindPatientPanels();
         }
         #endregion
 
