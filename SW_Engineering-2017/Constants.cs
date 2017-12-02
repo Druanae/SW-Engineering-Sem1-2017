@@ -31,7 +31,8 @@ namespace SW_Engineering_2017
         public static string updatePatient = "UPDATE Patients SET Firstname=@firstname, Surname =@Surname , DOB =@DOB, AddressLine=@AddressLine, TownCity=@TownCity, County=@County, Postcode=@Postcode WHERE Patient_ID =@patientID";
 
         public const string selectAllPrescriptions = "SELECT * From Prescriptions WHERE Patient_ID =@patientID";
-        public const string selectPrescriptions = "SELECT Patient_ID, Prs_Name, Dosage, Date, Duration, Notes FROM Prescriptions WHERE Patient_ID =@patientID";
+        public const string selectPrescriptions = "SELECT Prescription_ID, Prs_Name, Dosage, Date, Duration, Notes FROM Prescriptions WHERE Patient_ID =@patientID";
+        public const string selectPrescriptionByID = "SELECT * from Prescriptions WHERE Prescription_ID =@prescriptionID";
 
         public static string selectPatientAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Patient_ID =@patientID AND ( Date > @date OR Date = @date AND Time > @time)";
         public static string selectAppointment = "SELECT Staff_ID,Date,Time From Appointments WHERE Appointment_ID =@appointmentID";

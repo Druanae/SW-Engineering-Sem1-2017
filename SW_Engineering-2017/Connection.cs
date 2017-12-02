@@ -577,7 +577,38 @@ namespace SW_Engineering_2017
             // Return the data
             return dataSet;
         }
+        #region Select Prescription by Prs_ID
+        public DataSet selectPrescriptionByID(string prescriptionID)
+        {
+            // Creates an empty DataSet variable
+            DataSet dataSet;
 
+            // Create SQL Command
+            SqlCommand command = new SqlCommand();
+
+            // Set the command type to text
+            command.CommandType = CommandType.Text;
+            // Set the command text
+            command.CommandText = Constants.selectPrescriptionByID;
+            // Adds the values to the command parameters
+            command.Parameters.Add(new SqlParameter("prescriptionID", prescriptionID));
+
+            // Open database connection
+            openConnection();
+            // Set the connection
+            command.Connection = connectionToDatabase;
+
+            // create an object to manipulate a table in the database using the connection
+            dataAdapter = new SqlDataAdapter(command);
+
+            // Create the DataSet and fill it with data
+            dataSet = new System.Data.DataSet();
+            dataAdapter.Fill(dataSet);
+            // Return the data
+            return dataSet;
+        }
+
+        #endregion
         public void addPrescription(string patientID, string staffID, string name, string dosage, string date, string duration, string notes)
         {
             // Creates SQL Command

@@ -115,8 +115,6 @@
             this.PatientTR = new System.Windows.Forms.Label();
             this.StaffNameTRS = new System.Windows.Forms.Label();
             this.prsPrescriptionGrp = new System.Windows.Forms.GroupBox();
-            this.prsStaffLbl = new System.Windows.Forms.Label();
-            this.prsStaffEntry = new System.Windows.Forms.TextBox();
             this.prsDurationCombo = new System.Windows.Forms.ComboBox();
             this.prsDurationLbl = new System.Windows.Forms.Label();
             this.prsNotesGrp = new System.Windows.Forms.GroupBox();
@@ -127,7 +125,6 @@
             this.prsDateLbl = new System.Windows.Forms.Label();
             this.prsDosageLbl = new System.Windows.Forms.Label();
             this.prsPrescriptionNameLbl = new System.Windows.Forms.Label();
-            this.btnPresCancel = new System.Windows.Forms.Button();
             this.prescriptionPanel = new System.Windows.Forms.Panel();
             this.prsErrorLbl = new System.Windows.Forms.Label();
             this.prsHeader = new System.Windows.Forms.Label();
@@ -222,6 +219,7 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
+            this.btnPresCancel = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -1088,8 +1086,6 @@
             // 
             // prsPrescriptionGrp
             // 
-            this.prsPrescriptionGrp.Controls.Add(this.prsStaffLbl);
-            this.prsPrescriptionGrp.Controls.Add(this.prsStaffEntry);
             this.prsPrescriptionGrp.Controls.Add(this.prsDurationCombo);
             this.prsPrescriptionGrp.Controls.Add(this.prsDurationLbl);
             this.prsPrescriptionGrp.Controls.Add(this.prsNotesGrp);
@@ -1105,22 +1101,6 @@
             this.prsPrescriptionGrp.TabIndex = 1;
             this.prsPrescriptionGrp.TabStop = false;
             this.prsPrescriptionGrp.Text = "Prescription Details";
-            // 
-            // prsStaffLbl
-            // 
-            this.prsStaffLbl.AutoSize = true;
-            this.prsStaffLbl.Location = new System.Drawing.Point(57, 26);
-            this.prsStaffLbl.Name = "prsStaffLbl";
-            this.prsStaffLbl.Size = new System.Drawing.Size(44, 13);
-            this.prsStaffLbl.TabIndex = 10;
-            this.prsStaffLbl.Text = "StaffID*";
-            // 
-            // prsStaffEntry
-            // 
-            this.prsStaffEntry.Location = new System.Drawing.Point(103, 22);
-            this.prsStaffEntry.Name = "prsStaffEntry";
-            this.prsStaffEntry.Size = new System.Drawing.Size(147, 20);
-            this.prsStaffEntry.TabIndex = 9;
             // 
             // prsDurationCombo
             // 
@@ -1138,7 +1118,7 @@
             "10",
             "11",
             "12"});
-            this.prsDurationCombo.Location = new System.Drawing.Point(103, 110);
+            this.prsDurationCombo.Location = new System.Drawing.Point(103, 80);
             this.prsDurationCombo.Name = "prsDurationCombo";
             this.prsDurationCombo.Size = new System.Drawing.Size(147, 21);
             this.prsDurationCombo.TabIndex = 8;
@@ -1147,7 +1127,7 @@
             // prsDurationLbl
             // 
             this.prsDurationLbl.AutoSize = true;
-            this.prsDurationLbl.Location = new System.Drawing.Point(10, 114);
+            this.prsDurationLbl.Location = new System.Drawing.Point(10, 84);
             this.prsDurationLbl.Name = "prsDurationLbl";
             this.prsDurationLbl.Size = new System.Drawing.Size(91, 13);
             this.prsDurationLbl.TabIndex = 7;
@@ -1156,39 +1136,40 @@
             // prsNotesGrp
             // 
             this.prsNotesGrp.Controls.Add(this.prsNotesEntry);
-            this.prsNotesGrp.Location = new System.Drawing.Point(6, 137);
+            this.prsNotesGrp.Location = new System.Drawing.Point(6, 107);
             this.prsNotesGrp.Name = "prsNotesGrp";
-            this.prsNotesGrp.Size = new System.Drawing.Size(244, 78);
+            this.prsNotesGrp.Size = new System.Drawing.Size(244, 108);
             this.prsNotesGrp.TabIndex = 6;
             this.prsNotesGrp.TabStop = false;
             this.prsNotesGrp.Text = "Additional Notes";
             // 
             // prsNotesEntry
             // 
+            this.prsNotesEntry.BackColor = System.Drawing.SystemColors.Control;
             this.prsNotesEntry.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.prsNotesEntry.Location = new System.Drawing.Point(6, 19);
             this.prsNotesEntry.Multiline = true;
             this.prsNotesEntry.Name = "prsNotesEntry";
-            this.prsNotesEntry.Size = new System.Drawing.Size(232, 56);
+            this.prsNotesEntry.Size = new System.Drawing.Size(232, 85);
             this.prsNotesEntry.TabIndex = 0;
             // 
             // prsDosageEntry
             // 
-            this.prsDosageEntry.Location = new System.Drawing.Point(103, 66);
+            this.prsDosageEntry.Location = new System.Drawing.Point(103, 36);
             this.prsDosageEntry.Name = "prsDosageEntry";
             this.prsDosageEntry.Size = new System.Drawing.Size(147, 20);
             this.prsDosageEntry.TabIndex = 5;
             // 
             // prsNameEntry
             // 
-            this.prsNameEntry.Location = new System.Drawing.Point(103, 44);
+            this.prsNameEntry.Location = new System.Drawing.Point(103, 14);
             this.prsNameEntry.Name = "prsNameEntry";
             this.prsNameEntry.Size = new System.Drawing.Size(147, 20);
             this.prsNameEntry.TabIndex = 4;
             // 
             // prsDatePicker
             // 
-            this.prsDatePicker.Location = new System.Drawing.Point(103, 88);
+            this.prsDatePicker.Location = new System.Drawing.Point(103, 58);
             this.prsDatePicker.Name = "prsDatePicker";
             this.prsDatePicker.Size = new System.Drawing.Size(147, 20);
             this.prsDatePicker.TabIndex = 3;
@@ -1196,7 +1177,7 @@
             // prsDateLbl
             // 
             this.prsDateLbl.AutoSize = true;
-            this.prsDateLbl.Location = new System.Drawing.Point(67, 92);
+            this.prsDateLbl.Location = new System.Drawing.Point(67, 62);
             this.prsDateLbl.Name = "prsDateLbl";
             this.prsDateLbl.Size = new System.Drawing.Size(34, 13);
             this.prsDateLbl.TabIndex = 2;
@@ -1205,7 +1186,7 @@
             // prsDosageLbl
             // 
             this.prsDosageLbl.AutoSize = true;
-            this.prsDosageLbl.Location = new System.Drawing.Point(53, 70);
+            this.prsDosageLbl.Location = new System.Drawing.Point(53, 40);
             this.prsDosageLbl.Name = "prsDosageLbl";
             this.prsDosageLbl.Size = new System.Drawing.Size(48, 13);
             this.prsDosageLbl.TabIndex = 1;
@@ -1214,22 +1195,11 @@
             // prsPrescriptionNameLbl
             // 
             this.prsPrescriptionNameLbl.AutoSize = true;
-            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(4, 48);
+            this.prsPrescriptionNameLbl.Location = new System.Drawing.Point(4, 18);
             this.prsPrescriptionNameLbl.Name = "prsPrescriptionNameLbl";
             this.prsPrescriptionNameLbl.Size = new System.Drawing.Size(97, 13);
             this.prsPrescriptionNameLbl.TabIndex = 0;
             this.prsPrescriptionNameLbl.Text = "Prescription Name*";
-            // 
-            // btnPresCancel
-            // 
-            this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPresCancel.Location = new System.Drawing.Point(186, 266);
-            this.btnPresCancel.Name = "btnPresCancel";
-            this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnPresCancel.TabIndex = 2;
-            this.btnPresCancel.Text = "Cancel";
-            this.btnPresCancel.UseVisualStyleBackColor = true;
-            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
             // 
             // prescriptionPanel
             // 
@@ -2311,6 +2281,17 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
+            // btnPresCancel
+            // 
+            this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPresCancel.Location = new System.Drawing.Point(186, 266);
+            this.btnPresCancel.Name = "btnPresCancel";
+            this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnPresCancel.TabIndex = 2;
+            this.btnPresCancel.Text = "Back";
+            this.btnPresCancel.UseVisualStyleBackColor = true;
+            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
+            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2472,7 +2453,6 @@
         private System.Windows.Forms.Label prsDateLbl;
         private System.Windows.Forms.Label prsDosageLbl;
         private System.Windows.Forms.Label prsPrescriptionNameLbl;
-        private System.Windows.Forms.Button btnPresCancel;
         private System.Windows.Forms.Panel prescriptionPanel;
         private System.Windows.Forms.Button prsApplyBtn;
         private System.Windows.Forms.ComboBox Staff_CB_NA;
@@ -2568,9 +2548,8 @@
         private System.Windows.Forms.DataGridView medicalHistory_DVG_FP;
         private System.Windows.Forms.Label welcome_L;
         private System.Windows.Forms.Label prsHeader;
-        private System.Windows.Forms.Label prsStaffLbl;
-        private System.Windows.Forms.TextBox prsStaffEntry;
         private System.Windows.Forms.Label prsErrorLbl;
         private System.Windows.Forms.Button editPrescriptions_FP_B;
+        private System.Windows.Forms.Button btnPresCancel;
     }
 }
