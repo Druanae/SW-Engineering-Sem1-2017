@@ -132,7 +132,7 @@
             this.prsErrorLbl = new System.Windows.Forms.Label();
             this.prsHeader = new System.Windows.Forms.Label();
             this.btnPresMenu = new System.Windows.Forms.Button();
-            this.prsBtnApply = new System.Windows.Forms.Button();
+            this.prsApplyBtn = new System.Windows.Forms.Button();
             this.Staff_CB_NA = new System.Windows.Forms.ComboBox();
             this.staff_LBL_NA = new System.Windows.Forms.Label();
             this.staffType_CB_NA = new System.Windows.Forms.ComboBox();
@@ -221,6 +221,7 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
+            this.editPrescriptions_FP_B = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -1237,7 +1238,7 @@
             this.prescriptionPanel.Controls.Add(this.prsHeader);
             this.prescriptionPanel.Controls.Add(this.btnPresMenu);
             this.prescriptionPanel.Controls.Add(this.btnPresCancel);
-            this.prescriptionPanel.Controls.Add(this.prsBtnApply);
+            this.prescriptionPanel.Controls.Add(this.prsApplyBtn);
             this.prescriptionPanel.Controls.Add(this.prsPrescriptionGrp);
             this.prescriptionPanel.Location = new System.Drawing.Point(684, 11);
             this.prescriptionPanel.Name = "prescriptionPanel";
@@ -1274,15 +1275,15 @@
             this.btnPresMenu.UseVisualStyleBackColor = true;
             this.btnPresMenu.Click += new System.EventHandler(this.mainMenuShow);
             // 
-            // prsBtnApply
+            // prsApplyBtn
             // 
-            this.prsBtnApply.Location = new System.Drawing.Point(105, 266);
-            this.prsBtnApply.Name = "prsBtnApply";
-            this.prsBtnApply.Size = new System.Drawing.Size(75, 23);
-            this.prsBtnApply.TabIndex = 3;
-            this.prsBtnApply.Text = "Apply";
-            this.prsBtnApply.UseVisualStyleBackColor = true;
-            this.prsBtnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.prsApplyBtn.Location = new System.Drawing.Point(105, 266);
+            this.prsApplyBtn.Name = "prsApplyBtn";
+            this.prsApplyBtn.Size = new System.Drawing.Size(75, 23);
+            this.prsApplyBtn.TabIndex = 3;
+            this.prsApplyBtn.Text = "Apply";
+            this.prsApplyBtn.UseVisualStyleBackColor = true;
+            this.prsApplyBtn.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // Staff_CB_NA
             // 
@@ -1376,6 +1377,7 @@
             this.extendPrescriptions_FP_B.TabIndex = 47;
             this.extendPrescriptions_FP_B.Text = "Extend";
             this.extendPrescriptions_FP_B.UseVisualStyleBackColor = true;
+            this.extendPrescriptions_FP_B.Visible = false;
             // 
             // newPrescription_FP_B
             // 
@@ -1945,6 +1947,7 @@
             // findPatientPanel
             // 
             this.findPatientPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.findPatientPanel.Controls.Add(this.editPrescriptions_FP_B);
             this.findPatientPanel.Controls.Add(this.medicalHistory_DVG_FP);
             this.findPatientPanel.Controls.Add(this.newMedicalHistory_FP_B);
             this.findPatientPanel.Controls.Add(this.addMedicalRecord_TB_FP);
@@ -2294,6 +2297,18 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
+            // editPrescriptions_FP_B
+            // 
+            this.editPrescriptions_FP_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editPrescriptions_FP_B.Location = new System.Drawing.Point(1152, 614);
+            this.editPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.editPrescriptions_FP_B.Name = "editPrescriptions_FP_B";
+            this.editPrescriptions_FP_B.Size = new System.Drawing.Size(80, 29);
+            this.editPrescriptions_FP_B.TabIndex = 71;
+            this.editPrescriptions_FP_B.Text = "New ";
+            this.editPrescriptions_FP_B.UseVisualStyleBackColor = true;
+            this.editPrescriptions_FP_B.Visible = false;
+            // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2457,7 +2472,7 @@
         private System.Windows.Forms.Label prsPrescriptionNameLbl;
         private System.Windows.Forms.Button btnPresCancel;
         private System.Windows.Forms.Panel prescriptionPanel;
-        private System.Windows.Forms.Button prsBtnApply;
+        private System.Windows.Forms.Button prsApplyBtn;
         private System.Windows.Forms.ComboBox Staff_CB_NA;
         private System.Windows.Forms.Label staff_LBL_NA;
         private System.Windows.Forms.ComboBox staffType_CB_NA;
@@ -2554,5 +2569,6 @@
         private System.Windows.Forms.Label prsStaffLbl;
         private System.Windows.Forms.TextBox prsStaffEntry;
         private System.Windows.Forms.Label prsErrorLbl;
+        private System.Windows.Forms.Button editPrescriptions_FP_B;
     }
 }

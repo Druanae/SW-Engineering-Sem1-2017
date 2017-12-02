@@ -30,6 +30,7 @@ namespace SW_Engineering_2017
 
         public static string updatePatient = "UPDATE Patients SET Firstname=@firstname, Surname =@Surname , DOB =@DOB, AddressLine=@AddressLine, TownCity=@TownCity, County=@County, Postcode=@Postcode WHERE Patient_ID =@patientID";
 
+        public const string selectAllPrescriptions = "SELECT * From Prescriptions WHERE Patient_ID =@patientID";
 
         public static string selectPatientAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Patient_ID =@patientID AND ( Date > @date OR Date = @date AND Time > @time)";
         public static string selectAppointment = "SELECT Staff_ID,Date,Time From Appointments WHERE Appointment_ID =@appointmentID";
@@ -43,6 +44,6 @@ namespace SW_Engineering_2017
         public static string insertNewPatient = "INSERT INTO[dbo].[Patients]([Firstname], [Surname], [DOB], [AddressLine], [TownCity], [County], [Postcode]) VALUES(@Firstname,@Surname,@DOB,@AddressLine,@TownCity,@County,@Postcode)";
         public static string AddAppointment = "INSERT INTO [dbo].[Appointments] ([Patient_ID], [Staff_ID], [Date], [Time]) VALUES (@patientID,@staffID,@date , @time)";
         public static string addMedicalRecord = "INSERT INTO[dbo].[medicalRecords]([Patient_ID], [medicalRecord]) VALUES (@patientID, @medicalRecords)";
-        public static string AddPrescription = "INSERT INTO[dbo].[Prescriptions]([Patient_ID], [Staff_ID], [Prs_Name], [Dosage], [Date], [Duration], [Notes] VALUES (@patientID, @staffID, @name, @dosage, @date, @duration, @notes)";
+        public static string AddPrescription = "INSERT INTO[dbo].[Prescriptions]([Patient_ID], [Staff_ID], [Prs_Name], [Dosage], [Date], [Duration], [Notes]) VALUES (@patientID, @staffID, @name, @dosage, @date, @duration, @notes)";
     }
 }
