@@ -1126,6 +1126,7 @@ namespace SW_Engineering_2017
             }
 
         }
+
         #endregion
 
         #region Prescription Form
@@ -1252,6 +1253,7 @@ namespace SW_Engineering_2017
 
         private void viewPrescriptions()
         {
+            // Get Prescription information from the database for the selected patient.
             DataSet dataSet = Connection.getDBConnectionInstance().getPrescriptions(privatePatientID);
             // Create the instance and set the table.
             DataTable table = dataSet.Tables[0];
@@ -1262,8 +1264,32 @@ namespace SW_Engineering_2017
             // Set the width of the grid to the appropriate length
             prescriptions_DGV_FP.Columns[0].Width = prescriptions_DGV_FP.Width - 20;
         }
+        
+        private void prescriptions_DGV_FP_Click(object sender, EventArgs e)
+        {
+            if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
+            {
+                //Updates logger 
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Selected");
 
+                // Shows the Edit & Extend buttons on selecting a prescription from the table.
+                editPrescriptions_FP_B.Visible = true;
 
+            }
+        }
+
+        private void editPrescriptions_FP_B_Click(object sender, EventArgs e)
+        {
+            if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
+            {
+
+            }
+            else
+            {
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Edit Attempted : NO PATIENT");
+                error_FP_LBL.Text = "Patient Required";
+            }
+        }
 
         #endregion
 

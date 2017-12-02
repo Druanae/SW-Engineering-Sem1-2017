@@ -193,6 +193,7 @@
             this.firstName_NP_LBL = new System.Windows.Forms.Label();
             this.Confirm_BT_NA = new System.Windows.Forms.Button();
             this.findPatientPanel = new System.Windows.Forms.Panel();
+            this.editPrescriptions_FP_B = new System.Windows.Forms.Button();
             this.medicalHistory_DVG_FP = new System.Windows.Forms.DataGridView();
             this.newMedicalHistory_FP_B = new System.Windows.Forms.Button();
             this.addMedicalRecord_TB_FP = new System.Windows.Forms.TextBox();
@@ -221,7 +222,6 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
-            this.editPrescriptions_FP_B = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -1978,6 +1978,19 @@
             this.findPatientPanel.Size = new System.Drawing.Size(1317, 713);
             this.findPatientPanel.TabIndex = 51;
             // 
+            // editPrescriptions_FP_B
+            // 
+            this.editPrescriptions_FP_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editPrescriptions_FP_B.Location = new System.Drawing.Point(1152, 614);
+            this.editPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
+            this.editPrescriptions_FP_B.Name = "editPrescriptions_FP_B";
+            this.editPrescriptions_FP_B.Size = new System.Drawing.Size(80, 29);
+            this.editPrescriptions_FP_B.TabIndex = 71;
+            this.editPrescriptions_FP_B.Text = "Edit";
+            this.editPrescriptions_FP_B.UseVisualStyleBackColor = true;
+            this.editPrescriptions_FP_B.Visible = false;
+            this.editPrescriptions_FP_B.Click += new System.EventHandler(this.editPrescriptions_FP_B_Click);
+            // 
             // medicalHistory_DVG_FP
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -2036,6 +2049,7 @@
             this.prescriptions_DGV_FP.RowTemplate.Height = 24;
             this.prescriptions_DGV_FP.Size = new System.Drawing.Size(327, 231);
             this.prescriptions_DGV_FP.TabIndex = 65;
+            this.prescriptions_DGV_FP.Click += new System.EventHandler(this.prescriptions_DGV_FP_Click);
             // 
             // appointments_DGV_FP
             // 
@@ -2296,18 +2310,6 @@
             this.appointmentTime_LB_NA.Size = new System.Drawing.Size(138, 20);
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
-            // 
-            // editPrescriptions_FP_B
-            // 
-            this.editPrescriptions_FP_B.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editPrescriptions_FP_B.Location = new System.Drawing.Point(1152, 614);
-            this.editPrescriptions_FP_B.Margin = new System.Windows.Forms.Padding(2);
-            this.editPrescriptions_FP_B.Name = "editPrescriptions_FP_B";
-            this.editPrescriptions_FP_B.Size = new System.Drawing.Size(80, 29);
-            this.editPrescriptions_FP_B.TabIndex = 71;
-            this.editPrescriptions_FP_B.Text = "New ";
-            this.editPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            this.editPrescriptions_FP_B.Visible = false;
             // 
             // finalUI
             // 
