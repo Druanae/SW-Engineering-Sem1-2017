@@ -16,7 +16,7 @@ namespace SW_Engineering_2017
         /****************************************** Private Strings************************************/
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType, privatePrescriptionID, privateLoginID;
-        private bool PrivatePatientFound = false, NewAppointment = true, EditPrescription = true, PrivatePrescriptionFound = false;
+        private bool PrivatePatientFound = false, NewAppointment = true, PrivateEditPrescription = false, PrivatePrescriptionFound = false;
         private int loginAttempt = 0;
         #endregion
 
@@ -1144,12 +1144,25 @@ namespace SW_Engineering_2017
             string notes = prsNotesEntry.Text;              // Get the optional notes section.
             if ((staffID != "") && (name != "") && (dosage != "") && (duration != "") && (prsDate != ""))
             {
-                Connection.getDBConnectionInstance().addPrescription(privatePatientID, staffID, name, dosage, prsDate, duration, notes);
+                if (PrivateEditPrescription == true)
+                {
+                    Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription edit attempted : ALL DATA PRESENT");
+                    SavePrescriptionEdit(name, dosage, prsDate, duration, notes);
+                }
+                else
+                {
+                    Connection.getDBConnectionInstance().addPrescription(privatePatientID, staffID, name, dosage, prsDate, duration, notes);
 
-                // Log when a save is attempted with incomplete fields.
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription save attempted : ALL DATA PRESENT");
-                clearPrescriptionForm();
-                prsErrorLbl.Text = "Prescription Added";
+                    // Log when a save is attempted with incomplete fields.
+                    Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription save attempted : ALL DATA PRESENT");
+                    if (!findPatientPanel.Visible)
+                    {
+                        findPatientPanel.Visible = true;
+                        prescriptionPanel.Visible = false;
+                        clearPrescriptionForm();
+                        error_FP_LBL.Text = "Prescription Saved";
+                    }
+                }
             }
             else
             {
@@ -1159,6 +1172,22 @@ namespace SW_Engineering_2017
             }
         }
 
+        private void SavePrescriptionEdit(string name, string dosage, string date, string duration, string notes)
+        {
+            string prescriptionID = privatePrescriptionID;
+            // Log when save attempted
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Edited Prescription Save Attempted : " + prescriptionID + " " + name + " " + dosage + " " + date + " " + duration + " " + notes + " ");
+            Connection.getDBConnectionInstance().updatePrescription(privatePrescriptionID, name, dosage, date, duration, notes);
+            if (!findPatientPanel.Visible)
+            {
+                findPatientPanel.Visible = true;
+                prescriptionPanel.Visible = false;
+                clearPrescriptionForm();
+                error_FP_LBL.Text = "Prescription Saved";
+            }
+            
+        }
+
         private void btnApply_Click(object sender, EventArgs e)
         {
             Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Apply button clicked");
@@ -1166,7 +1195,8 @@ namespace SW_Engineering_2017
         }
         #endregion
 
-        #region Load New Prescription Panel
+        #region New Prescription
+        // Loads the necessary data into the prescription panel when called
         private void NewPrescriptionDataLoad()
         {
             if ((PrivatePatientFound == true) && (patients_DGV_FP.Rows.Count > 0))
@@ -1179,13 +1209,15 @@ namespace SW_Engineering_2017
                 DataGridViewRow selectedRow = patients_DGV_FP.Rows[selectedRowIndex];
                 privatePatientID = selectedRow.Cells[0].Value.ToString();
 
-                // Gisplay PatientID in prescriprion form.
+                // Display PatientID in prescription form.
                 prsPrescriptionGrp.Text = "Patient ID: " + privatePatientID;
                 errorMessage_LB_NA.Text = "";
 
                 // Change apply button to say save if new Prescription
                 prsApplyBtn.Text = "Save";
 
+                // Set staffID label
+                prsStaffIDLbl.Text = privateLoginID;
 
                 // Log the PatientID being used 
                 Logger.instance.log(DateTime.Today.ToString("--------------------\r\n" + "dd/MM/yyyy") + "Selected Patient ID: " + privatePatientID.ToString());
@@ -1220,16 +1252,64 @@ namespace SW_Engineering_2017
             clearFindPatient();
             hideFindPatientPanels();
         }
-        #endregion
 
-        #region Edit Prescription
-
-        #endregion
-
-        #region New Prescription
         private void newPrescription_FP_B_Click(object sender, EventArgs e)
         {
             NewPrescriptionDataLoad();
+        }
+        #endregion
+
+        #region Edit Prescription
+        private void editPrescriptions_FP_B_Click(object sender, EventArgs e)
+        {
+            EditPrescriptionDataLoad();
+        }
+
+        private void EditPrescriptionDataLoad()
+        {
+            if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
+            {
+                string prescriptionID;      // String to store the prescription ID
+                if ((PrivatePrescriptionFound) && (prescriptions_DGV_FP.Rows.Count > 0))
+                {
+                    int selectedRowIndex = prescriptions_DGV_FP.SelectedCells[0].RowIndex;      // Select prescription row
+                    DataGridViewRow selectedRow = prescriptions_DGV_FP.Rows[selectedRowIndex];  // Show in the DataGrid View
+                    prescriptionID = selectedRow.Cells[0].Value.ToString();                     // Set the prescriptionID to the selected row
+
+                    // Get the data from the database
+                    DataTable table;
+                    DataSet dataSet;
+                    DataRow dataRow;
+                    // Make a connection to the database and pull the data from the prescription with the matching ID
+                    dataSet = Connection.getDBConnectionInstance().selectPrescriptionByID(prescriptionID);
+
+                    table = dataSet.Tables[0];                  // Store the dataset in a table
+                    prescriptions_DGV_FP.DataSource = table;
+                    dataRow = table.Rows[0];                    // Store the table information
+                    privatePrescriptionID = prescriptionID;
+                    PrivateEditPrescription = true;                    // Set EditPrescription to true
+
+                    clearPrescriptionForm();
+                    prsStaffIDLbl.Text = privateLoginID;                                                    // Set the staff ID to the ID of the signed in member of staff
+                    prsNameEntry.Text = dataRow.ItemArray.GetValue(3).ToString();                           // Fill name entry with name in the selected prescription
+                    prsDosageEntry.Text = dataRow.ItemArray.GetValue(4).ToString();                         // Fill dosage entry with the name in the selected prescription
+                    prsDatePicker.Value = Convert.ToDateTime(dataRow.ItemArray.GetValue(5).ToString());     // Fill date picker with the date in the selected prescription
+                    prsDurationCombo.Text = dataRow.ItemArray.GetValue(6).ToString();                       // Fill duration combo box with the date in the selected prescription
+                    prsNotesEntry.Text = dataRow.ItemArray.GetValue(7).ToString();                          // Fill notes entry box with the notes in the selected prescription
+                    if (!prescriptionPanel.Visible)
+                    {
+                        findPatientPanel.Visible = false;
+                        prescriptionPanel.Visible = true;
+                        clearFindPatient();
+                        hideFindPatientPanels();
+                    }
+                }
+            }
+            else
+            {
+                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Edit Attempted : NO PATIENT");
+                error_FP_LBL.Text = "Patient Required";
+            }
         }
         #endregion
 
@@ -1242,7 +1322,7 @@ namespace SW_Engineering_2017
         private void viewPrescriptions()
         {
             // Get Prescription information from the database for the selected patient.
-            DataSet dataSet = Connection.getDBConnectionInstance().getPrescriptions(privatePatientID);
+            DataSet dataSet = Connection.getDBConnectionInstance().getAllPrescriptions(privatePatientID);
             // Create the instance and set the table.
             DataTable table = dataSet.Tables[0];
             prescriptions_DGV_FP.DataSource = table;
@@ -1265,40 +1345,6 @@ namespace SW_Engineering_2017
                 // Shows the Edit & Extend buttons on selecting a prescription from the table.
                 editPrescriptions_FP_B.Visible = true;
                 extendPrescriptions_FP_B.Visible = true;
-
-            }
-        }
-
-        private void editPrescriptions_FP_B_Click(object sender, EventArgs e)
-        {
-            if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
-            {
-                string prescriptionID;      // String to store the prescription ID
-                if ((PrivatePrescriptionFound) && (prescriptions_DGV_FP.Rows.Count > 0))
-                {
-                    int selectedRowIndex = prescriptions_DGV_FP.SelectedCells[0].RowIndex;      // Select prescription row
-                    DataGridViewRow selectedRow = prescriptions_DGV_FP.Rows[selectedRowIndex];  // Show in the DataGrid View
-                    prescriptionID = selectedRow.Cells[0].Value.ToString();                     // Set the prescriptionID to the selected row
-
-                    // Get the data from the database
-                    DataTable table;
-                    DataSet dataSet;
-                    DataRow dataRow;
-                    // Make a connection to the database and pull the data from the prescription with the matching ID
-                    dataSet = Connection.getDBConnectionInstance().selectPrescriptionByID(prescriptionID);
-
-                    table = dataSet.Tables[0];                  // Store the dataset in a table
-                    prescriptions_DGV_FP.DataSource = table;
-                    dataRow = table.Rows[0];                    // Store the table information
-                    privatePrescriptionID = prescriptionID;
-
-
-                }
-            }
-            else
-            {
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Edit Attempted : NO PATIENT");
-                error_FP_LBL.Text = "Patient Required";
             }
         }
 

@@ -518,6 +518,7 @@ namespace SW_Engineering_2017
 
         #region Prescriptions
 
+        #region Get All Prescriptions
         public DataSet getAllPrescriptions(string patientID)
         {
             // Creates an empty DataSet variable
@@ -547,7 +548,9 @@ namespace SW_Engineering_2017
             // Return the data
             return dataSet;
         }
+        #endregion
 
+        #region Get Prescription Info
         public DataSet getPrescriptions(string patientID)
         {
             // Creates an empty DataSet variable
@@ -577,6 +580,8 @@ namespace SW_Engineering_2017
             // Return the data
             return dataSet;
         }
+        #endregion
+
         #region Select Prescription by Prs_ID
         public DataSet selectPrescriptionByID(string prescriptionID)
         {
@@ -607,8 +612,9 @@ namespace SW_Engineering_2017
             // Return the data
             return dataSet;
         }
-
         #endregion
+
+        #region Add Prescription
         public void addPrescription(string patientID, string staffID, string name, string dosage, string date, string duration, string notes)
         {
             // Creates SQL Command
@@ -635,6 +641,35 @@ namespace SW_Engineering_2017
             // Close database connection
             closeConnection();
         }
+        #endregion
+
+        #region Update Prescription
+        public void updatePrescription(string prescriptionID,string name, string dosage, string date, string duration, string notes)
+        {
+            //creates SQL command
+            SqlCommand command = new SqlCommand();
+            //sets command type to text
+            command.CommandType = CommandType.Text;
+            //sets the command text to constants updatePrescription
+            command.CommandText = Constants.updatePrescription;
+            //adds the values into the database
+            command.Parameters.Add(new SqlParameter("prescriptionID", prescriptionID));
+            command.Parameters.Add(new SqlParameter("name", name));
+            command.Parameters.Add(new SqlParameter("dosage", dosage));
+            command.Parameters.Add(new SqlParameter("date", date));
+            command.Parameters.Add(new SqlParameter("duration", duration));
+            command.Parameters.Add(new SqlParameter("notes", notes));
+
+            //opens connection
+            openConnection();
+            //sets the connection
+            command.Connection = connectionToDatabase;
+            //runs the SQL code
+            command.ExecuteNonQuery();
+            //close connection 
+            closeConnection();
+        }
+        #endregion
 
         #endregion
     }
