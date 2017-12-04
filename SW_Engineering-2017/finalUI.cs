@@ -16,7 +16,7 @@ namespace SW_Engineering_2017
         /****************************************** Private Strings************************************/
         #region Private variables
         private string privatePatientID, privateAppointmentID, privateStaffID, privateDate, privateTime, privateStaffType, privatePrescriptionID, privateLoginID;
-        private bool PrivatePatientFound = false, NewAppointment = true, PrivateEditPrescription = false, PrivatePrescriptionFound = false;
+        private bool PrivatePatientFound = false, NewAppointment = true, PrivateEditPrescription = false, PrivateExtendPrescription = false, PrivatePrescriptionFound = false;
         private int loginAttempt = 0;
         #endregion
 
@@ -329,10 +329,8 @@ namespace SW_Engineering_2017
             PrivatePatientFound = false;
             patients_DGV_FP.DataSource = null;
             appointments_DGV_FP.DataSource = null;
-            patients_DGV_FP.DataSource = null;
             medicalHistory_DVG_FP.DataSource = null;
-            extendPrescriptions_FP_B.Visible = false;
-            editPrescriptions_FP_B.Visible = false;
+            prescriptions_DGV_FP.DataSource = null;
             addMedicalRecord_TB_FP.Clear();
         }
         private void clearEditPatient()
@@ -1136,13 +1134,14 @@ namespace SW_Engineering_2017
         private void SavePrescription()
         {
             // Get date from the Prescription Form date picker and convert to string.
-            string prsDate = prsDatePicker.Value.Day.ToString() + "/" + prsDatePicker.Value.Month.ToString() + "/" + prsDatePicker.Value.Year.ToString();
+            string dateString = prsDatePicker.Value.Day.ToString() + "/" + prsDatePicker.Value.Month.ToString() + "/" + prsDatePicker.Value.Year.ToString();
+            DateTime prsDate = Convert.ToDateTime(dateString);
             string staffID = privateLoginID;                // Get StaffID
             string name = prsNameEntry.Text;                // Get prescription name
             string dosage = prsDosageEntry.Text;            // Get the dosage
             string duration = prsDurationCombo.Text;        // Get the duration
             string notes = prsNotesEntry.Text;              // Get the optional notes section.
-            if ((staffID != "") && (name != "") && (dosage != "") && (duration != "") && (prsDate != ""))
+            if ((staffID != "") && (name != "") && (dosage != "") && (duration != "") && (prsDate != null))
             {
                 if (PrivateEditPrescription == true)
                 {
@@ -1170,22 +1169,6 @@ namespace SW_Engineering_2017
                 Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription save attempted : EMPTY FIELD");
                 prsErrorLbl.Text = "Please fill in the required fields.";
             }
-        }
-
-        private void SavePrescriptionEdit(string name, string dosage, string date, string duration, string notes)
-        {
-            string prescriptionID = privatePrescriptionID;
-            // Log when save attempted
-            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Edited Prescription Save Attempted : " + prescriptionID + " " + name + " " + dosage + " " + date + " " + duration + " " + notes + " ");
-            Connection.getDBConnectionInstance().updatePrescription(privatePrescriptionID, name, dosage, date, duration, notes);
-            if (!findPatientPanel.Visible)
-            {
-                findPatientPanel.Visible = true;
-                prescriptionPanel.Visible = false;
-                clearPrescriptionForm();
-                error_FP_LBL.Text = "Prescription Saved";
-            }
-            
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -1262,10 +1245,11 @@ namespace SW_Engineering_2017
         #region Edit Prescription
         private void editPrescriptions_FP_B_Click(object sender, EventArgs e)
         {
-            EditPrescriptionDataLoad();
+            PrivateEditPrescription = true;
+            PrescriptionDataLoad();
         }
 
-        private void EditPrescriptionDataLoad()
+        private void PrescriptionDataLoad()
         {
             if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
             {
@@ -1286,22 +1270,40 @@ namespace SW_Engineering_2017
                     table = dataSet.Tables[0];                  // Store the dataset in a table
                     prescriptions_DGV_FP.DataSource = table;
                     dataRow = table.Rows[0];                    // Store the table information
-                    privatePrescriptionID = prescriptionID;
-                    PrivateEditPrescription = true;                    // Set EditPrescription to true
+                                                                // Set EditPrescription to true
 
+                    // Store form data in variables
+                    privatePrescriptionID = prescriptionID;
+                    string Patient_ID = dataRow.ItemArray.GetValue(1).ToString();
+                    string Staff_ID = dataRow.ItemArray.GetValue(2).ToString();
+                    string Name = dataRow.ItemArray.GetValue(3).ToString();
+                    string Dosage = dataRow.ItemArray.GetValue(4).ToString();
+                    DateTime Date = Convert.ToDateTime(dataRow.ItemArray.GetValue(5).ToString());
+                    string Duration = dataRow.ItemArray.GetValue(6).ToString();
+                    string Notes = dataRow.ItemArray.GetValue(7).ToString();
+
+                    // Put data into form.
                     clearPrescriptionForm();
-                    prsStaffIDLbl.Text = privateLoginID;                                                    // Set the staff ID to the ID of the signed in member of staff
-                    prsNameEntry.Text = dataRow.ItemArray.GetValue(3).ToString();                           // Fill name entry with name in the selected prescription
-                    prsDosageEntry.Text = dataRow.ItemArray.GetValue(4).ToString();                         // Fill dosage entry with the name in the selected prescription
-                    prsDatePicker.Value = Convert.ToDateTime(dataRow.ItemArray.GetValue(5).ToString());     // Fill date picker with the date in the selected prescription
-                    prsDurationCombo.Text = dataRow.ItemArray.GetValue(6).ToString();                       // Fill duration combo box with the date in the selected prescription
-                    prsNotesEntry.Text = dataRow.ItemArray.GetValue(7).ToString();                          // Fill notes entry box with the notes in the selected prescription
-                    if (!prescriptionPanel.Visible)
+                    prsStaffIDLbl.Text = privateLoginID;    // Set the staff ID to the ID of the signed in member of staff
+                    prsNameEntry.Text = Name;               // Fill name entry with name in the selected prescription
+                    prsDosageEntry.Text = Dosage;           // Fill dosage entry with the name in the selected prescription
+                    prsDatePicker.Value = Date;             // Fill date picker with the date in the selected prescription
+                    prsDurationCombo.Text = Duration;       // Fill duration combo box with the date in the selected prescription
+                    prsNotesEntry.Text = Notes;             // Fill notes entry box with the notes in the selected prescription
+
+                    if (PrivateExtendPrescription == true)
                     {
-                        findPatientPanel.Visible = false;
-                        prescriptionPanel.Visible = true;
-                        clearFindPatient();
-                        hideFindPatientPanels();
+                        ExtendPrescription(Staff_ID, Name, Dosage, Duration, Notes);
+                    }
+                    else if (PrivateEditPrescription == true)
+                    {
+                        if (!prescriptionPanel.Visible)
+                        {
+                            findPatientPanel.Visible = false;
+                            prescriptionPanel.Visible = true;
+                            clearFindPatient();
+                            hideFindPatientPanels();
+                        }
                     }
                 }
             }
@@ -1311,14 +1313,53 @@ namespace SW_Engineering_2017
                 error_FP_LBL.Text = "Patient Required";
             }
         }
+
+        private void SavePrescriptionEdit(string name, string dosage, DateTime date, string duration, string notes)
+        {
+            string prescriptionID = privatePrescriptionID;
+            // Log when save attempted
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Edited Prescription Save Attempted : " + prescriptionID + " " + name + " " + dosage + " " + date + " " + duration + " " + notes + " ");
+            Connection.getDBConnectionInstance().updatePrescription(privatePrescriptionID, name, dosage, date, duration, notes);
+            if (!findPatientPanel.Visible)
+            {
+                findPatientPanel.Visible = true;
+                prescriptionPanel.Visible = false;
+                clearPrescriptionForm();
+                error_FP_LBL.Text = "Prescription Saved";
+            }
+            PrivateEditPrescription = false; // Reset prescription edit variable
+        }
         #endregion
 
         #region Extend Prescription
+        private void ExtendPrescription(string staffID, string name, string dosage, string duration, string notes)
+        {
+            string patientID = privatePatientID;
+            // Set the date to today
+            string dateString = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
+            DateTime date = Convert.ToDateTime(dateString);
 
+            // Log when prescription is extended
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Extend Prescription Attempted : " + patientID + " " + staffID + " " + name + " " + dosage + " " + date + " " + duration + " " + notes + " ");
+            // Add new prescription with the same data as the selected prescription, with the date set to today.
+            Connection.getDBConnectionInstance().addPrescription(patientID, staffID, name, dosage, date, duration, notes);
+
+
+            error_EP_L.Text = "Prescription Extended";
+            clearPrescriptionForm();
+            viewPrescriptions(); // Reload the prescription Data Grid view
+            PrivateExtendPrescription = false;  // Reset extend prescription variable
+        }
+
+        private void extendPrescriptions_FP_B_Click(object sender, EventArgs e)
+        {
+            Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Apply button clicked");
+            PrivateExtendPrescription = true;
+            PrescriptionDataLoad();
+        }
         #endregion
 
         #region Display Prescriptions
-
         private void viewPrescriptions()
         {
             // Get Prescription information from the database for the selected patient.
@@ -1334,24 +1375,9 @@ namespace SW_Engineering_2017
             // Set prescription found variable to true
             PrivatePrescriptionFound = true;
         }
-
-        private void prescriptions_DGV_FP_Click(object sender, EventArgs e)
-        {
-            if ((PrivatePatientFound) && (prescriptions_DGV_FP.Rows.Count > 0))
-            {
-                //Updates logger 
-                Logger.instance.log(DateTime.Today.ToString("-------------------\r\n" + "dd/MM/yyyy") + " Prescription Selected");
-
-                // Shows the Edit & Extend buttons on selecting a prescription from the table.
-                editPrescriptions_FP_B.Visible = true;
-                extendPrescriptions_FP_B.Visible = true;
-            }
-        }
-
         #endregion
 
         #region Navigation
-
         private void btnPresCancel_Click(object sender, EventArgs e)
         {
             // Log when cancel button is clicked.

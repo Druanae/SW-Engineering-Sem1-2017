@@ -615,7 +615,7 @@ namespace SW_Engineering_2017
         #endregion
 
         #region Add Prescription
-        public void addPrescription(string patientID, string staffID, string name, string dosage, string date, string duration, string notes)
+        public void addPrescription(string patientID, string staffID, string name, string dosage, DateTime date, string duration, string notes)
         {
             // Creates SQL Command
             SqlCommand command = new SqlCommand();
@@ -644,7 +644,7 @@ namespace SW_Engineering_2017
         #endregion
 
         #region Update Prescription
-        public void updatePrescription(string prescriptionID,string name, string dosage, string date, string duration, string notes)
+        public void updatePrescription(string prescriptionID,string name, string dosage, DateTime date, string duration, string notes)
         {
             //creates SQL command
             SqlCommand command = new SqlCommand();

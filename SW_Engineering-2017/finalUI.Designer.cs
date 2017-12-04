@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -115,6 +115,8 @@
             this.PatientTR = new System.Windows.Forms.Label();
             this.StaffNameTRS = new System.Windows.Forms.Label();
             this.prsPrescriptionGrp = new System.Windows.Forms.GroupBox();
+            this.prsStaffIDLbl = new System.Windows.Forms.Label();
+            this.prsStaffLbl = new System.Windows.Forms.Label();
             this.prsDurationCombo = new System.Windows.Forms.ComboBox();
             this.prsDurationLbl = new System.Windows.Forms.Label();
             this.prsNotesGrp = new System.Windows.Forms.GroupBox();
@@ -129,6 +131,7 @@
             this.prsErrorLbl = new System.Windows.Forms.Label();
             this.prsHeader = new System.Windows.Forms.Label();
             this.btnPresMenu = new System.Windows.Forms.Button();
+            this.btnPresCancel = new System.Windows.Forms.Button();
             this.prsApplyBtn = new System.Windows.Forms.Button();
             this.Staff_CB_NA = new System.Windows.Forms.ComboBox();
             this.staff_LBL_NA = new System.Windows.Forms.Label();
@@ -219,9 +222,6 @@
             this.AppointmentTimes_CB_NA = new System.Windows.Forms.ComboBox();
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
-            this.btnPresCancel = new System.Windows.Forms.Button();
-            this.prsStaffLbl = new System.Windows.Forms.Label();
-            this.prsStaffIDLbl = new System.Windows.Forms.Label();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -1106,6 +1106,24 @@
             this.prsPrescriptionGrp.TabStop = false;
             this.prsPrescriptionGrp.Text = "Prescription Details";
             // 
+            // prsStaffIDLbl
+            // 
+            this.prsStaffIDLbl.AutoSize = true;
+            this.prsStaffIDLbl.Location = new System.Drawing.Point(107, 26);
+            this.prsStaffIDLbl.Name = "prsStaffIDLbl";
+            this.prsStaffIDLbl.Size = new System.Drawing.Size(35, 13);
+            this.prsStaffIDLbl.TabIndex = 11;
+            this.prsStaffIDLbl.Text = "NULL";
+            // 
+            // prsStaffLbl
+            // 
+            this.prsStaffLbl.AutoSize = true;
+            this.prsStaffLbl.Location = new System.Drawing.Point(57, 26);
+            this.prsStaffLbl.Name = "prsStaffLbl";
+            this.prsStaffLbl.Size = new System.Drawing.Size(43, 13);
+            this.prsStaffLbl.TabIndex = 10;
+            this.prsStaffLbl.Text = "StaffID:";
+            // 
             // prsDurationCombo
             // 
             this.prsDurationCombo.FormattingEnabled = true;
@@ -1248,6 +1266,17 @@
             this.btnPresMenu.UseVisualStyleBackColor = true;
             this.btnPresMenu.Click += new System.EventHandler(this.mainMenuShow);
             // 
+            // btnPresCancel
+            // 
+            this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPresCancel.Location = new System.Drawing.Point(186, 266);
+            this.btnPresCancel.Name = "btnPresCancel";
+            this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnPresCancel.TabIndex = 2;
+            this.btnPresCancel.Text = "Back";
+            this.btnPresCancel.UseVisualStyleBackColor = true;
+            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
+            // 
             // prsApplyBtn
             // 
             this.prsApplyBtn.Location = new System.Drawing.Point(105, 266);
@@ -1350,7 +1379,7 @@
             this.extendPrescriptions_FP_B.TabIndex = 47;
             this.extendPrescriptions_FP_B.Text = "Extend";
             this.extendPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            this.extendPrescriptions_FP_B.Visible = false;
+            this.extendPrescriptions_FP_B.Click += new System.EventHandler(this.extendPrescriptions_FP_B_Click);
             // 
             // newPrescription_FP_B
             // 
@@ -1961,21 +1990,20 @@
             this.editPrescriptions_FP_B.TabIndex = 71;
             this.editPrescriptions_FP_B.Text = "Edit";
             this.editPrescriptions_FP_B.UseVisualStyleBackColor = true;
-            this.editPrescriptions_FP_B.Visible = false;
             this.editPrescriptions_FP_B.Click += new System.EventHandler(this.editPrescriptions_FP_B_Click);
             // 
             // medicalHistory_DVG_FP
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle7;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -2015,14 +2043,20 @@
             // 
             // prescriptions_DGV_FP
             // 
+            this.prescriptions_DGV_FP.AllowUserToAddRows = false;
+            this.prescriptions_DGV_FP.AllowUserToDeleteRows = false;
+            this.prescriptions_DGV_FP.AllowUserToResizeColumns = false;
+            this.prescriptions_DGV_FP.AllowUserToResizeRows = false;
             this.prescriptions_DGV_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.prescriptions_DGV_FP.Location = new System.Drawing.Point(905, 374);
             this.prescriptions_DGV_FP.Margin = new System.Windows.Forms.Padding(2);
+            this.prescriptions_DGV_FP.MultiSelect = false;
             this.prescriptions_DGV_FP.Name = "prescriptions_DGV_FP";
+            this.prescriptions_DGV_FP.ReadOnly = true;
             this.prescriptions_DGV_FP.RowTemplate.Height = 24;
+            this.prescriptions_DGV_FP.ShowEditingIcon = false;
             this.prescriptions_DGV_FP.Size = new System.Drawing.Size(327, 231);
             this.prescriptions_DGV_FP.TabIndex = 65;
-            this.prescriptions_DGV_FP.Click += new System.EventHandler(this.prescriptions_DGV_FP_Click);
             // 
             // appointments_DGV_FP
             // 
@@ -2283,35 +2317,6 @@
             this.appointmentTime_LB_NA.Size = new System.Drawing.Size(138, 20);
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
-            // 
-            // btnPresCancel
-            // 
-            this.btnPresCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPresCancel.Location = new System.Drawing.Point(186, 266);
-            this.btnPresCancel.Name = "btnPresCancel";
-            this.btnPresCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnPresCancel.TabIndex = 2;
-            this.btnPresCancel.Text = "Back";
-            this.btnPresCancel.UseVisualStyleBackColor = true;
-            this.btnPresCancel.Click += new System.EventHandler(this.btnPresCancel_Click);
-            // 
-            // prsStaffLbl
-            // 
-            this.prsStaffLbl.AutoSize = true;
-            this.prsStaffLbl.Location = new System.Drawing.Point(57, 26);
-            this.prsStaffLbl.Name = "prsStaffLbl";
-            this.prsStaffLbl.Size = new System.Drawing.Size(43, 13);
-            this.prsStaffLbl.TabIndex = 10;
-            this.prsStaffLbl.Text = "StaffID:";
-            // 
-            // prsStaffIDLbl
-            // 
-            this.prsStaffIDLbl.AutoSize = true;
-            this.prsStaffIDLbl.Location = new System.Drawing.Point(107, 26);
-            this.prsStaffIDLbl.Name = "prsStaffIDLbl";
-            this.prsStaffIDLbl.Size = new System.Drawing.Size(35, 13);
-            this.prsStaffIDLbl.TabIndex = 11;
-            this.prsStaffIDLbl.Text = "NULL";
             // 
             // finalUI
             // 
