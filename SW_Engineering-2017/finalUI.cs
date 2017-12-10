@@ -52,7 +52,7 @@ namespace SW_Engineering_2017
             // TODO: This line of code loads data into the 'surgeryDataSet.Tests' table. You can move, or remove it, as needed.
            
             /************************************ Date related Code*******************************************/
-            #region Date Related Code
+         /*   #region Date Related Code
             //set the values appointments
             DateTime twoWeeks = DateTime.Today;
             twoWeeks = twoWeeks.AddDays(14);
@@ -60,14 +60,14 @@ namespace SW_Engineering_2017
             dob_NP_PCK.Value = DateTime.Today;
 
             appointmentDate_PCK_NA.Value = DateTime.Today;
-            appointmentDate_PCK_NA.MinDate = DateTime.Today;
+            appointmentDate_PCK_NA.MinDate = DateTime.Today ;
             appointmentDate_PCK_NA.MaxDate = twoWeeks;
 
             dob_EP_PCK.MaxDate = DateTime.Today;
             dob_EP_PCK.Value = DateTime.Today;
             dob_FP_PCK.MaxDate = DateTime.Today;
             dob_FP_PCK.Value = DateTime.Today;
-            #endregion
+            #endregion */
 
             /***************************** Database Connection Code ***************************************/
             #region Database Connection Code
@@ -415,7 +415,7 @@ namespace SW_Engineering_2017
 
         #endregion
 
-        #region Patient
+        
 
         #region patient validation method
         private string validate_patient_input(string firstname, string surname, string addressLine, string townCity, string county, string postcode)
@@ -569,10 +569,11 @@ namespace SW_Engineering_2017
             DateTime dob = dob_FP_PCK.Value;
             DataTable table;
             DataSet dataSet;
-
+            // valdation 
             errormessage += val.validateFirstname(firstname);
             errormessage += val.validateSurname(surname);
             errormessage += val.validateAddressLine(AdressLine);
+            //patient ID selection 
             if ((findPatientCB.SelectedIndex == 0) && (PatientID != ""))
             {
                 if (Int32.TryParse(PatientID, out PatientId))
@@ -588,6 +589,7 @@ namespace SW_Engineering_2017
                 }
 
             }
+            // Date Selection 
             else if ((findPatientCB.SelectedIndex == 1) && (firstname != "") && (surname != "") && (dob != null))
             {
                 string dateOfbirthInp = dob.Year.ToString() + "-" + dob.Month.ToString() + "-" + dob.Day.ToString();
@@ -600,6 +602,7 @@ namespace SW_Engineering_2017
                     PrivatePatientFound = true;
                 }
             }
+            // first name surname and date selection 
             else if ((findPatientCB.SelectedIndex == 2) && (firstname != "") && (surname != "") && (AdressLine != ""))
             {
 
@@ -613,6 +616,7 @@ namespace SW_Engineering_2017
                 }
             }
         }
+        // combobox selection 
         private void findPatientCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (findPatientCB.SelectedIndex == 0)
@@ -910,12 +914,13 @@ namespace SW_Engineering_2017
                 findPatientPanel.Visible = true;
             }
         }
-
+           #region Test Print 
         private void Print_BNT_TRS_Click(object sender, EventArgs e)
         {
+
         
             // Stream Writer for Test Results 
-             TextWriter writer = new StreamWriter("D:\\Demo\\TEST RESULTS  " + DateTime.Now.ToString(" yyyy MM dd ") + " .txt"); // test location switch to approiate drive Test Result and date of creation 
+            TextWriter writer = new StreamWriter("D:\\Demo\\TEST RESULTS  " + DateTime.Now.ToString(" dd MM yyyy ss ")  + ".txt"); // test location switch to approiate drive Test Result and date of creation 
             for (int i = 0; i < DVG_TRS.Rows.Count - 1; i++)
             {
                 for (int j = 0; j < DVG_TRS.Columns.Count; j++)
@@ -931,68 +936,144 @@ namespace SW_Engineering_2017
                 
             }
             writer.Write("------TestID-----------PatienID--------Results-----------"); // creates indentation
-
+            
             writer.Close(); 
-
-
-
-
+            
+  
         }
+         #region
 
         private void ChangeStaffSchedualtx_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
+        #region Staff Search To staff request 
         private void Request_BTN_CSS_Click(object sender, EventArgs e)
         {
-            // Stream Writer for Test Results 
-            TextWriter writer = new StreamWriter("D:\\Demo\\Shift Change  " + DateTime.Now.ToString(" yyyy MM dd ") + " .txt"); // test location switch to approiate drive Test Result and date of creation 
-            for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
+            // apply error message if noting from the combo box is selected
+            if ((SSS_CB.SelectedIndex == -1))
             {
-                for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                SSS_LB_Error.Visible = true;
+                SSS_LB_Error.Text = "Select a search type ";
+                changeStaffSchedulePanel.Visible = false;
+                StaffScheduleSearch.Visible = true;
+
+            }
+            else if  ((SSS_CB.SelectedIndex == 0))
+            {
+
+
+                
+                // moves to the resquest page
+                changeStaffSchedulePanel.Visible = true;
+                StaffScheduleSearch.Visible = false;
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + " Request Shift Change Reason: " + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + "." ;
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + "----------------StaffID---------------------AppointmentID----------Date/Time-----------";
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+               
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+
+                // counts the rows 
+                for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
                 {
 
+                  //  SSR_RTB.Text = SSR_RTB.Text + "-";
 
-                    writer.Write("\t" + DGV_SSS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+                    for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                    {
+
+                        SSR_RTB.Text = SSR_RTB.Text  + "\t" + DGV_SSS.Rows[i].Cells[j].Value.ToString() + "\t" + "|"; // adds the rows and some indetiaton to text box in request 
+
+                    }
+                    // more indetaiton 
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
+                    
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
+                   
+                } 
+
+            }
+            else if ((SSS_CB.SelectedIndex == 1))
+            {
+
+                // moves to the resquest page
+                changeStaffSchedulePanel.Visible = true;
+                StaffScheduleSearch.Visible = false;
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + " Request Shift Change Reason: " + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + ".";
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + "----------------StaffID---------------------AppointmentID----------Date/Time-----------";
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+
+                // counts the rows 
+                for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
+                {
+
+                    //  SSR_RTB.Text = SSR_RTB.Text + "-";
+
+                    for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                    {
+
+                        SSR_RTB.Text = SSR_RTB.Text + "\t" + DGV_SSS.Rows[i].Cells[j].Value.ToString() + "\t" + "|"; // adds the rows and some indetiaton to text box in request 
+
+                    }
+                    // more indetaiton 
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
+
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
 
                 }
 
 
-                writer.WriteLine("");
-                writer.Write("---------------------------------------------------------"); // creates indentation
             }
-            writer.Close();
+            else if ((SSS_CB.SelectedIndex == 2))
+            {
 
+                // moves to the resquest page
+                changeStaffSchedulePanel.Visible = true;
+                StaffScheduleSearch.Visible = false;
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + " Request Shift Change Reason: " + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + ".";
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
+                SSR_RTB.Text = SSR_RTB.Text + "----------------StaffID---------------------AppointmentID----------Date/Time-----------";
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
 
+                SSR_RTB.Text = SSR_RTB.Text + "\n";
 
+                // counts the rows 
+                for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
+                {
 
+                    //  SSR_RTB.Text = SSR_RTB.Text + "-";
 
-            // Text writer to post test result to a note Pad File so it can be printed 
-            /* TextWriter writer = new StreamWriter("D:\\Demo\\*.txt"); // just a test location its the h drive i think 
-             for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
-             {
+                    for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                    {
 
-                 for (int j = 0; j < DGV_SSS.Columns.Count; j++)
-                 {
+                        SSR_RTB.Text = SSR_RTB.Text + "\t" + DGV_SSS.Rows[i].Cells[j].Value.ToString() + "\t" + "|"; // adds the rows and some indetiaton to text box in request 
 
+                    }
+                    // more indetaiton 
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
 
-                     writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
-                     writer.Write("--------TestID-------PatienID-------Results-----------"); // creates indentation
-                     writer.Write("Patient ID TestID Results");
-                     writer.Write("Request change for Shift");
+                    SSR_RTB.Text = SSR_RTB.Text + "\n";
 
+                }
 
-                 }
-
-
-             } 
-
-             writer.Close(); */
+            }
 
         }
-        // user input part of the connection method
-        private void SearchBNTSSS_Click(object sender, EventArgs e)
+        #endregion
+        
+        #region Staff Search inptus and combox to panel
+        private void SearchBNTSSS_Click(object sender, EventArgs e) // user input part of the connection method
         {
             DGV_SSS.DataSource = null;
             DGV_SSS.Refresh();
@@ -1032,9 +1113,15 @@ namespace SW_Engineering_2017
 
                 DGV_SSS.DataSource = table;
             }
+            else
+            {
+                SSS_LB_Error.Visible = true;
+                SSS_LB_Error.Text = "Enter One of the Relevent IDs or Date";
+            }
 
 
         }
+    
         // Combo Box Selection 
         private void SSS_CB_SelectedIndexChanged(object sender, EventArgs e)
         { // Select Staff ID
@@ -1059,13 +1146,13 @@ namespace SW_Engineering_2017
 
            
         }
-
+        #endregion
         private void TestResutsSearch_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        
+        #region Test combox and user inputs 
         private void TRS_CB_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
@@ -1101,6 +1188,7 @@ namespace SW_Engineering_2017
 
             if ((TRS_CB.SelectedIndex == 0) && (TestID !=""))
             {
+                
                 if (Int32.TryParse(TestID, out testID))
                 {
                     dataSet = Connection.getDBConnectionInstance().selectTestByID(TestID);
@@ -1108,33 +1196,30 @@ namespace SW_Engineering_2017
 
                     DVG_TRS.DataSource = table;
                 }
+                TRS_L_ER.Visible = false;
             }
 
             if ((TRS_CB.SelectedIndex == 1 ) && (PatientID !=""))
             {
-
+                TRS_L_ER.Visible = false;
                 if (Int32.TryParse(PatientID, out patientID))
                 {
                     dataSet = Connection.getDBConnectionInstance().selectPatientTest(PatientID);
                     table = dataSet.Tables[0];
 
                     DVG_TRS.DataSource = table;
+                    
                 }
-
+                TRS_L_ER.Visible = false;
             }
-           /*  if ((TRS_CB.SelectedIndex == 1) && (PatientID != ""))
-           {
-               if (Int32.TryParse(PatientID, out patientID))
-               {
-                   dataSet = Connection.getDBConnectionInstance().selectPatientT(PatientID);
-                   table = dataSet.Tables[0];
+            else if ((TRS_CB.SelectedIndex == -1))
+            {
+                TRS_L_ER.Visible = true;
+                TRS_L_ER.Text = "Enter PatientID or TestID"; 
+            }
 
-                   DVG_TRS.DataSource = table;
-               } 
-           } */
-
-        } 
-
+        }
+          #endregion
         private void SSS_Date_Panel_Paint(object sender, PaintEventArgs e)
         {
 
@@ -1156,6 +1241,57 @@ namespace SW_Engineering_2017
         }
 
         private void extendPrescriptions_FP_B_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelBntChnStf_Click(object sender, EventArgs e)
+        {
+            SSR_RTB.Text = "";
+        }
+
+        private void SSR_RT_BTN_Click(object sender, EventArgs e)
+        {
+            // returns back to the Staff Scedhual search 
+            changeStaffSchedulePanel.Visible = false;
+            StaffScheduleSearch.Visible = true;
+        }
+
+        private void SSR_CL_BNT_Click(object sender, EventArgs e)
+        {
+            SSR_RTB.Text = "";
+
+        }
+
+        private void SSR_P_BTN_Click(object sender, EventArgs e)
+        {
+            // text writer to insert SSR into a a text file 
+            TextWriter writer = new StreamWriter("D:\\Demo\\Request Shift Change  " + DateTime.Now.ToString(" dd MM yyyy ss ") + " .txt");
+
+            writer.Write(SSR_RTB.Text);
+
+            writer.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+        private void SS_CL_BTN_Click(object sender, EventArgs e)
+        {
+            // DGV_SSS.DataSource = null;
+            // DGV_SSS.Refresh();
+        }
+
+        private void Cancel_FP_B_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SSR_MU_BTN_Click(object sender, EventArgs e)
         {
 
         }
@@ -1397,3 +1533,4 @@ namespace SW_Engineering_2017
         }
     }
 }
+#endregion

@@ -36,8 +36,8 @@ namespace SW_Engineering_2017
 
         public const string selectPatientAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Patient_ID =@patientID AND ( Date > @date OR Date = @date AND Time > @time)";
 
-        public const string selectStaffAppointment = "SELECT Appointment_ID, Patient_ID, Date, Time From Appointments WHERE Staff_ID = @staffID";
-        public const string selectAppointment = "SELECT Staff_ID, Patient_ID , Date,Time From Appointments WHERE Appointment_ID =@appointmentID";
+        public const string selectStaffAppointment = "SELECT Staff_ID, Appointment_ID, Date, Time From Appointments WHERE Staff_ID = @staffID";
+        public const string selectAppointment = "SELECT Staff_ID, Appointment_ID, Date,Time From Appointments WHERE Appointment_ID =@appointmentID";
         //
 
 
@@ -45,13 +45,13 @@ namespace SW_Engineering_2017
 
         public const string selectPatientTest = " SELECT Test_ID, Patient_ID, Results FROM Tests WHERE Patient_ID =@patientID";
 
-
+ 
         public const string selectTestByID = " SELECT Test_ID, Patient_ID, Results FROM Tests WHERE Test_ID=@testID";
         
 
         // Staff Search Selection 
     
-        public const string selectStaffDate = "  SELECT Appointment_ID, Staff_ID , Patient_ID, Time FROM Appointments WHERE date=@date ";
+        public const string selectStaffDate = "  SELECT Staff_ID , Appointment_ID,  Date, Time FROM Appointments WHERE date=@date ";
         
 		public const string selectStaffType = "SELECT Staff_Type FROM Staff WHERE Staff_ID = @StaffID";
         

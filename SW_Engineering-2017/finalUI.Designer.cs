@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
             this.menuGroup = new System.Windows.Forms.GroupBox();
             this.welcome_L = new System.Windows.Forms.Label();
@@ -50,6 +50,7 @@
             this.staffScheduleSearchPanel = new System.Windows.Forms.Panel();
             this.testResultSearchPanel = new System.Windows.Forms.Panel();
             this.TestResutsSearch = new System.Windows.Forms.Panel();
+            this.TRS_L_ER = new System.Windows.Forms.Label();
             this.TRS_CB = new System.Windows.Forms.ComboBox();
             this.P_TRS_PatientID = new System.Windows.Forms.Panel();
             this.PatientID_L_TRS = new System.Windows.Forms.Label();
@@ -186,14 +187,8 @@
             this.Staff_DGV_NA = new System.Windows.Forms.DataGridView();
             this.appointmentTime_LB_NA = new System.Windows.Forms.Label();
             this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.StaffIDlabletrs3 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dateTimeF2 = new System.Windows.Forms.DateTimePicker();
             this.SearchBNTSSS = new System.Windows.Forms.Button();
             this.StaffScheduleSearchLable = new System.Windows.Forms.TextBox();
-            this.MenuBNTCSS = new System.Windows.Forms.Button();
-            this.CancelBntChnStf = new System.Windows.Forms.Button();
             this.StaffScheduleSearch = new System.Windows.Forms.Panel();
             this.DGV_SSS = new System.Windows.Forms.DataGridView();
             this.SSS_CB = new System.Windows.Forms.ComboBox();
@@ -211,12 +206,11 @@
             this.Request_BTN_CSS = new System.Windows.Forms.Button();
             this.changeStaffSchedulePanel = new System.Windows.Forms.Panel();
             this.ChangeStaffSchedualtx = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.StaffType2 = new System.Windows.Forms.ComboBox();
-            this.ChangeBntAppointment = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.StaffScheduleSearcLable = new System.Windows.Forms.TextBox();
-            this.AppointmentTextBox = new System.Windows.Forms.TextBox();
+            this.SSR_RT_BTN = new System.Windows.Forms.Button();
+            this.SSR_P_BTN = new System.Windows.Forms.Button();
+            this.SSR_CL_BNT = new System.Windows.Forms.Button();
+            this.SSR_RTB = new System.Windows.Forms.RichTextBox();
+            this.SSR_LB = new System.Windows.Forms.TextBox();
             this.mainMenuPanel.SuspendLayout();
             this.menuGroup.SuspendLayout();
             this.loginPanel.SuspendLayout();
@@ -441,12 +435,13 @@
             this.testResultSearchPanel.Controls.Add(this.TestResutsSearch);
             this.testResultSearchPanel.Location = new System.Drawing.Point(12, 406);
             this.testResultSearchPanel.Name = "testResultSearchPanel";
-            this.testResultSearchPanel.Size = new System.Drawing.Size(568, 210);
+            this.testResultSearchPanel.Size = new System.Drawing.Size(463, 283);
             this.testResultSearchPanel.TabIndex = 43;
             // 
             // TestResutsSearch
             // 
             this.TestResutsSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TestResutsSearch.Controls.Add(this.TRS_L_ER);
             this.TestResutsSearch.Controls.Add(this.TRS_CB);
             this.TestResutsSearch.Controls.Add(this.P_TRS_PatientID);
             this.TestResutsSearch.Controls.Add(this.P_TRS_TestID);
@@ -457,9 +452,19 @@
             this.TestResutsSearch.Controls.Add(this.Search_BTN_TRS);
             this.TestResutsSearch.Location = new System.Drawing.Point(3, 2);
             this.TestResutsSearch.Name = "TestResutsSearch";
-            this.TestResutsSearch.Size = new System.Drawing.Size(565, 194);
+            this.TestResutsSearch.Size = new System.Drawing.Size(457, 278);
             this.TestResutsSearch.TabIndex = 35;
             this.TestResutsSearch.Paint += new System.Windows.Forms.PaintEventHandler(this.TestResutsSearch_Paint);
+            // 
+            // TRS_L_ER
+            // 
+            this.TRS_L_ER.AutoSize = true;
+            this.TRS_L_ER.Location = new System.Drawing.Point(9, 252);
+            this.TRS_L_ER.Name = "TRS_L_ER";
+            this.TRS_L_ER.Size = new System.Drawing.Size(49, 13);
+            this.TRS_L_ER.TabIndex = 46;
+            this.TRS_L_ER.Text = "ErrorMsg";
+            this.TRS_L_ER.Visible = false;
             // 
             // TRS_CB
             // 
@@ -479,7 +484,7 @@
             this.P_TRS_PatientID.Controls.Add(this.PatientID_TB_TRS);
             this.P_TRS_PatientID.Location = new System.Drawing.Point(6, 60);
             this.P_TRS_PatientID.Name = "P_TRS_PatientID";
-            this.P_TRS_PatientID.Size = new System.Drawing.Size(209, 29);
+            this.P_TRS_PatientID.Size = new System.Drawing.Size(213, 29);
             this.P_TRS_PatientID.TabIndex = 44;
             this.P_TRS_PatientID.Visible = false;
             // 
@@ -528,16 +533,17 @@
             // DVG_TRS
             // 
             this.DVG_TRS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DVG_TRS.Location = new System.Drawing.Point(12, 116);
+            this.DVG_TRS.Location = new System.Drawing.Point(6, 121);
             this.DVG_TRS.Name = "DVG_TRS";
-            this.DVG_TRS.Size = new System.Drawing.Size(366, 60);
+            this.DVG_TRS.Size = new System.Drawing.Size(349, 128);
             this.DVG_TRS.TabIndex = 42;
             // 
             // MenuTest_BN_TRS
             // 
-            this.MenuTest_BN_TRS.Location = new System.Drawing.Point(92, 91);
+            this.MenuTest_BN_TRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuTest_BN_TRS.Location = new System.Drawing.Point(168, 89);
             this.MenuTest_BN_TRS.Name = "MenuTest_BN_TRS";
-            this.MenuTest_BN_TRS.Size = new System.Drawing.Size(68, 19);
+            this.MenuTest_BN_TRS.Size = new System.Drawing.Size(76, 30);
             this.MenuTest_BN_TRS.TabIndex = 41;
             this.MenuTest_BN_TRS.Text = "Menu";
             this.MenuTest_BN_TRS.UseVisualStyleBackColor = true;
@@ -545,7 +551,7 @@
             // 
             // TestResultSearchLable
             // 
-            this.TestResultSearchLable.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.TestResultSearchLable.BackColor = System.Drawing.SystemColors.Control;
             this.TestResultSearchLable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TestResultSearchLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TestResultSearchLable.Location = new System.Drawing.Point(3, 4);
@@ -556,9 +562,10 @@
             // 
             // Print_BNT_TRS
             // 
-            this.Print_BNT_TRS.Location = new System.Drawing.Point(174, 91);
+            this.Print_BNT_TRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Print_BNT_TRS.Location = new System.Drawing.Point(87, 89);
             this.Print_BNT_TRS.Name = "Print_BNT_TRS";
-            this.Print_BNT_TRS.Size = new System.Drawing.Size(94, 19);
+            this.Print_BNT_TRS.Size = new System.Drawing.Size(73, 30);
             this.Print_BNT_TRS.TabIndex = 20;
             this.Print_BNT_TRS.Text = "Print Results";
             this.Print_BNT_TRS.UseVisualStyleBackColor = true;
@@ -566,9 +573,10 @@
             // 
             // Search_BTN_TRS
             // 
-            this.Search_BTN_TRS.Location = new System.Drawing.Point(12, 89);
+            this.Search_BTN_TRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Search_BTN_TRS.Location = new System.Drawing.Point(6, 89);
             this.Search_BTN_TRS.Name = "Search_BTN_TRS";
-            this.Search_BTN_TRS.Size = new System.Drawing.Size(68, 21);
+            this.Search_BTN_TRS.Size = new System.Drawing.Size(72, 30);
             this.Search_BTN_TRS.TabIndex = 14;
             this.Search_BTN_TRS.Text = "Search";
             this.Search_BTN_TRS.UseVisualStyleBackColor = true;
@@ -1017,6 +1025,7 @@
             this.Cancel_FP_B.TabIndex = 45;
             this.Cancel_FP_B.Text = "Cancel ";
             this.Cancel_FP_B.UseVisualStyleBackColor = true;
+            this.Cancel_FP_B.Click += new System.EventHandler(this.Cancel_FP_B_Click_1);
             // 
             // appointmentDate_LB_NA
             // 
@@ -1365,7 +1374,7 @@
             this.newPatientPanel.Location = new System.Drawing.Point(948, 3);
             this.newPatientPanel.Margin = new System.Windows.Forms.Padding(2);
             this.newPatientPanel.Name = "newPatientPanel";
-            this.newPatientPanel.Size = new System.Drawing.Size(621, 341);
+            this.newPatientPanel.Size = new System.Drawing.Size(549, 341);
             this.newPatientPanel.TabIndex = 49;
             // 
             // county_NP_TB
@@ -1603,14 +1612,14 @@
             // 
             this.medicalHistory_DVG_FP.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.medicalHistory_DVG_FP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicalHistory_DVG_FP.DefaultCellStyle = dataGridViewCellStyle3;
             this.medicalHistory_DVG_FP.Location = new System.Drawing.Point(80, 340);
             this.medicalHistory_DVG_FP.Name = "medicalHistory_DVG_FP";
             this.medicalHistory_DVG_FP.RowHeadersWidth = 18;
@@ -1915,43 +1924,12 @@
             this.appointmentTime_LB_NA.TabIndex = 52;
             this.appointmentTime_LB_NA.Text = "Appointment Time";
             // 
-            // StaffIDlabletrs3
-            // 
-            this.StaffIDlabletrs3.Location = new System.Drawing.Point(69, 38);
-            this.StaffIDlabletrs3.Name = "StaffIDlabletrs3";
-            this.StaffIDlabletrs3.Size = new System.Drawing.Size(156, 20);
-            this.StaffIDlabletrs3.TabIndex = 43;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 120);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 13);
-            this.label12.TabIndex = 49;
-            this.label12.Text = "Appointment";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 92);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(56, 13);
-            this.label15.TabIndex = 48;
-            this.label15.Text = "Date From";
-            // 
-            // dateTimeF2
-            // 
-            this.dateTimeF2.Location = new System.Drawing.Point(69, 90);
-            this.dateTimeF2.Name = "dateTimeF2";
-            this.dateTimeF2.Size = new System.Drawing.Size(156, 20);
-            this.dateTimeF2.TabIndex = 47;
-            // 
             // SearchBNTSSS
             // 
+            this.SearchBNTSSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchBNTSSS.Location = new System.Drawing.Point(3, 216);
             this.SearchBNTSSS.Name = "SearchBNTSSS";
-            this.SearchBNTSSS.Size = new System.Drawing.Size(94, 22);
+            this.SearchBNTSSS.Size = new System.Drawing.Size(93, 31);
             this.SearchBNTSSS.TabIndex = 27;
             this.SearchBNTSSS.Text = "Search";
             this.SearchBNTSSS.UseVisualStyleBackColor = true;
@@ -1959,7 +1937,7 @@
             // 
             // StaffScheduleSearchLable
             // 
-            this.StaffScheduleSearchLable.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.StaffScheduleSearchLable.BackColor = System.Drawing.SystemColors.Control;
             this.StaffScheduleSearchLable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StaffScheduleSearchLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StaffScheduleSearchLable.Location = new System.Drawing.Point(3, 3);
@@ -1967,25 +1945,6 @@
             this.StaffScheduleSearchLable.Size = new System.Drawing.Size(238, 22);
             this.StaffScheduleSearchLable.TabIndex = 40;
             this.StaffScheduleSearchLable.Text = "Staff Schedule Search";
-            // 
-            // MenuBNTCSS
-            // 
-            this.MenuBNTCSS.Location = new System.Drawing.Point(20, 227);
-            this.MenuBNTCSS.Name = "MenuBNTCSS";
-            this.MenuBNTCSS.Size = new System.Drawing.Size(94, 19);
-            this.MenuBNTCSS.TabIndex = 54;
-            this.MenuBNTCSS.Text = "Menu";
-            this.MenuBNTCSS.UseVisualStyleBackColor = true;
-            this.MenuBNTCSS.Click += new System.EventHandler(this.mainMenuShow);
-            // 
-            // CancelBntChnStf
-            // 
-            this.CancelBntChnStf.Location = new System.Drawing.Point(122, 202);
-            this.CancelBntChnStf.Name = "CancelBntChnStf";
-            this.CancelBntChnStf.Size = new System.Drawing.Size(94, 19);
-            this.CancelBntChnStf.TabIndex = 53;
-            this.CancelBntChnStf.Text = "Cancel";
-            this.CancelBntChnStf.UseVisualStyleBackColor = true;
             // 
             // StaffScheduleSearch
             // 
@@ -2000,9 +1959,9 @@
             this.StaffScheduleSearch.Controls.Add(this.Menu_BTN_SSS);
             this.StaffScheduleSearch.Controls.Add(this.Request_BTN_CSS);
             this.StaffScheduleSearch.Controls.Add(this.SearchBNTSSS);
-            this.StaffScheduleSearch.Location = new System.Drawing.Point(1574, 46);
+            this.StaffScheduleSearch.Location = new System.Drawing.Point(1502, 38);
             this.StaffScheduleSearch.Name = "StaffScheduleSearch";
-            this.StaffScheduleSearch.Size = new System.Drawing.Size(344, 260);
+            this.StaffScheduleSearch.Size = new System.Drawing.Size(408, 276);
             this.StaffScheduleSearch.TabIndex = 29;
             this.StaffScheduleSearch.Paint += new System.Windows.Forms.PaintEventHandler(this.StaffScheduleSearch_Paint);
             // 
@@ -2011,7 +1970,7 @@
             this.DGV_SSS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_SSS.Location = new System.Drawing.Point(3, 90);
             this.DGV_SSS.Name = "DGV_SSS";
-            this.DGV_SSS.Size = new System.Drawing.Size(333, 125);
+            this.DGV_SSS.Size = new System.Drawing.Size(402, 125);
             this.DGV_SSS.TabIndex = 57;
             // 
             // SSS_CB
@@ -2057,7 +2016,7 @@
             // SSS_LB_Error
             // 
             this.SSS_LB_Error.AutoSize = true;
-            this.SSS_LB_Error.Location = new System.Drawing.Point(6, 238);
+            this.SSS_LB_Error.Location = new System.Drawing.Point(6, 252);
             this.SSS_LB_Error.Name = "SSS_LB_Error";
             this.SSS_LB_Error.Size = new System.Drawing.Size(48, 13);
             this.SSS_LB_Error.TabIndex = 59;
@@ -2118,9 +2077,10 @@
             // 
             // Menu_BTN_SSS
             // 
-            this.Menu_BTN_SSS.Location = new System.Drawing.Point(242, 216);
+            this.Menu_BTN_SSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_BTN_SSS.Location = new System.Drawing.Point(212, 216);
             this.Menu_BTN_SSS.Name = "Menu_BTN_SSS";
-            this.Menu_BTN_SSS.Size = new System.Drawing.Size(94, 22);
+            this.Menu_BTN_SSS.Size = new System.Drawing.Size(93, 31);
             this.Menu_BTN_SSS.TabIndex = 53;
             this.Menu_BTN_SSS.Text = "Menu";
             this.Menu_BTN_SSS.UseVisualStyleBackColor = true;
@@ -2128,9 +2088,10 @@
             // 
             // Request_BTN_CSS
             // 
-            this.Request_BTN_CSS.Location = new System.Drawing.Point(103, 216);
+            this.Request_BTN_CSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Request_BTN_CSS.Location = new System.Drawing.Point(99, 216);
             this.Request_BTN_CSS.Name = "Request_BTN_CSS";
-            this.Request_BTN_CSS.Size = new System.Drawing.Size(94, 22);
+            this.Request_BTN_CSS.Size = new System.Drawing.Size(110, 31);
             this.Request_BTN_CSS.TabIndex = 55;
             this.Request_BTN_CSS.Text = "Request";
             this.Request_BTN_CSS.UseVisualStyleBackColor = true;
@@ -2139,95 +2100,85 @@
             // changeStaffSchedulePanel
             // 
             this.changeStaffSchedulePanel.Controls.Add(this.ChangeStaffSchedualtx);
-            this.changeStaffSchedulePanel.Location = new System.Drawing.Point(1522, 378);
+            this.changeStaffSchedulePanel.Location = new System.Drawing.Point(1504, 378);
             this.changeStaffSchedulePanel.Name = "changeStaffSchedulePanel";
-            this.changeStaffSchedulePanel.Size = new System.Drawing.Size(312, 281);
+            this.changeStaffSchedulePanel.Size = new System.Drawing.Size(406, 357);
             this.changeStaffSchedulePanel.TabIndex = 41;
             // 
             // ChangeStaffSchedualtx
             // 
             this.ChangeStaffSchedualtx.AllowDrop = true;
             this.ChangeStaffSchedualtx.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ChangeStaffSchedualtx.Controls.Add(this.MenuBNTCSS);
-            this.ChangeStaffSchedualtx.Controls.Add(this.CancelBntChnStf);
-            this.ChangeStaffSchedualtx.Controls.Add(this.label14);
-            this.ChangeStaffSchedualtx.Controls.Add(this.AppointmentTextBox);
-            this.ChangeStaffSchedualtx.Controls.Add(this.StaffType2);
-            this.ChangeStaffSchedualtx.Controls.Add(this.label12);
-            this.ChangeStaffSchedualtx.Controls.Add(this.label15);
-            this.ChangeStaffSchedualtx.Controls.Add(this.ChangeBntAppointment);
-            this.ChangeStaffSchedualtx.Controls.Add(this.dateTimeF2);
-            this.ChangeStaffSchedualtx.Controls.Add(this.label17);
-            this.ChangeStaffSchedualtx.Controls.Add(this.StaffIDlabletrs3);
-            this.ChangeStaffSchedualtx.Controls.Add(this.StaffScheduleSearcLable);
+            this.ChangeStaffSchedualtx.Controls.Add(this.SSR_RT_BTN);
+            this.ChangeStaffSchedualtx.Controls.Add(this.SSR_P_BTN);
+            this.ChangeStaffSchedualtx.Controls.Add(this.SSR_CL_BNT);
+            this.ChangeStaffSchedualtx.Controls.Add(this.SSR_RTB);
+            this.ChangeStaffSchedualtx.Controls.Add(this.SSR_LB);
             this.ChangeStaffSchedualtx.Location = new System.Drawing.Point(3, 3);
             this.ChangeStaffSchedualtx.Name = "ChangeStaffSchedualtx";
-            this.ChangeStaffSchedualtx.Size = new System.Drawing.Size(297, 268);
+            this.ChangeStaffSchedualtx.Size = new System.Drawing.Size(400, 344);
             this.ChangeStaffSchedualtx.TabIndex = 37;
             // 
-            // label14
+            // SSR_RT_BTN
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 67);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(56, 13);
-            this.label14.TabIndex = 52;
-            this.label14.Text = "Staff Type";
+            this.SSR_RT_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSR_RT_BTN.Location = new System.Drawing.Point(199, 30);
+            this.SSR_RT_BTN.Margin = new System.Windows.Forms.Padding(2);
+            this.SSR_RT_BTN.Name = "SSR_RT_BTN";
+            this.SSR_RT_BTN.Size = new System.Drawing.Size(88, 29);
+            this.SSR_RT_BTN.TabIndex = 75;
+            this.SSR_RT_BTN.Text = "Return";
+            this.SSR_RT_BTN.UseVisualStyleBackColor = true;
+            this.SSR_RT_BTN.Click += new System.EventHandler(this.SSR_RT_BTN_Click);
             // 
-            // StaffType2
+            // SSR_P_BTN
             // 
-            this.StaffType2.FormattingEnabled = true;
-            this.StaffType2.Items.AddRange(new object[] {
-            "Doctor",
-            "Nurse ",
-            "N/A"});
-            this.StaffType2.Location = new System.Drawing.Point(69, 64);
-            this.StaffType2.Name = "StaffType2";
-            this.StaffType2.Size = new System.Drawing.Size(156, 21);
-            this.StaffType2.TabIndex = 51;
+            this.SSR_P_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSR_P_BTN.Location = new System.Drawing.Point(107, 30);
+            this.SSR_P_BTN.Margin = new System.Windows.Forms.Padding(2);
+            this.SSR_P_BTN.Name = "SSR_P_BTN";
+            this.SSR_P_BTN.Size = new System.Drawing.Size(88, 29);
+            this.SSR_P_BTN.TabIndex = 74;
+            this.SSR_P_BTN.Text = "Print";
+            this.SSR_P_BTN.UseVisualStyleBackColor = true;
+            this.SSR_P_BTN.Click += new System.EventHandler(this.SSR_P_BTN_Click);
             // 
-            // ChangeBntAppointment
+            // SSR_CL_BNT
             // 
-            this.ChangeBntAppointment.Location = new System.Drawing.Point(20, 202);
-            this.ChangeBntAppointment.Name = "ChangeBntAppointment";
-            this.ChangeBntAppointment.Size = new System.Drawing.Size(94, 19);
-            this.ChangeBntAppointment.TabIndex = 42;
-            this.ChangeBntAppointment.Text = "Change";
-            this.ChangeBntAppointment.UseVisualStyleBackColor = true;
-            this.ChangeBntAppointment.Click += new System.EventHandler(this.ChangeBntAppointment_Click);
+            this.SSR_CL_BNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSR_CL_BNT.Location = new System.Drawing.Point(15, 30);
+            this.SSR_CL_BNT.Margin = new System.Windows.Forms.Padding(2);
+            this.SSR_CL_BNT.Name = "SSR_CL_BNT";
+            this.SSR_CL_BNT.Size = new System.Drawing.Size(88, 29);
+            this.SSR_CL_BNT.TabIndex = 73;
+            this.SSR_CL_BNT.Text = "Clear";
+            this.SSR_CL_BNT.UseVisualStyleBackColor = true;
+            this.SSR_CL_BNT.Click += new System.EventHandler(this.SSR_CL_BNT_Click);
             // 
-            // label17
+            // SSR_RTB
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 43);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(43, 13);
-            this.label17.TabIndex = 45;
-            this.label17.Text = "Staff ID";
+            this.SSR_RTB.Location = new System.Drawing.Point(6, 70);
+            this.SSR_RTB.Name = "SSR_RTB";
+            this.SSR_RTB.Size = new System.Drawing.Size(390, 233);
+            this.SSR_RTB.TabIndex = 72;
+            this.SSR_RTB.Text = "";
             // 
-            // StaffScheduleSearcLable
+            // SSR_LB
             // 
-            this.StaffScheduleSearcLable.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.StaffScheduleSearcLable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StaffScheduleSearcLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffScheduleSearcLable.Location = new System.Drawing.Point(15, 4);
-            this.StaffScheduleSearcLable.Name = "StaffScheduleSearcLable";
-            this.StaffScheduleSearcLable.Size = new System.Drawing.Size(238, 22);
-            this.StaffScheduleSearcLable.TabIndex = 41;
-            this.StaffScheduleSearcLable.Text = "Change Staff Schedule";
-            // 
-            // AppointmentTextBox
-            // 
-            this.AppointmentTextBox.Location = new System.Drawing.Point(69, 117);
-            this.AppointmentTextBox.Name = "AppointmentTextBox";
-            this.AppointmentTextBox.Size = new System.Drawing.Size(156, 20);
-            this.AppointmentTextBox.TabIndex = 50;
+            this.SSR_LB.BackColor = System.Drawing.SystemColors.Control;
+            this.SSR_LB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SSR_LB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSR_LB.Location = new System.Drawing.Point(15, 4);
+            this.SSR_LB.Name = "SSR_LB";
+            this.SSR_LB.Size = new System.Drawing.Size(238, 22);
+            this.SSR_LB.TabIndex = 41;
+            this.SSR_LB.Text = "Staff Schedule Request ";
             // 
             // finalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1916, 777);
+            this.ClientSize = new System.Drawing.Size(1908, 777);
             this.Controls.Add(this.StaffScheduleSearch);
             this.Controls.Add(this.newAppointmentPanel);
             this.Controls.Add(this.newPatientPanel);
@@ -2458,14 +2409,8 @@
         private System.Windows.Forms.Button Search_BTN_TRS;
         private System.Windows.Forms.DataGridView DVG_TRS;
         private System.Windows.Forms.BindingSource testsBindingSource;
-        private System.Windows.Forms.TextBox StaffIDlabletrs3;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DateTimePicker dateTimeF2;
         private System.Windows.Forms.Button SearchBNTSSS;
         private System.Windows.Forms.TextBox StaffScheduleSearchLable;
-        private System.Windows.Forms.Button MenuBNTCSS;
-        private System.Windows.Forms.Button CancelBntChnStf;
         private System.Windows.Forms.Panel StaffScheduleSearch;
         private System.Windows.Forms.DataGridView DGV_SSS;
         private System.Windows.Forms.Button Menu_BTN_SSS;
@@ -2476,11 +2421,7 @@
         private System.Windows.Forms.TextBox StaffID_TB_SSS;
         private System.Windows.Forms.Panel changeStaffSchedulePanel;
         private System.Windows.Forms.Panel ChangeStaffSchedualtx;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox StaffType2;
-        private System.Windows.Forms.Button ChangeBntAppointment;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox StaffScheduleSearcLable;
+        private System.Windows.Forms.TextBox SSR_LB;
         private System.Windows.Forms.Label AppointmentID_LB_CSS;
         private System.Windows.Forms.TextBox AppointmentID_TB_SSS;
         private System.Windows.Forms.Label SSS_LB_Error;
@@ -2491,6 +2432,10 @@
         private System.Windows.Forms.ComboBox TRS_CB;
         private System.Windows.Forms.Panel P_TRS_PatientID;
         private System.Windows.Forms.Panel P_TRS_TestID;
-        private System.Windows.Forms.TextBox AppointmentTextBox;
+        private System.Windows.Forms.RichTextBox SSR_RTB;
+        private System.Windows.Forms.Button SSR_CL_BNT;
+        private System.Windows.Forms.Button SSR_P_BTN;
+        private System.Windows.Forms.Label TRS_L_ER;
+        private System.Windows.Forms.Button SSR_RT_BTN;
     }
 }
