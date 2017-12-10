@@ -937,9 +937,9 @@ namespace SW_Engineering_2017
             }
             writer.Write("------TestID-----------PatienID--------Results-----------"); // creates indentation
             
-            writer.Close(); 
-            
-  
+            writer.Close();
+            MessageBox.Show("Test Saved In Documents");
+
         }
          #region
 
@@ -1271,6 +1271,7 @@ namespace SW_Engineering_2017
             writer.Write(SSR_RTB.Text);
 
             writer.Close();
+            MessageBox.Show("Request Saved In Documents");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1282,8 +1283,7 @@ namespace SW_Engineering_2017
 
         private void SS_CL_BTN_Click(object sender, EventArgs e)
         {
-            // DGV_SSS.DataSource = null;
-            // DGV_SSS.Refresh();
+            
         }
 
         private void Cancel_FP_B_Click_1(object sender, EventArgs e)
@@ -1292,6 +1292,11 @@ namespace SW_Engineering_2017
         }
 
         private void SSR_MU_BTN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DVG_TRS_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
