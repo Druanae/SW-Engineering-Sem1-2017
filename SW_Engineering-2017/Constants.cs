@@ -22,6 +22,7 @@ namespace SW_Engineering_2017
         public const string selectAllNurseAppointment = "SELECT Staff_ID,Firstname,Surname FROM Staff WHERE staff_Type ='Nurse'";
         public const string selectStaffMember = "SELECT Date,Time From Appointments WHERE Staff_ID = @StaffID";
         public const string selectTime = "SELECT Time From Appointments WHERE Staff_ID = @StaffID AND Date = @Date";
+		public const string selectTests = " SELECT * FROM Tests ";
 
 
         public const string selectPatientByID = "SELECT * From Patients WHERE Patient_ID =@patientID";
@@ -29,13 +30,33 @@ namespace SW_Engineering_2017
         public const string selectPatientByAddress = "SELECT * From Patients WHERE Firstname=@firstname AND Surname=@surname and AddressLine=@address";
 
         public const string updatePatient = "UPDATE Patients SET Firstname=@firstname, Surname =@Surname , DOB =@DOB, AddressLine=@AddressLine, TownCity=@TownCity, County=@County, Postcode=@Postcode WHERE Patient_ID =@patientID";
+		
+		
 
 
         public const string selectPatientAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Patient_ID =@patientID AND ( Date > @date OR Date = @date AND Time > @time)";
-        public const string selectStaffAppointment = "SELECT Appointment_ID, Date, Time From Appointments WHERE Staff_ID = @staffID";
-        public const string selectAppointment = "SELECT Staff_ID, Date,Time From Appointments WHERE Appointment_ID =@appointmentID";
-        public const string selectStaffType = "SELECT Staff_Type FROM Staff WHERE Staff_ID = @StaffID";
-        //delete Appointment
+
+        public const string selectStaffAppointment = "SELECT Appointment_ID, Patient_ID, Date, Time From Appointments WHERE Staff_ID = @staffID";
+        public const string selectAppointment = "SELECT Staff_ID, Patient_ID , Date,Time From Appointments WHERE Appointment_ID =@appointmentID";
+        //
+
+
+        // test selection 
+
+        public const string selectPatientTest = " SELECT Test_ID, Patient_ID, Results FROM Tests WHERE Patient_ID =@patientID";
+
+
+        public const string selectTestByID = " SELECT Test_ID, Patient_ID, Results FROM Tests WHERE Test_ID=@testID";
+        
+
+        // Staff Search Selection 
+    
+        public const string selectStaffDate = "  SELECT Appointment_ID, Staff_ID , Patient_ID, Time FROM Appointments WHERE date=@date ";
+        
+		public const string selectStaffType = "SELECT Staff_Type FROM Staff WHERE Staff_ID = @StaffID";
+        
+
+		//delete Appointment
         public const string deleteAppointment = "DELETE FROM Appointments WHERE Appointment_ID =@appointmentID";
 
         public const string UpdateAppointment = "UPDATE Appointments SET Staff_ID=@staffID, Date=@date, Time=@time WHERE Appointment_ID= @appointmentID";

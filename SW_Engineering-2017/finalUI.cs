@@ -50,9 +50,7 @@ namespace SW_Engineering_2017
         private void finalUI_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'surgeryDataSet.Tests' table. You can move, or remove it, as needed.
-            this.testsTableAdapter.Fill(this.surgeryDataSet.Tests);
-            this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.Sizable;
+           
             /************************************ Date related Code*******************************************/
             #region Date Related Code
             //set the values appointments
@@ -247,6 +245,7 @@ namespace SW_Engineering_2017
             StaffScheduleSearch.Visible = false;
 
             clearSSS();
+            clearTRS();
             clearFindPatient();
         }
         #endregion
@@ -392,7 +391,7 @@ namespace SW_Engineering_2017
         {
             StaffID_TB_SSS.Text = "";
             AppointmentID_TB_SSS.Text = "";
-            PatientID_TB_SSS.Text = "";
+
             Date_TB_SSS.Value = DateTime.Today;
             DGV_SSS.DataSource = null;
         }
@@ -405,6 +404,13 @@ namespace SW_Engineering_2017
             addressPanel.Visible = false;
         }
 
+        private void clearTRS()
+        {
+            TestID_TB_TRS.Text = "";
+            PatientID_TB_TRS.Text = "";
+            DVG_TRS.DataSource = null;
+            
+        }
         #endregion
 
         #endregion
@@ -907,21 +913,26 @@ namespace SW_Engineering_2017
 
         private void Print_BNT_TRS_Click(object sender, EventArgs e)
         {
-
-
-            TextWriter writer = new StreamWriter("K:\\Test\\test2.txt"); // just a test location its the h drive i think 
+        
+            // Stream Writer for Test Results 
+             TextWriter writer = new StreamWriter("D:\\Demo\\TEST RESULTS  " + DateTime.Now.ToString(" yyyy MM dd ") + " .txt"); // test location switch to approiate drive Test Result and date of creation 
             for (int i = 0; i < DVG_TRS.Rows.Count - 1; i++)
             {
                 for (int j = 0; j < DVG_TRS.Columns.Count; j++)
                 {
-
+                   
+                    
                     writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
 
                 }
+                
+               
                 writer.WriteLine("");
-                writer.WriteLine("-----------------------------------------------------"); // creates indentation
+                
             }
-            writer.Close();
+            writer.Write("------TestID-----------PatienID--------Results-----------"); // creates indentation
+
+            writer.Close(); 
 
 
 
@@ -935,42 +946,65 @@ namespace SW_Engineering_2017
 
         private void Request_BTN_CSS_Click(object sender, EventArgs e)
         {
-
-
-            // Text writer to post test result to a note Pad File so it can be printed 
-            TextWriter writer = new StreamWriter("K:\\Requests\\Request_Change.txt"); // just a test location its the h drive i think 
+            // Stream Writer for Test Results 
+            TextWriter writer = new StreamWriter("D:\\Demo\\Shift Change  " + DateTime.Now.ToString(" yyyy MM dd ") + " .txt"); // test location switch to approiate drive Test Result and date of creation 
             for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
             {
                 for (int j = 0; j < DGV_SSS.Columns.Count; j++)
                 {
 
-                    writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+
+                    writer.Write("\t" + DGV_SSS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
 
                 }
+
+
                 writer.WriteLine("");
-                writer.WriteLine("-----------------------------------------------------"); // creates indentation
-                writer.WriteLine("");
-                writer.WriteLine("Request change for Shift");
+                writer.Write("---------------------------------------------------------"); // creates indentation
             }
             writer.Close();
 
 
 
 
-        }
 
+            // Text writer to post test result to a note Pad File so it can be printed 
+            /* TextWriter writer = new StreamWriter("D:\\Demo\\*.txt"); // just a test location its the h drive i think 
+             for (int i = 0; i < DGV_SSS.Rows.Count - 1; i++)
+             {
+
+                 for (int j = 0; j < DGV_SSS.Columns.Count; j++)
+                 {
+
+
+                     writer.Write("\t" + DVG_TRS.Rows[i].Cells[j].Value.ToString() + "\t" + "|");
+                     writer.Write("--------TestID-------PatienID-------Results-----------"); // creates indentation
+                     writer.Write("Patient ID TestID Results");
+                     writer.Write("Request change for Shift");
+
+
+                 }
+
+
+             } 
+
+             writer.Close(); */
+
+        }
+        // user input part of the connection method
         private void SearchBNTSSS_Click(object sender, EventArgs e)
         {
             DGV_SSS.DataSource = null;
             DGV_SSS.Refresh();
             Validation val = new Validation();
-            string StaffID = StaffID_TB_SSS.Text, AppointmentID = AppointmentID_TB_SSS.Text, PatientID = PatientID_TB_SSS.Text;
-            int staffID, appointmentID, patientID;
-            DateTime SSSDate;
+            string StaffID = StaffID_TB_SSS.Text, AppointmentID = AppointmentID_TB_SSS.Text ;
+            int staffID, appointmentID;
+            DateTime date = Date_TB_SSS.Value;
             DataTable table;
             DataSet dataSet;
-
+            // staff id input
             if ((SSS_CB.SelectedIndex == 0) && (StaffID != ""))
+            
             {
                 if (Int32.TryParse(StaffID, out staffID))
                 {
@@ -979,8 +1013,8 @@ namespace SW_Engineering_2017
 
                     DGV_SSS.DataSource = table;
                 }
-            }
-            else if ((SSS_CB.SelectedIndex == 1) && (AppointmentID != ""))
+            } // appointment id input
+           else if ((SSS_CB.SelectedIndex == 1) && (AppointmentID != ""))
             {
                 if (Int32.TryParse(AppointmentID, out appointmentID))
                 {
@@ -989,40 +1023,141 @@ namespace SW_Engineering_2017
 
                     DGV_SSS.DataSource = table;
                 }
+            } // date input 
+            else if ((SSS_CB.SelectedIndex == 2) && (date != null))
+            {
+                string scheduleDate = date.Year.ToString() + "-" + date.Month.ToString() + "-" + date.Day.ToString();
+                dataSet = Connection.getDBConnectionInstance().selectStaffDate(scheduleDate);
+                table = dataSet.Tables[0];
+
+                DGV_SSS.DataSource = table;
             }
 
-        }
 
+        }
+        // Combo Box Selection 
         private void SSS_CB_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { // Select Staff ID
             if (SSS_CB.SelectedIndex == 0)
             {
                 SSS_StaffID_Panel.Visible = true;
                 SSS_AppID_Panel.Visible = false;
-                SSS_PatientID_Panel.Visible = false;
                 SSS_Date_Panel.Visible = false;
             }
             else if (SSS_CB.SelectedIndex == 1)
-            {
+            { // Select Appointment ID
                 SSS_StaffID_Panel.Visible = false;
                 SSS_AppID_Panel.Visible = true;
-                SSS_PatientID_Panel.Visible = false;
                 SSS_Date_Panel.Visible = false;
             }
             else if (SSS_CB.SelectedIndex == 2)
-            {
+            { // Select Date
                 SSS_StaffID_Panel.Visible = false;
                 SSS_AppID_Panel.Visible = false;
-                SSS_PatientID_Panel.Visible = true;
-                SSS_Date_Panel.Visible = false;
-            }
-            else if (SSS_CB.SelectedIndex == 3)
-            {
-                SSS_StaffID_Panel.Visible = false;
-                SSS_AppID_Panel.Visible = false;
-                SSS_PatientID_Panel.Visible = false;
                 SSS_Date_Panel.Visible = true;
             }
+
+           
+        }
+
+        private void TestResutsSearch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        
+        private void TRS_CB_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+
+            if (TRS_CB.SelectedIndex == 0)
+            {
+                P_TRS_PatientID.Visible = false;
+                P_TRS_TestID.Visible = true;
+
+            }
+            else if (TRS_CB.SelectedIndex == 1)
+            {
+
+                P_TRS_PatientID.Visible = true;
+                P_TRS_TestID.Visible = false;
+
+            }
+
+
+
+
+        }
+
+        private void Search_BTN_TRS_Click(object sender, EventArgs e)
+        {
+            //DVG_TRS.DataSource = null;
+            //DVG_TRS.Refresh();
+        
+            string TestID = TestID_TB_TRS.Text, PatientID = PatientID_TB_TRS.Text;
+            int testID, patientID;
+            DataTable table; 
+            DataSet dataSet;
+
+            if ((TRS_CB.SelectedIndex == 0) && (TestID !=""))
+            {
+                if (Int32.TryParse(TestID, out testID))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectTestByID(TestID);
+                    table = dataSet.Tables[0];
+
+                    DVG_TRS.DataSource = table;
+                }
+            }
+
+            if ((TRS_CB.SelectedIndex == 1 ) && (PatientID !=""))
+            {
+
+                if (Int32.TryParse(PatientID, out patientID))
+                {
+                    dataSet = Connection.getDBConnectionInstance().selectPatientTest(PatientID);
+                    table = dataSet.Tables[0];
+
+                    DVG_TRS.DataSource = table;
+                }
+
+            }
+           /*  if ((TRS_CB.SelectedIndex == 1) && (PatientID != ""))
+           {
+               if (Int32.TryParse(PatientID, out patientID))
+               {
+                   dataSet = Connection.getDBConnectionInstance().selectPatientT(PatientID);
+                   table = dataSet.Tables[0];
+
+                   DVG_TRS.DataSource = table;
+               } 
+           } */
+
+        } 
+
+        private void SSS_Date_Panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void StaffScheduleSearch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ChangeBntAppointment_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StaffIDlabletrs3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void extendPrescriptions_FP_B_Click(object sender, EventArgs e)
+        {
+
         }
 
 
@@ -1114,7 +1249,7 @@ namespace SW_Engineering_2017
 
         private void changeAppointment_FP_B_Click(object sender, EventArgs e)
         {
-            //checks to makes sure there is data to be selected
+           // cks to makes sure there is data to be selected
             if ((appointments_DGV_FP.DataSource != null) && (appointments_DGV_FP.Rows.Count > 0))
             {
                 NewAppointment = false;
