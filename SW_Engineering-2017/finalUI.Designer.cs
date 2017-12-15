@@ -1350,7 +1350,7 @@
             this.appointmentDate_PCK_NA.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.appointmentDate_PCK_NA.Location = new System.Drawing.Point(146, 126);
             this.appointmentDate_PCK_NA.Margin = new System.Windows.Forms.Padding(2);
-            this.appointmentDate_PCK_NA.MaxDate = new System.DateTime(2017, 12, 9, 0, 0, 0, 0);
+            this.appointmentDate_PCK_NA.MaxDate = new System.DateTime(2110, 12, 28, 0, 0, 0, 0);
             this.appointmentDate_PCK_NA.MinDate = new System.DateTime(2017, 11, 9, 0, 0, 0, 0);
             this.appointmentDate_PCK_NA.Name = "appointmentDate_PCK_NA";
             this.appointmentDate_PCK_NA.Size = new System.Drawing.Size(123, 20);
